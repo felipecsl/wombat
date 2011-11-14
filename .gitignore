@@ -46,3 +46,6 @@ pkg
 
 # For rubinius:
 #*.rbc
+
+*.sublime-project
+*.sublime-workspace
