@@ -6,7 +6,13 @@ describe EventCrawler::Properties do
   end
 
   it 'should store event properties' do
-    @props.title "/my/custom/selector"
-    @props.title.selector.should == "/my/custom/selector"
+    @props.title "/my/custom/selector", :html, lambda {}
+
+    title = @props.get_property "title"
+
+    title.name.should == "title"
+    title.selector.should == "/my/custom/selector"
+    title.format.should == :html
+    title.callback.should == lambda {}
   end
 end

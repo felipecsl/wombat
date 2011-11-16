@@ -27,18 +27,18 @@ describe EventCrawler::Crawler do
     time = Time.now
 
     @crawler.event do |e|
-      e.title = 'Fulltronic Dezembro'
-      e.time = Time.now
+      e.title 'Fulltronic Dezembro'
+      e.time Time.now
     end
 
-    @crawler.venue { |v| v.name = "Scooba" }
-    @crawler.location { |v| v.latitude = -50.2323 }
+    @crawler.venue { |v| v.name "Scooba" }
+    @crawler.location { |v| v.latitude -50.2323 }
 
     @parser.should_receive(:parse) do |arg|
-      arg.event_props.title.should == "Fulltronic Dezembro"
-      arg.event_props.time.to_s.should == time.to_s
-      arg.venue_props.name.should == "Scooba"
-      arg.location_props.latitude.should == -50.2323
+      arg.event_props.get_property("title").selector.should == "Fulltronic Dezembro"
+      arg.event_props.get_property("time").selector.to_s.should == time.to_s
+      arg.venue_props.get_property("name").selector.should == "Scooba"
+      arg.location_props.get_property("latitude").selector.should == -50.2323
     end
     
     @crawler_instance.crawl
@@ -51,12 +51,12 @@ describe EventCrawler::Crawler do
     another_crawler_instance = another_crawler.new
     another_crawler_instance.parser = another_parser
 
-    another_crawler.event { |e| e.title = 'Ibiza' }
-    another_parser.should_receive(:parse) { |arg| arg.event_props.title.should == "Ibiza" }
+    another_crawler.event { |e| e.title 'Ibiza' }
+    another_parser.should_receive(:parse) { |arg| arg.event_props.get_property("title").selector.should == "Ibiza" }
     another_crawler_instance.crawl
 
-    @crawler.event { |e| e.title = 'Fulltronic Dezembro' }
-    @parser.should_receive(:parse) { |arg| arg.event_props.title.should == "Fulltronic Dezembro" }
+    @crawler.event { |e| e.title 'Fulltronic Dezembro' }
+    @parser.should_receive(:parse) { |arg| arg.event_props.get_property("title").selector.should == "Fulltronic Dezembro" }
     @crawler_instance.crawl
   end
 

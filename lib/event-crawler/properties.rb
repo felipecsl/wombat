@@ -7,8 +7,16 @@ module EventCrawler
       @properties = []
     end
 
-    def title selector
-      @properties << Property.new selector
+    def method_missing method, *args, &block
+      @properties << Property.new(name: method.to_s, selector: args.first, format: args[1], callback: args[2])
+    end
+
+    # TODO: Why I need this?????
+    def to_ary
+    end
+
+    def get_property name
+      @properties.detect {|p| p.name == name }
     end
   end
 end

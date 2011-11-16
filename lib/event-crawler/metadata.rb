@@ -7,16 +7,10 @@ module EventCrawler
       self[:location_props] = Properties.new
     end
 
-    def event_props
-      self[:event_props]
-    end
-
-    def venue_props
-      self[:venue_props]
-    end
-
-    def location_props
-      self[:location_props]
+    [:event, :venue, :location].each do |m|
+      define_method(m) do
+        self["#{m.to_s}_props".to_sym]
+      end
     end
 
     def method_missing method, *args, &block
