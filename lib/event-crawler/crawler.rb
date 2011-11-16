@@ -1,8 +1,10 @@
 #coding: utf-8
-require 'event-crawler/property'
-require 'event-crawler/event_metadata'
-require 'event-crawler/parser/resolution'
+require 'event-crawler/properties'
+require 'event-crawler/property_locator'
+require 'event-crawler/metadata'
+require 'event-crawler/parser'
 require 'active_support'
+require 'date'
 
 module EventCrawler
   module Crawler
@@ -11,51 +13,44 @@ module EventCrawler
     module InstanceMethods
       
       def crawl
+        parser.parse self.class.send(:metadata)
       end
 
       def supports_city?
+      end
+
+      def parser
+        @parser ||= Parser.new
+      end
+
+      def parser= parser
+        @parser = parser
       end
 
     end
 
     module ClassMethods
 
-      def supported_cities
+      [:event, :venue, :location].each do |m|
+        define_method(m) do |&block|
+          block.call(metadata["#{m.to_s}_props".to_sym]) if block
+        end
       end
 
-      def event
-        yield if block_given?
-      end
-
-      def event_list
+      def method_missing method, *args, &block
+        metadata[method] = args.first
       end
 
       def with_details_page
-        yield if block_given?
+        yield metadata if block_given?
       end
 
-      def venue
-        yield if block_given?
+      def supported_cities
       end
 
-      def city
-      end
-
-      def location
-        yield if block_given?
-      end
-
-      def base_url
-      end
-
-      def list_page
-      end
-
-      def website_url
-      end
-
-      def website_name
-
+      private
+      def metadata
+        @metadata ||= Metadata.new
       end
     end
   end

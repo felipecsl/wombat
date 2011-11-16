@@ -1,13 +1,9 @@
 module EventCrawler
   class Property
-    attr_accessor :name, :value, :format, :namespaces, :callback
+    attr_accessor :selector
 
-    def initialize options
-      @name = options[:name]
-      @value = options[:value]
-      @format = options[:format]
-      @namespaces = options[:namespaces]
-      @callback = options[:callback] ? options[:callback] : Proc.new {|val| val }
+    def initialize selector
+      @selector = selector
     end
   end
 end

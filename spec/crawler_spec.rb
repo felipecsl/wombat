@@ -3,38 +3,85 @@ require 'spec_helper'
 describe EventCrawler::Crawler do
   before(:each) do
     @crawler = Class.new
+    @parser = EventCrawler::Parser.new
     @crawler.send(:include, EventCrawler::Crawler)
+    @crawler_instance = @crawler.new
+    @crawler_instance.parser = @parser
   end
 
-  it 'should call the block provided to event method' do
-    block_called = false
-    @crawler.event do
-      block_called = true
-    end 
-    block_called.should be_true
+  it 'should call the provided block' do
+    event_called = false
+    
+    @crawler.event { event_called = true }
+    
+    event_called.should be_true
   end
 
-  it 'should call the block provided to venue method' do
-    block_called = false
-    @crawler.venue do
-      block_called = true
+  it 'should provide metadata to yielded block' do
+    @crawler.event do |e|
+      e.should_not be_nil
     end 
-    block_called.should be_true
   end
 
-  it 'should call the block provided to location method' do
-    block_called = false
-    @crawler.location do
-      block_called = true
-    end 
-    block_called.should be_true
+  it 'should store assigned metadata information' do
+    time = Time.now
+
+    @crawler.event do |e|
+      e.title = 'Fulltronic Dezembro'
+      e.time = Time.now
+    end
+
+    @crawler.venue { |v| v.name = "Scooba" }
+    @crawler.location { |v| v.latitude = -50.2323 }
+
+    @parser.should_receive(:parse) do |arg|
+      arg.event_props.title.should == "Fulltronic Dezembro"
+      arg.event_props.time.to_s.should == time.to_s
+      arg.venue_props.name.should == "Scooba"
+      arg.location_props.latitude.should == -50.2323
+    end
+    
+    @crawler_instance.crawl
   end
 
-  it 'should call the block provided to details page method' do
+  it 'should isolate metadata between different instances' do
+    another_parser = EventCrawler::Parser.new
+    another_crawler = Class.new
+    another_crawler.send(:include, EventCrawler::Crawler)
+    another_crawler_instance = another_crawler.new
+    another_crawler_instance.parser = another_parser
+
+    another_crawler.event { |e| e.title = 'Ibiza' }
+    another_parser.should_receive(:parse) { |arg| arg.event_props.title.should == "Ibiza" }
+    another_crawler_instance.crawl
+
+    @crawler.event { |e| e.title = 'Fulltronic Dezembro' }
+    @parser.should_receive(:parse) { |arg| arg.event_props.title.should == "Fulltronic Dezembro" }
+    @crawler_instance.crawl
+  end
+
+  it 'should be able to assign arbitrary plain text metadata' do
+    @crawler.some_data "/event/list"
+    @parser.should_receive(:parse) { |arg| arg.some_data.should == "/event/list" }
+    @crawler_instance.crawl
+  end
+
+  it 'should not explode if no block given' do
+    @crawler.event
+  end
+
+  it 'should call property block with parsed data' do
     block_called = false
-    @crawler.with_details_page do
-      block_called = true
-    end 
-    block_called.should be_true
+    expected_result = "parsed data"
+    @parser.stub(:parse).and_return(expected_result)
+
+    @crawler.event do |e|
+      e.title '/some-selector' do |val|
+        block_called = true
+        val.should == expected_result
+      end
+    end
+
+    @crawler_instance.crawl
   end
 end
