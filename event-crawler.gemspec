@@ -5,6 +5,8 @@
 
 Gem::Specification.new do |gem|
   
+  gem.add_dependency 'mechanize'
+
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'guard'
   gem.add_development_dependency "bundler", "~> 1.0.0"

@@ -1,6 +1,5 @@
 #coding: utf-8
 require 'event-crawler/properties'
-require 'event-crawler/property_locator'
 require 'event-crawler/metadata'
 require 'event-crawler/parser'
 require 'active_support'

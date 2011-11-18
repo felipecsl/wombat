@@ -70,10 +70,12 @@ describe EventCrawler::Crawler do
     @crawler.event
   end
 
-  it 'should call property block with parsed data' do
+  xit 'should call property block with parsed data' do
     block_called = false
     expected_result = "parsed data"
-    @parser.stub(:parse).and_return(expected_result)
+    @parser.stub(:parse) do |arg| 
+      arg.event_props.get_property("title").callback.should_not be_nil
+    end.and_return(expected_result)
 
     @crawler.event do |e|
       e.title '/some-selector' do |val|
@@ -83,5 +85,6 @@ describe EventCrawler::Crawler do
     end
 
     @crawler_instance.crawl
+    block_called.should == true
   end
 end
