@@ -10,7 +10,6 @@ module EventCrawler
     extend ActiveSupport::Concern
 
     module InstanceMethods
-      
       def crawl
         parser.parse self.class.send(:metadata)
       end
@@ -25,11 +24,9 @@ module EventCrawler
       def parser= parser
         @parser = parser
       end
-
     end
 
     module ClassMethods
-
       [:event, :venue, :location].each do |m|
         define_method(m) do |&block|
           block.call(metadata["#{m.to_s}_props".to_sym]) if block

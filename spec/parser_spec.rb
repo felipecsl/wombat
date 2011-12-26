@@ -6,22 +6,23 @@ describe EventCrawler::Parser do
     @metadata = EventCrawler::Metadata.new
   end
 
-  xit 'should send property object to locator' do
-    @metadata.event_props.description "xpath=/data/location", :html
-    @metadata.venue_props.name "css=.venue-name"
-    @metadata.custom_field "xpath=/another/place", :text do |field|
-      field[0..2]
-    end
-
+  it 'should request page document with correct url' do
+    @metadata[:base_url] = "http://www.google.com"
+    @metadata[:event_list_page] = "/search"
+    fake_document = double :document
+    fake_parser = double :parser
+    fake_document.should_receive(:parser).and_return(fake_parser)
+    @parser.mechanize.should_receive(:get).with("http://www.google.com/search").and_return fake_document
+    
     @parser.parse @metadata
   end
 
-  xit 'should call the metadata callback if present' do
-    block_called = false
-    @metadata.event_props.name "xpath=/selector", :html do |t|
-      block_called = true
-    end
+  it 'should send correct data to locate method' do
+    fake_document = double :document
+    fake_parser = double :parser
+    fake_document.should_receive(:parser).and_return(fake_parser)
+    @parser.mechanize.stub(:get).and_return fake_document
+    @parser.should_receive(:locate).with(@metadata)
     @parser.parse @metadata
-    block_called.should be_true
   end
 end

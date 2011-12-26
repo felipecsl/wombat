@@ -69,22 +69,4 @@ describe EventCrawler::Crawler do
   it 'should not explode if no block given' do
     @crawler.event
   end
-
-  xit 'should call property block with parsed data' do
-    block_called = false
-    expected_result = "parsed data"
-    @parser.stub(:parse) do |arg| 
-      arg.event_props.get_property("title").callback.should_not be_nil
-    end.and_return(expected_result)
-
-    @crawler.event do |e|
-      e.title '/some-selector' do |val|
-        block_called = true
-        val.should == expected_result
-      end
-    end
-
-    @crawler_instance.crawl
-    block_called.should == true
-  end
 end
