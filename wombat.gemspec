@@ -3,114 +3,31 @@
 # Instead, edit Jeweler::Tasks in Rakefile, and run 'rake gemspec'
 # -*- encoding: utf-8 -*-
 
-Gem::Specification.new do |s|
-  s.name = "wombat"
-  s.version = "0.1.1"
+Gem::Specification.new do |gem|
+  gem.name = "wombat"
+  gem.version = "0.1.1"
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Felipe Lima"]
-  s.date = "2011-12-27"
-  s.description = "Generic Web crawler with a DSL that parses event-related data from web pages"
-  s.email = "felipe.lima@gmail.com"
-  s.extra_rdoc_files = [
+  gem.required_rubygems_version = Gem::Requirement.new('>= 1.3.6')
+  gem.authors = ["Felipe Lima"]
+  gem.date = "2011-12-27"
+  gem.description = "Generic Web crawler with a DSL that parses event-related data from web pages"
+  gem.email = "felipe.lima@gmail.com"
+  gem.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
   ]
-  s.files = [
-    ".document",
-    ".rspec",
-    "Gemfile",
-    "Gemfile.lock",
-    "Guardfile",
-    "LICENSE.txt",
-    "README.rdoc",
-    "Rakefile",
-    "VERSION",
-    "lib/wombat.rb",
-    "lib/wombat/crawler.rb",
-    "lib/wombat/metadata.rb",
-    "lib/wombat/parser.rb",
-    "lib/wombat/properties.rb",
-    "lib/wombat/property.rb",
-    "lib/wombat/property_locator.rb",
-    "spec/crawler_spec.rb",
-    "spec/helpers/sample_crawler.rb",
-    "spec/metadata_spec.rb",
-    "spec/parser_spec.rb",
-    "spec/properties_spec.rb",
-    "spec/property_locator_spec.rb",
-    "spec/property_spec.rb",
-    "spec/sample_crawler_spec.rb",
-    "spec/spec_helper.rb",
-    "wombat.gemspec"
-  ]
-  s.homepage = "http://github.com/felipecsl/nightcrawler"
-  s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.11"
-  s.summary = "Generic web crawler for event-related data"
+  gem.files = `git ls-files`.split("\n")
+  gem.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
+  gem.homepage = "http://github.com/felipecsl/wombat"
+  gem.licenses = ["MIT"]
+  gem.require_paths = ["lib"]
+  gem.rubygems_version = "1.8.11"
+  gem.summary = "Generic web crawler for event-related data"
 
-  if s.respond_to? :specification_version then
-    s.specification_version = 3
-
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<wombat>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, [">= 0"])
-      s.add_development_dependency(%q<guard>, [">= 0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_development_dependency(%q<rcov>, [">= 0"])
-      s.add_development_dependency(%q<yard>, [">= 0"])
-      s.add_development_dependency(%q<guard-rspec>, [">= 0"])
-      s.add_development_dependency(%q<guard-bundler>, [">= 0"])
-      s.add_development_dependency(%q<growl_notify>, [">= 0"])
-      s.add_development_dependency(%q<rb-inotify>, [">= 0"])
-      s.add_development_dependency(%q<rb-fsevent>, [">= 0"])
-      s.add_development_dependency(%q<rb-fchange>, [">= 0"])
-      s.add_development_dependency(%q<activesupport>, [">= 0"])
-      s.add_development_dependency(%q<shoulda>, [">= 0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_development_dependency(%q<rcov>, [">= 0"])
-    else
-      s.add_dependency(%q<wombat>, [">= 0"])
-      s.add_dependency(%q<rspec>, [">= 0"])
-      s.add_dependency(%q<guard>, [">= 0"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_dependency(%q<rcov>, [">= 0"])
-      s.add_dependency(%q<yard>, [">= 0"])
-      s.add_dependency(%q<guard-rspec>, [">= 0"])
-      s.add_dependency(%q<guard-bundler>, [">= 0"])
-      s.add_dependency(%q<growl_notify>, [">= 0"])
-      s.add_dependency(%q<rb-inotify>, [">= 0"])
-      s.add_dependency(%q<rb-fsevent>, [">= 0"])
-      s.add_dependency(%q<rb-fchange>, [">= 0"])
-      s.add_dependency(%q<activesupport>, [">= 0"])
-      s.add_dependency(%q<shoulda>, [">= 0"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_dependency(%q<rcov>, [">= 0"])
-    end
-  else
-    s.add_dependency(%q<wombat>, [">= 0"])
-    s.add_dependency(%q<rspec>, [">= 0"])
-    s.add_dependency(%q<guard>, [">= 0"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-    s.add_dependency(%q<rcov>, [">= 0"])
-    s.add_dependency(%q<yard>, [">= 0"])
-    s.add_dependency(%q<guard-rspec>, [">= 0"])
-    s.add_dependency(%q<guard-bundler>, [">= 0"])
-    s.add_dependency(%q<growl_notify>, [">= 0"])
-    s.add_dependency(%q<rb-inotify>, [">= 0"])
-    s.add_dependency(%q<rb-fsevent>, [">= 0"])
-    s.add_dependency(%q<rb-fchange>, [">= 0"])
-    s.add_dependency(%q<activesupport>, [">= 0"])
-    s.add_dependency(%q<shoulda>, [">= 0"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-    s.add_dependency(%q<rcov>, [">= 0"])
-  end
+  gem.add_dependency 'activesupport'
+  gem.add_dependency 'mechanize'
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'guard'
 end
 
