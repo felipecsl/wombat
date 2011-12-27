@@ -1,4 +1,5 @@
 = Wombat
+[travis]: http://travis-ci.org/felipecsl/wombat
 
 Generic Web crawler with a DSL that parses event-related data from web pages.
 Still under development, it is being rewritten from scratch as a gem from an already existing project.
