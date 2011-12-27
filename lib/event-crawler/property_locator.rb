@@ -10,7 +10,9 @@ module EventCrawler
 
     private 
     def locate_property property
-      locate_selector property.selector
+      result = locate_selector(property.selector, property.namespaces)
+      result.map! {|r| r.inner_html } if property.format == :html
+      result.map {|r| r.strip }
     end
 
     def locate_selector selector, namespaces = nil

@@ -16,8 +16,8 @@ module EventCrawler
 
       locate metadata
 
-      metadata.event_props.all_properties.each do |p|
-        p.callback.call if p.callback
+      [metadata.event_props, metadata.venue_props, metadata.location_props].flat_map { |p| p.all_properties }.each do |p|
+        p.callback.call(p.result) if p.callback
       end
     end
   end
