@@ -1,4 +1,4 @@
-module EventCrawler
+module Wombat
   class Property
     attr_accessor :name, :selector, :format, :namespaces, :callback, :result
 

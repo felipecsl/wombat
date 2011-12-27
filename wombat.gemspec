@@ -4,8 +4,8 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = "nightcrawler"
-  s.version = "0.1.1"
+  s.name = "wombat"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Felipe Lima"]
@@ -26,13 +26,13 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "lib/event-crawler.rb",
-    "lib/event-crawler/crawler.rb",
-    "lib/event-crawler/metadata.rb",
-    "lib/event-crawler/parser.rb",
-    "lib/event-crawler/properties.rb",
-    "lib/event-crawler/property.rb",
-    "lib/event-crawler/property_locator.rb",
+    "lib/wombat.rb",
+    "lib/wombat/crawler.rb",
+    "lib/wombat/metadata.rb",
+    "lib/wombat/parser.rb",
+    "lib/wombat/properties.rb",
+    "lib/wombat/property.rb",
+    "lib/wombat/property_locator.rb",
     "nightcrawler.gemspec",
     "spec/crawler_spec.rb",
     "spec/helpers/sample_crawler.rb",
@@ -44,7 +44,7 @@ Gem::Specification.new do |s|
     "spec/sample_crawler_spec.rb",
     "spec/spec_helper.rb"
   ]
-  s.homepage = "http://github.com/felipecsl/nightcrawler"
+  s.homepage = "http://github.com/felipecsl/wombat"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.11"
@@ -67,7 +67,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rb-inotify>, [">= 0"])
       s.add_development_dependency(%q<rb-fsevent>, [">= 0"])
       s.add_development_dependency(%q<rb-fchange>, [">= 0"])
-      s.add_development_dependency(%q<active_support>, [">= 0"])
+      s.add_development_dependency(%q<activesupport>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
@@ -86,7 +86,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rb-inotify>, [">= 0"])
       s.add_dependency(%q<rb-fsevent>, [">= 0"])
       s.add_dependency(%q<rb-fchange>, [">= 0"])
-      s.add_dependency(%q<active_support>, [">= 0"])
+      s.add_dependency(%q<activesupport>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
@@ -106,7 +106,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rb-inotify>, [">= 0"])
     s.add_dependency(%q<rb-fsevent>, [">= 0"])
     s.add_dependency(%q<rb-fchange>, [">= 0"])
-    s.add_dependency(%q<active_support>, [">= 0"])
+    s.add_dependency(%q<activesupport>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])

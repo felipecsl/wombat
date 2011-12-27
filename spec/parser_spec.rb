@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe EventCrawler::Parser do
+describe Wombat::Parser do
   before(:each) do
-    @parser = EventCrawler::Parser.new
-    @metadata = EventCrawler::Metadata.new
+    @parser = Wombat::Parser.new
+    @metadata = Wombat::Metadata.new
   end
 
   it 'should request page document with correct url' do

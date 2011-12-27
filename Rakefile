@@ -9,7 +9,7 @@ require 'yard'
 
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "nightcrawler"
+  gem.name = "wombat"
   gem.homepage = "http://github.com/felipecsl/nightcrawler"
   gem.license = "MIT"
   gem.summary = %Q{Generic web crawler for event-related data}

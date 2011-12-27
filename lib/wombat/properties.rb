@@ -1,7 +1,7 @@
 #coding: utf-8
-require 'event-crawler/property'
+require 'wombat/property'
 
-module EventCrawler
+module Wombat
   class Properties
     def initialize
       @properties = []

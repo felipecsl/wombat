@@ -1,8 +1,8 @@
 #coding: utf-8
-require 'event-crawler'
+require 'wombat'
 
 class SampleCrawler
-  include EventCrawler::Crawler
+  include Wombat::Crawler
 
   event do |e|
     e.title "Sample Event"

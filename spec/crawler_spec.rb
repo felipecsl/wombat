@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe EventCrawler::Crawler do
+describe Wombat::Crawler do
   before(:each) do
     @crawler = Class.new
-    @parser = EventCrawler::Parser.new
-    @crawler.send(:include, EventCrawler::Crawler)
+    @parser = Wombat::Parser.new
+    @crawler.send(:include, Wombat::Crawler)
     @crawler_instance = @crawler.new
     @crawler_instance.parser = @parser
   end
@@ -45,9 +45,9 @@ describe EventCrawler::Crawler do
   end
 
   it 'should isolate metadata between different instances' do
-    another_parser = EventCrawler::Parser.new
+    another_parser = Wombat::Parser.new
     another_crawler = Class.new
-    another_crawler.send(:include, EventCrawler::Crawler)
+    another_crawler.send(:include, Wombat::Crawler)
     another_crawler_instance = another_crawler.new
     another_crawler_instance.parser = another_parser
 

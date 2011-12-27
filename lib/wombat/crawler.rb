@@ -1,11 +1,11 @@
 #coding: utf-8
-require 'event-crawler/properties'
-require 'event-crawler/metadata'
-require 'event-crawler/parser'
+require 'wombat/properties'
+require 'wombat/metadata'
+require 'wombat/parser'
 require 'active_support'
 require 'date'
 
-module EventCrawler
+module Wombat
   module Crawler
     extend ActiveSupport::Concern
 

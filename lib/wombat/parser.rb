@@ -1,8 +1,8 @@
 #coding: utf-8
-require 'event-crawler/property_locator'
+require 'wombat/property_locator'
 require 'mechanize'
 
-module EventCrawler
+module Wombat
   class Parser
     include PropertyLocator
     attr_accessor :mechanize, :context

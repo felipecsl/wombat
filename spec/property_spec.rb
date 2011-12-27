@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe EventCrawler::Property do
+describe Wombat::Property do
   it 'should store property data' do
-    property = EventCrawler::Property.new(
+    property = Wombat::Property.new(
       name: "title",
       selector: "/some/selector", 
       format: :html,

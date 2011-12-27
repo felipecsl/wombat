@@ -1,3 +1,3 @@
-require 'event-crawler'
+require 'wombat'
 require 'rspec'
 require 'rspec-expectations'

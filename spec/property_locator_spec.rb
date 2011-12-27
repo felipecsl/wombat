@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe EventCrawler::PropertyLocator do
+describe Wombat::PropertyLocator do
   before(:each) do
     @locator = Class.new
-    @locator.send(:include, EventCrawler::PropertyLocator)
+    @locator.send(:include, Wombat::PropertyLocator)
     @locator_instance = @locator.new
-    @metadata = EventCrawler::Metadata.new
+    @metadata = Wombat::Metadata.new
   end
 
   it 'should locate metadata properties' do

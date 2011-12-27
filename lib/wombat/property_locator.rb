@@ -1,6 +1,6 @@
 #coding: utf-8
 
-module EventCrawler
+module Wombat
   module PropertyLocator
     def locate metadata
       [metadata.event_props, metadata.venue_props, metadata.location_props].flat_map { |p| p.all_properties }.each do |p|

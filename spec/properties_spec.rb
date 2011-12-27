@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe EventCrawler::Properties do
+describe Wombat::Properties do
   before(:each) do
-    @props = EventCrawler::Properties.new
+    @props = Wombat::Properties.new
   end
 
   it 'should store event properties' do

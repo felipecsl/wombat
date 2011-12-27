@@ -4,7 +4,7 @@ require 'helpers/sample_crawler'
 describe SampleCrawler do
   before(:each) do
     @sample_crawler = SampleCrawler.new
-    @sample_crawler.parser = EventCrawler::Parser.new
+    @sample_crawler.parser = Wombat::Parser.new
   end
 
   it 'should correctly assign event metadata' do

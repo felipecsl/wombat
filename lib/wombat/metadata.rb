@@ -1,5 +1,5 @@
 #coding: utf-8
-module EventCrawler
+module Wombat
   class Metadata < Hash
     def initialize
       self[:event_props] = Properties.new
