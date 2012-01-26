@@ -1,6 +1,6 @@
 # Wombat
 
-![CI Build Status](https://secure.travis-ci.org/intridea/omniauth.png?branch=master)(http://travis-ci.org/felipecsl/wombat)
+[![CI Build Status](https://secure.travis-ci.org/intridea/omniauth.png?branch=master)](http://travis-ci.org/felipecsl/wombat)
 
 Generic Web crawler with a DSL that parses event-related data from web pages.
 
