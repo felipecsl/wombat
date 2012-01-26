@@ -1,6 +1,6 @@
 #coding: utf-8
-require 'wombat/properties'
 require 'wombat/metadata'
+require 'wombat/property'
 require 'wombat/parser'
 require 'active_support'
 require 'date'
@@ -34,7 +34,7 @@ module Wombat
       end
 
       def method_missing method, *args, &block
-        metadata[method] = args.first
+        metadata.send method, *args, &block
       end
 
       def with_details_page
@@ -42,6 +42,9 @@ module Wombat
       end
 
       def supported_cities
+      end
+
+      def to_ary
       end
 
       private

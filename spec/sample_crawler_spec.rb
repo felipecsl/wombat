@@ -9,12 +9,15 @@ describe SampleCrawler do
 
   it 'should correctly assign event metadata' do
     @sample_crawler.parser.should_receive(:parse) do |args|
-      args.event_props.get_property("title").selector.should == "Sample Event"
-      args.event_props.get_property("description").selector.should == "This event's description"
-      args.event_props.get_property("date").selector.should == DateTime.now.to_date
+      args.event["title"].selector.should == "Sample Event"
+      args.event["description"].selector.should == "This event's description"
+      args.event["date"].selector.should == DateTime.now.to_date
 
-      args.venue_props.get_property("name").selector.should == "Cafe de La Musique"
-      args.venue_props.get_property("address").selector.should == "324 Dom Pedro II Street"
+      args.venue["name"].selector.should == "Cafe de La Musique"
+      args.venue["address"].selector.should == "324 Dom Pedro II Street"
+
+      args[:base_url].should == 'http://www.google.com/'
+      args[:event_list_page].should == 'shows.php'
     end
 
     @sample_crawler.crawl

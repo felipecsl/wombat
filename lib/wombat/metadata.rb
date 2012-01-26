@@ -1,10 +1,12 @@
 #coding: utf-8
+require 'wombat/property_container'
+
 module Wombat
-  class Metadata < Hash
+  class Metadata < PropertyContainer
     def initialize
-      self[:event_props] = Properties.new
-      self[:venue_props] = Properties.new
-      self[:location_props] = Properties.new
+      [:event, :venue, :location].each do |p|
+        self["#{p.to_s}_props".to_sym] = PropertyContainer.new
+      end
     end
 
     [:event, :venue, :location].each do |m|
@@ -13,12 +15,22 @@ module Wombat
       end
     end
 
-    def method_missing method, *args, &block
-      if method.to_s.end_with? '='
-        self[method] = args.first
-      else
-        self[method]
-      end
+    def base_url url
+      self[:base_url] = url
+    end
+
+    def event_list_page url
+      self[:event_list_page] = url
+    end
+
+    def all_properties
+      values.flat_map { |v|
+        v.kind_of?(PropertyContainer) \
+          ? v.values \
+          : v.kind_of?(Property) \
+            ? v \
+            : nil
+      }.compact
     end
   end
 end

@@ -35,10 +35,10 @@ describe Wombat::Crawler do
     @crawler.location { |v| v.latitude -50.2323 }
 
     @parser.should_receive(:parse) do |arg|
-      arg.event_props.get_property("title").selector.should == "Fulltronic Dezembro"
-      arg.event_props.get_property("time").selector.to_s.should == time.to_s
-      arg.venue_props.get_property("name").selector.should == "Scooba"
-      arg.location_props.get_property("latitude").selector.should == -50.2323
+      arg[:event_props].get_property("title").selector.should == "Fulltronic Dezembro"
+      arg[:event_props].get_property("time").selector.to_s.should == time.to_s
+      arg[:venue_props].get_property("name").selector.should == "Scooba"
+      arg[:location_props].get_property("latitude").selector.should == -50.2323
     end
     
     @crawler_instance.crawl
@@ -52,17 +52,26 @@ describe Wombat::Crawler do
     another_crawler_instance.parser = another_parser
 
     another_crawler.event { |e| e.title 'Ibiza' }
-    another_parser.should_receive(:parse) { |arg| arg.event_props.get_property("title").selector.should == "Ibiza" }
+    another_parser.should_receive(:parse) { |arg| arg[:event_props].get_property("title").selector.should == "Ibiza" }
     another_crawler_instance.crawl
 
     @crawler.event { |e| e.title 'Fulltronic Dezembro' }
-    @parser.should_receive(:parse) { |arg| arg.event_props.get_property("title").selector.should == "Fulltronic Dezembro" }
+    @parser.should_receive(:parse) { |arg| arg[:event_props].get_property("title").selector.should == "Fulltronic Dezembro" }
     @crawler_instance.crawl
   end
 
   it 'should be able to assign arbitrary plain text metadata' do
-    @crawler.some_data "/event/list"
-    @parser.should_receive(:parse) { |arg| arg.some_data.should == "/event/list" }
+    @crawler.some_data("/event/list", :html, "geo") {|p| true }
+    
+    @parser.should_receive(:parse) do |arg|
+      prop = arg['some_data']
+      prop.name.should == "some_data"
+      prop.selector.should == "/event/list"
+      prop.format.should == :html
+      prop.namespaces.should == "geo"
+      prop.callback.should_not be_nil
+    end
+    
     @crawler_instance.crawl
   end
 

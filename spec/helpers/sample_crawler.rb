@@ -4,6 +4,9 @@ require 'wombat'
 class SampleCrawler
   include Wombat::Crawler
 
+  base_url "http://www.google.com/"
+  event_list_page "shows.php"
+
   event do |e|
     e.title "Sample Event"
     e.description "This event's description"

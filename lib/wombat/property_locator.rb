@@ -3,7 +3,7 @@
 module Wombat
   module PropertyLocator
     def locate metadata
-      [metadata.event_props, metadata.venue_props, metadata.location_props].flat_map { |p| p.all_properties }.each do |p|
+      metadata.all_properties.each do |p|
         p.result = locate_property(p).first
       end
     end
