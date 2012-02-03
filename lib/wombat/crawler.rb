@@ -34,7 +34,7 @@ module Wombat
         yield metadata if block_given?
       end
 
-      def within selector
+      def for_each selector
         
       end
 

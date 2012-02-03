@@ -7,7 +7,7 @@ class SampleCrawler
   base_url "http://www.obaoba.com.br"
   list_page "/porto-alegre/agenda"
   
-  within "css=div.title-agenda" do
+  for_each "css=div.title-agenda" do
     event do |e|
       e.title("xpath=.") { |t| t.split(" | ")[1].strip }
       e.date "xpath=//div[@class='scrollable-items']/div[@class='s-item active']//a" do |d|

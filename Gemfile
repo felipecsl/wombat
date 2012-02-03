@@ -13,5 +13,5 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'vcr', '2.0.0.rc1'
-  gem 'webmock'
+  gem 'fakeweb'
 end

@@ -71,8 +71,8 @@ describe Wombat::Crawler do
     @crawler_instance.crawl
   end
 
-  it 'should be able to specify within block' do
-    
+  it 'should be able to specify arbitrary block structure' do
+
   end
 
   it 'should not explode if no block given' do
