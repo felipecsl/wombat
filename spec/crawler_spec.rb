@@ -3,10 +3,8 @@ require 'spec_helper'
 describe Wombat::Crawler do
   before(:each) do
     @crawler = Class.new
-    @parser = Wombat::Parser.new
     @crawler.send(:include, Wombat::Crawler)
     @crawler_instance = @crawler.new
-    @crawler_instance.parser = @parser
   end
 
   it 'should call the provided block' do
@@ -34,7 +32,7 @@ describe Wombat::Crawler do
     @crawler.venue { |v| v.name "Scooba" }
     @crawler.location { |v| v.latitude -50.2323 }
 
-    @parser.should_receive(:parse) do |arg|
+    @crawler_instance.should_receive(:parse) do |arg|
       arg[:event_props].get_property("title").selector.should == "Fulltronic Dezembro"
       arg[:event_props].get_property("time").selector.to_s.should == time.to_s
       arg[:venue_props].get_property("name").selector.should == "Scooba"
@@ -45,25 +43,23 @@ describe Wombat::Crawler do
   end
 
   it 'should isolate metadata between different instances' do
-    another_parser = Wombat::Parser.new
     another_crawler = Class.new
     another_crawler.send(:include, Wombat::Crawler)
     another_crawler_instance = another_crawler.new
-    another_crawler_instance.parser = another_parser
 
     another_crawler.event { |e| e.title 'Ibiza' }
-    another_parser.should_receive(:parse) { |arg| arg[:event_props].get_property("title").selector.should == "Ibiza" }
+    another_crawler_instance.should_receive(:parse) { |arg| arg[:event_props].get_property("title").selector.should == "Ibiza" }
     another_crawler_instance.crawl
 
     @crawler.event { |e| e.title 'Fulltronic Dezembro' }
-    @parser.should_receive(:parse) { |arg| arg[:event_props].get_property("title").selector.should == "Fulltronic Dezembro" }
+    @crawler_instance.should_receive(:parse) { |arg| arg[:event_props].get_property("title").selector.should == "Fulltronic Dezembro" }
     @crawler_instance.crawl
   end
 
   it 'should be able to assign arbitrary plain text metadata' do
     @crawler.some_data("/event/list", :html, "geo") {|p| true }
     
-    @parser.should_receive(:parse) do |arg|
+    @crawler_instance.should_receive(:parse) do |arg|
       prop = arg['some_data']
       prop.name.should == "some_data"
       prop.selector.should == "/event/list"
@@ -73,6 +69,10 @@ describe Wombat::Crawler do
     end
     
     @crawler_instance.crawl
+  end
+
+  it 'should be able to specify within block' do
+    
   end
 
   it 'should not explode if no block given' do

@@ -10,4 +10,8 @@ group :development, :test do
   gem 'jeweler'
   gem 'rspec'
   gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-bundler'
+  gem 'vcr', '2.0.0.rc1'
+  gem 'webmock'
 end

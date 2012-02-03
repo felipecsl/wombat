@@ -19,8 +19,8 @@ module Wombat
       self[:base_url] = url
     end
 
-    def event_list_page url
-      self[:event_list_page] = url
+    def list_page url
+      self[:list_page] = url
     end
 
     def all_properties

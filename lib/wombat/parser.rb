@@ -1,9 +1,9 @@
-#coding: utf-8
+ #coding: utf-8
 require 'wombat/property_locator'
 require 'mechanize'
 
 module Wombat
-  class Parser
+  module Parser
     include PropertyLocator
     attr_accessor :mechanize, :context
 
@@ -12,7 +12,7 @@ module Wombat
     end
 
     def parse metadata
-      @context = @mechanize.get("#{metadata[:base_url]}#{metadata[:event_list_page]}").parser
+      @context = @mechanize.get("#{metadata[:base_url]}#{metadata[:list_page]}").parser
 
       locate metadata
 

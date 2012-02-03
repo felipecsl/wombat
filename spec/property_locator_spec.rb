@@ -10,7 +10,11 @@ describe Wombat::PropertyLocator do
 
   it 'should locate metadata properties' do
     context = double :context
-    context.stub(:xpath).with("/abc", nil).and_return(["Something cool"])
+    abc = double :abc
+    
+    abc.stub(:inner_text).and_return("Something cool")
+
+    context.stub(:xpath).with("/abc", nil).and_return([abc])
     context.stub(:xpath).with("/bah", nil).and_return(["abc"])
     context.stub(:css).with("/ghi").and_return(["Another stuff"])
 

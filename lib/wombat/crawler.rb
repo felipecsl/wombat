@@ -7,22 +7,15 @@ require 'date'
 
 module Wombat
   module Crawler
+    include Parser
     extend ActiveSupport::Concern
 
     module InstanceMethods
       def crawl
-        parser.parse self.class.send(:metadata)
+        parse self.class.send(:metadata)
       end
 
       def supports_city?
-      end
-
-      def parser
-        @parser ||= Parser.new
-      end
-
-      def parser= parser
-        @parser = parser
       end
     end
 
@@ -39,6 +32,14 @@ module Wombat
 
       def with_details_page
         yield metadata if block_given?
+      end
+
+      def within selector
+        
+      end
+
+      def follow_links selector
+
       end
 
       def supported_cities

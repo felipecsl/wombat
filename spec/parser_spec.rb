@@ -2,13 +2,15 @@ require 'spec_helper'
 
 describe Wombat::Parser do
   before(:each) do
-    @parser = Wombat::Parser.new
+    crawler = Class.new
+    crawler.send(:include, Wombat::Parser)
+    @parser = crawler.new
     @metadata = Wombat::Metadata.new
   end
 
   it 'should request page document with correct url' do
     @metadata.base_url "http://www.google.com"
-    @metadata.event_list_page "/search"
+    @metadata.list_page "/search"
     fake_document = double :document
     fake_parser = double :parser
     fake_document.should_receive(:parser).and_return(fake_parser)
