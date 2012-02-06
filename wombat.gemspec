@@ -5,16 +5,16 @@
 
 Gem::Specification.new do |s|
   s.name = "wombat"
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Felipe Lima"]
-  s.date = "2011-12-27"
+  s.date = "2012-02-06"
   s.description = "Generic Web crawler with a DSL that parses event-related data from web pages"
   s.email = "felipe.lima@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".document",
@@ -24,21 +24,23 @@ Gem::Specification.new do |s|
     "Gemfile.lock",
     "Guardfile",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
+    "fixtures/vcr_cassettes/basic_crawler_page.yml",
     "lib/wombat.rb",
     "lib/wombat/crawler.rb",
     "lib/wombat/metadata.rb",
     "lib/wombat/parser.rb",
-    "lib/wombat/properties.rb",
     "lib/wombat/property.rb",
+    "lib/wombat/property_container.rb",
     "lib/wombat/property_locator.rb",
     "spec/crawler_spec.rb",
     "spec/helpers/sample_crawler.rb",
+    "spec/integration/integration_spec.rb",
     "spec/metadata_spec.rb",
     "spec/parser_spec.rb",
-    "spec/properties_spec.rb",
+    "spec/property_container_spec.rb",
     "spec/property_locator_spec.rb",
     "spec/property_spec.rb",
     "spec/sample_crawler_spec.rb",
@@ -63,6 +65,10 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<guard>, [">= 0"])
+      s.add_development_dependency(%q<guard-rspec>, [">= 0"])
+      s.add_development_dependency(%q<guard-bundler>, [">= 0"])
+      s.add_development_dependency(%q<vcr>, ["= 2.0.0.rc1"])
+      s.add_development_dependency(%q<fakeweb>, [">= 0"])
     else
       s.add_dependency(%q<bundler>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
@@ -72,6 +78,10 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<guard>, [">= 0"])
+      s.add_dependency(%q<guard-rspec>, [">= 0"])
+      s.add_dependency(%q<guard-bundler>, [">= 0"])
+      s.add_dependency(%q<vcr>, ["= 2.0.0.rc1"])
+      s.add_dependency(%q<fakeweb>, [">= 0"])
     end
   else
     s.add_dependency(%q<bundler>, [">= 0"])
@@ -82,6 +92,10 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<guard>, [">= 0"])
+    s.add_dependency(%q<guard-rspec>, [">= 0"])
+    s.add_dependency(%q<guard-bundler>, [">= 0"])
+    s.add_dependency(%q<vcr>, ["= 2.0.0.rc1"])
+    s.add_dependency(%q<fakeweb>, [">= 0"])
   end
 end
 
