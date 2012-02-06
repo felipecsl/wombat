@@ -20,14 +20,13 @@ module Wombat
     end
 
     module ClassMethods
-      [:event, :venue, :location].each do |m|
-        define_method(m) do |&block|
-          block.call(metadata["#{m.to_s}_props".to_sym]) if block
-        end
-      end
-
       def method_missing method, *args, &block
-        metadata.send method, *args, &block
+        if args.empty? && block
+          metadata["#{method.to_s}"] = PropertyContainer.new unless metadata["#{method.to_s}"]
+          block.call(metadata["#{method.to_s}"])
+        else
+          metadata.send method, *args, &block
+        end
       end
 
       def with_details_page

@@ -70,4 +70,16 @@ describe Wombat::Parser do
 
     block_called.should be_true
   end
+
+  it 'should return array with requested properties' do
+    hash = double :results
+    fake_parser = double :parser
+    fake_document = double :document
+
+    fake_document.should_receive(:parser).and_return fake_parser
+    @parser.mechanize.stub(:get).and_return fake_document
+    @metadata.should_receive(:flatten).and_return hash
+    
+    @parser.parse(@metadata).should == hash
+  end
 end

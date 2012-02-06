@@ -19,6 +19,8 @@ module Wombat
       metadata.all_properties.each do |p|
         p.callback.call(p.result) if p.callback
       end
+
+      metadata.flatten
     end
   end
 end

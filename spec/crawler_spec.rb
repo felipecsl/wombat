@@ -33,10 +33,10 @@ describe Wombat::Crawler do
     @crawler.location { |v| v.latitude -50.2323 }
 
     @crawler_instance.should_receive(:parse) do |arg|
-      arg[:event_props].get_property("title").selector.should == "Fulltronic Dezembro"
-      arg[:event_props].get_property("time").selector.to_s.should == time.to_s
-      arg[:venue_props].get_property("name").selector.should == "Scooba"
-      arg[:location_props].get_property("latitude").selector.should == -50.2323
+      arg["event"].get_property("title").selector.should == "Fulltronic Dezembro"
+      arg["event"].get_property("time").selector.to_s.should == time.to_s
+      arg["venue"].get_property("name").selector.should == "Scooba"
+      arg["location"].get_property("latitude").selector.should == -50.2323
     end
     
     @crawler_instance.crawl
@@ -48,11 +48,11 @@ describe Wombat::Crawler do
     another_crawler_instance = another_crawler.new
 
     another_crawler.event { |e| e.title 'Ibiza' }
-    another_crawler_instance.should_receive(:parse) { |arg| arg[:event_props].get_property("title").selector.should == "Ibiza" }
+    another_crawler_instance.should_receive(:parse) { |arg| arg["event"].get_property("title").selector.should == "Ibiza" }
     another_crawler_instance.crawl
 
     @crawler.event { |e| e.title 'Fulltronic Dezembro' }
-    @crawler_instance.should_receive(:parse) { |arg| arg[:event_props].get_property("title").selector.should == "Fulltronic Dezembro" }
+    @crawler_instance.should_receive(:parse) { |arg| arg["event"].get_property("title").selector.should == "Fulltronic Dezembro" }
     @crawler_instance.crawl
   end
 
@@ -71,8 +71,21 @@ describe Wombat::Crawler do
     @crawler_instance.crawl
   end
 
-  it 'should be able to specify arbitrary block structure' do
+  it 'should be able to specify arbitrary block structure more than once' do
+    @crawler.structure do |s|
+      s.data "xpath=/xyz"
+    end
 
+    @crawler.structure do |s|
+      s.another "css=.information"
+    end
+
+    @crawler_instance.should_receive(:parse) do |arg|
+      arg["structure"]["data"].selector.should == "xpath=/xyz"
+      arg["structure"]["another"].selector.should == "css=.information"
+    end
+
+    @crawler_instance.crawl
   end
 
   it 'should not explode if no block given' do
