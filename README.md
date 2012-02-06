@@ -2,9 +2,51 @@
 
 [![CI Build Status](https://secure.travis-ci.org/intridea/omniauth.png?branch=master)](http://travis-ci.org/felipecsl/wombat)
 
-Generic Web crawler with a DSL that parses event-related data from web pages.
+Generic Web crawler with a DSL that parses structured data from web pages.
 
-Still under heavy development, it is being rewritten from scratch as a gem from an already existing project.
+## Usage:
+
+``gem install wombat``
+
+```ruby
+
+# => github_crawler.rb
+
+#coding: utf-8
+require 'wombat'
+
+class GithubCrawler
+  include Wombat::Crawler
+
+  base_url "http://www.github.com"
+  list_page "/"
+
+  headline "xpath=//h1"
+
+  benefits do |b|
+    b.first_benefit "css=.column.leftmost h3"
+    b.second_benefir "css=.column.leftmid h3"
+    b.third_benefit "css=.column.rightmid h3"
+    b.fourth_benefit "css=.column.rightmost h3"
+  end
+end
+```
+```ruby
+irb> SampleCrawler.new.crawl
+   => 
+   {
+      "headline" => "1,316,633 people hosting over 3,951,378 git repositories", 
+      "benefits" => {
+        "first_benefit"  => "Team management", 
+        "second_benefit" => "Code review", 
+        "third_benefit"  => "Reliable code hosting", 
+        "fourth_benefit" => "Open source collaboration"
+      }
+    }
+```
+
+### More advanced constructs like loops, following links, callbacks, etc. to be added/documented soon.
+
 
 ## Contributing to Wombat
  
