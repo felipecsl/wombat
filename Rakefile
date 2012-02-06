@@ -10,10 +10,10 @@ require 'yard'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "wombat"
-  gem.homepage = "http://github.com/felipecsl/nightcrawler"
+  gem.homepage = "http://github.com/felipecsl/wombat"
   gem.license = "MIT"
-  gem.summary = %Q{Generic web crawler for event-related data}
-  gem.description = %Q{Generic Web crawler with a DSL that parses event-related data from web pages}
+  gem.summary = %Q{Ruby DSL to crawl web pages}
+  gem.description = %Q{Generic Web crawler with a DSL that parses structured data from web pages}
   gem.email = "felipe.lima@gmail.com"
   gem.authors = ["Felipe Lima"]
   # dependencies defined in Gemfile
