@@ -1,11 +1,11 @@
 source "http://rubygems.org"
 
-gem 'bundler'
-gem 'rake'
 gem 'mechanize'
 gem 'activesupport'
 
 group :development, :test do
+  gem 'bundler'
+  gem 'rake'
   gem 'yard'
   gem 'jeweler'
   gem 'rspec'
