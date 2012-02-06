@@ -18,8 +18,6 @@ describe 'basic crawler setup' do
 
       results = crawler_instance.crawl
 
-      puts results.inspect
-
       results["search"].should == "Buscar"
       results["social"]["twitter"].should == "Terra Magazine"
     end
