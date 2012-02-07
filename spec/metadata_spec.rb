@@ -11,4 +11,10 @@ describe Wombat::Metadata do
     @metadata.list_page "/yeah"
     @metadata.all_properties.should == [@metadata['another_property']]
   end
+
+  it 'should hold an array of iterators' do
+    it = Wombat::Iterator.new
+    @metadata.iterators << it
+    @metadata.iterators.should == [it]
+  end
 end

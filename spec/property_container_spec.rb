@@ -9,12 +9,13 @@ describe Wombat::PropertyContainer do
     @metadata["event"] = Wombat::PropertyContainer.new
     @metadata["venue"] = Wombat::PropertyContainer.new
     @metadata.another_property "/some/selector", :text
-    @metadata["event"].something "else"
+    @metadata["event"]["something"] = Wombat::PropertyContainer.new
+    @metadata["event"]["something"].else "Wohooo"
     @metadata["venue"].awesome "whooea"
     
     all_propes = @metadata.all_properties
     
-    all_propes.should =~ [@metadata["another_property"], @metadata["event"]["something"], @metadata["venue"]["awesome"]]
+    all_propes.should =~ [@metadata["another_property"], @metadata["event"]["something"]["else"], @metadata["venue"]["awesome"]]
   end
 
   it 'should be able to change properties via all_properties' do

@@ -14,7 +14,7 @@ module Wombat
     def parse metadata
       @context = @mechanize.get("#{metadata[:base_url]}#{metadata[:list_page]}").parser
 
-      locate metadata
+      locate metadata.all_properties
 
       metadata.all_properties.each do |p|
         p.callback.call(p.result) if p.callback

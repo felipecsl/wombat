@@ -28,7 +28,7 @@ describe Wombat::PropertyLocator do
 
     @locator_instance.stub(:context).and_return context
     
-    @locator_instance.locate @metadata
+    @locator_instance.locate @metadata.all_properties
 
     @metadata.get_property("blah").result.should == "abc"
     @metadata["event"].get_property("data1").result.should == "Something cool"
@@ -47,7 +47,7 @@ describe Wombat::PropertyLocator do
 
     @metadata["event"].another_info "xpath=/anotherData", :html
 
-    @locator_instance.locate @metadata
+    @locator_instance.locate @metadata.all_properties
 
     @metadata["event"].get_property("another_info").result.should == "some another info"
   end
@@ -59,7 +59,7 @@ describe Wombat::PropertyLocator do
     @locator_instance.stub(:context).and_return context
     @metadata["event"].description "xpath=/event/some/description", :text, "blah"
 
-    @locator_instance.locate @metadata
+    @locator_instance.locate @metadata.all_properties
 
     @metadata["event"].get_property("description").result.should == "awesome event"
   end

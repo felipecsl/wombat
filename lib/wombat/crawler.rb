@@ -29,10 +29,6 @@ module Wombat
         end
       end
 
-      def with_details_page
-        yield metadata if block_given?
-      end
-
       def for_each selector
         
       end

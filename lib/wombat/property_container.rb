@@ -22,7 +22,7 @@ module Wombat
     def all_properties
       values.flat_map { |v|
         v.kind_of?(PropertyContainer) \
-          ? v.values \
+          ? v.all_properties \
           : v.kind_of?(Property) \
             ? v \
             : nil

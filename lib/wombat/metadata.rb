@@ -1,8 +1,15 @@
 #coding: utf-8
 require 'wombat/property_container'
+require 'wombat/iterator'
 
 module Wombat
   class Metadata < PropertyContainer
+    attr_accessor :iterators
+
+    def initialize
+      @iterators = []
+    end
+
     def base_url url
       self[:base_url] = url
     end

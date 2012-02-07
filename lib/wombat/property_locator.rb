@@ -2,8 +2,8 @@
 
 module Wombat
   module PropertyLocator
-    def locate metadata
-      metadata.all_properties.each do |p|
+    def locate properties
+      properties.each do |p|
         p.result = locate_property(p).first
       end
     end

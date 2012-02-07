@@ -24,7 +24,7 @@ describe Wombat::Parser do
     fake_parser = double :parser
     fake_document.should_receive(:parser).and_return(fake_parser)
     @parser.mechanize.stub(:get).and_return fake_document
-    @parser.should_receive(:locate).with(@metadata)
+    @parser.should_receive(:locate).with(@metadata.all_properties)
     @parser.parse @metadata
   end
 
@@ -40,8 +40,8 @@ describe Wombat::Parser do
     property.should_receive(:callback).twice.and_return(block)
     
     @parser.mechanize.stub(:get).and_return fake_document
-    @parser.should_receive(:locate).with(@metadata)
-    @metadata.should_receive(:all_properties).and_return [property]
+    @metadata.stub(:all_properties).and_return [property]
+    @parser.should_receive(:locate).with(@metadata.all_properties)
 
     @parser.parse @metadata
 
@@ -63,8 +63,8 @@ describe Wombat::Parser do
     property.should_receive(:callback).twice.and_return(block)
     
     @parser.mechanize.stub(:get).and_return fake_document
-    @parser.should_receive(:locate).with(@metadata)
-    @metadata.should_receive(:all_properties).and_return [property]
+    @metadata.stub(:all_properties).and_return [property]
+    @parser.should_receive(:locate).with(@metadata.all_properties)
 
     @parser.parse @metadata
 
