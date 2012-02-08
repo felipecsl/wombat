@@ -29,8 +29,8 @@ module Wombat
         end
       end
 
-      def for_each selector
-        
+      def for_each selector, &block
+        metadata.for_each(selector).instance_eval(&block) if block
       end
 
       def follow_links selector

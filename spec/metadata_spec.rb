@@ -12,9 +12,9 @@ describe Wombat::Metadata do
     @metadata.all_properties.should == [@metadata['another_property']]
   end
 
-  it 'should hold an array of iterators' do
-    it = Wombat::Iterator.new
-    @metadata.iterators << it
-    @metadata.iterators.should == [it]
+  it 'should store iterators' do
+    @metadata.for_each("some_selector").kind_of?(Wombat::Iterator).should be_true
+    @metadata.iterators.size.should == 1
+    @metadata.iterators.first.selector.should == "some_selector"
   end
 end

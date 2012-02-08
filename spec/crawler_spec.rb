@@ -91,4 +91,19 @@ describe Wombat::Crawler do
   it 'should not explode if no block given' do
     @crawler.event
   end
+
+  it 'should iterate on elements inside for_each block' do
+    @crawler.for_each "css=.element" do
+      title "css=.title"
+      body "css=.body"
+    end
+
+    @crawler_instance.should_receive(:parse) do |arg|
+      arg.iterators.first.selector.should == "css=.element"
+      arg.iterators.first["title"].selector.should == "css=.title"
+      arg.iterators.first["body"].selector.should == "css=.body"
+    end 
+
+    @crawler_instance.crawl
+  end
 end

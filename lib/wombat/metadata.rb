@@ -17,5 +17,11 @@ module Wombat
     def list_page url
       self[:list_page] = url
     end
+
+    def for_each selector
+      Iterator.new(selector).tap do |i|
+        iterators << i
+      end
+    end
   end
 end
