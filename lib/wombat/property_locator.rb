@@ -10,7 +10,7 @@ module Wombat
 
     private 
     def locate_property property
-      result = locate_selector(property.selector, property.namespaces)
+      result = locate_selector(property.selector, property.namespaces).to_a
       result.map! {|r| r.inner_html.strip } if property.format == :html
       result.map {|r| r.kind_of?(String) ? r : r.inner_text }.map(&:strip)
     end

@@ -23,6 +23,8 @@ class GithubCrawler
 
   headline "xpath=//h1"
 
+  what_is "css=.column.secondary p", :html
+
   benefits do |b|
     b.first_benefit "css=.column.leftmost h3"
     b.second_benefir "css=.column.leftmid h3"
@@ -36,6 +38,7 @@ irb> SampleCrawler.new.crawl
    => 
    {
       "headline" => "1,316,633 people hosting over 3,951,378 git repositories", 
+      "what_is" => "GitHub is the best way to collaborate with others.  Fork, send pull requests and manage all your <strong>public</strong> and <strong>private</strong> git repositories."
       "benefits" => {
         "first_benefit"  => "Team management", 
         "second_benefit" => "Code review", 
