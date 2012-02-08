@@ -73,7 +73,7 @@ describe Wombat::Parser do
     block_called.should be_true
   end
 
-  it 'should return array with requested properties' do
+  it 'should return hash with requested properties' do
     hash = double :results
     fake_parser = double :parser
     fake_document = double :document
