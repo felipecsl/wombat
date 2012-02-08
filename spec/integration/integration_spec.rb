@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'spec_helper'
 
 describe 'basic crawler setup' do
@@ -14,12 +15,17 @@ describe 'basic crawler setup' do
         s.twitter "css=.ctn-bar li.last"
       end
 
+      crawler.subheader "css=h2.ttl-dynamic" do |h|
+        h.gsub("London", "Londres")
+      end
+
       crawler_instance = crawler.new
 
       results = crawler_instance.crawl
 
       results["search"].should == "Buscar"
-      results["social"]["twitter"].should == "Terra Magazine"
+      results["subheader"].should == "Londres 2012"
+      results["social"]["twitter"].should == "Verão"
     end
   end
 end

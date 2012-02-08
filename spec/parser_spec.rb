@@ -38,6 +38,7 @@ describe Wombat::Parser do
     property.stub(:result)
     fake_document.should_receive(:parser).and_return(fake_parser)
     property.should_receive(:callback).twice.and_return(block)
+    property.should_receive(:result=).with(true)
     
     @parser.mechanize.stub(:get).and_return fake_document
     @metadata.stub(:all_properties).and_return [property]
@@ -61,6 +62,7 @@ describe Wombat::Parser do
     property.should_receive(:result).and_return("blah")
     fake_document.should_receive(:parser).and_return(fake_parser)
     property.should_receive(:callback).twice.and_return(block)
+    property.should_receive(:result=).with(true)
     
     @parser.mechanize.stub(:get).and_return fake_document
     @metadata.stub(:all_properties).and_return [property]
