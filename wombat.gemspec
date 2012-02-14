@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "wombat"
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Felipe Lima"]
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "fixtures/vcr_cassettes/basic_crawler_page.yml",
+    "fixtures/vcr_cassettes/for_each_page.yml",
     "lib/wombat.rb",
     "lib/wombat/crawler.rb",
     "lib/wombat/iterator.rb",
