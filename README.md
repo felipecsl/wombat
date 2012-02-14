@@ -1,6 +1,6 @@
 # Wombat
 
-[![CI Build Status](https://secure.travis-ci.org/intridea/omniauth.png?branch=master)](http://travis-ci.org/felipecsl/wombat)
+[![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)](http://travis-ci.org/felipecsl/wombat)
 
 Generic Web crawler with a DSL that parses structured data from web pages.
 
@@ -9,6 +9,8 @@ Generic Web crawler with a DSL that parses structured data from web pages.
 ``gem install wombat``
 
 Creating a crawler:
+
+###### Create a class that includes ``Wombat::Crawler``:
 
 ```ruby
 
@@ -40,25 +42,28 @@ class GithubCrawler
 end
 ```
 
-Running it:
+###### Run it by calling the instance method ``crawl``:
 
 ```ruby
-irb> GithubCrawler.new.crawl
-   => 
-   {
-      "headline" => "1,316,633 people hosting over 3,951,378 git repositories", 
-      "what_is" => "GitHub is the best way to collaborate with others.  Fork, send pull requests and manage all your <strong>public</strong> and <strong>private</strong> git repositories.",
-      "explore" => "LOVE GitHub",
-      "benefits" => {
-        "first_benefit"  => "Team management", 
-        "second_benefit" => "Code review", 
-        "third_benefit"  => "Reliable code hosting", 
-        "fourth_benefit" => "Open source collaboration"
-      }
-    }
+my_crawler = GithubCrawler.new
+my_crawler.crawl
+
+#=> outputs: 
+
+{
+  "headline" => "1,316,633 people hosting over 3,951,378 git repositories", 
+  "what_is" => "GitHub is the best way to collaborate with others.  Fork, send pull requests and manage all your <strong>public</strong> and <strong>private</strong> git repositories.",
+  "explore" => "LOVE GitHub",
+  "benefits" => {
+    "first_benefit"  => "Team management", 
+    "second_benefit" => "Code review", 
+    "third_benefit"  => "Reliable code hosting", 
+    "fourth_benefit" => "Open source collaboration"
+  }
+}
 ```
 
-### More advanced constructs like loops, following links, callbacks, etc. to be added/documented soon.
+For more documentation, please see the [wiki](http://travis-ci.org/felipecsl/wombat/wiki)
 
 
 ## Contributing to Wombat
