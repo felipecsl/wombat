@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "wombat"
-  s.version = "0.1.6"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Felipe Lima"]
-  s.date = "2012-02-08"
+  s.date = "2012-02-14"
   s.description = "Generic Web crawler with a DSL that parses structured data from web pages"
   s.email = "felipe.lima@gmail.com"
   s.extra_rdoc_files = [
@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
     "lib/wombat/crawler.rb",
     "lib/wombat/iterator.rb",
     "lib/wombat/metadata.rb",
+    "lib/wombat/node_selector.rb",
     "lib/wombat/parser.rb",
     "lib/wombat/property.rb",
     "lib/wombat/property_container.rb",
@@ -66,6 +67,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<guard>, [">= 0"])
+      s.add_development_dependency(%q<growl_notify>, [">= 0"])
       s.add_development_dependency(%q<guard-rspec>, [">= 0"])
       s.add_development_dependency(%q<guard-bundler>, [">= 0"])
       s.add_development_dependency(%q<vcr>, ["= 2.0.0.rc1"])
@@ -79,6 +81,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<guard>, [">= 0"])
+      s.add_dependency(%q<growl_notify>, [">= 0"])
       s.add_dependency(%q<guard-rspec>, [">= 0"])
       s.add_dependency(%q<guard-bundler>, [">= 0"])
       s.add_dependency(%q<vcr>, ["= 2.0.0.rc1"])
@@ -93,6 +96,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<guard>, [">= 0"])
+    s.add_dependency(%q<growl_notify>, [">= 0"])
     s.add_dependency(%q<guard-rspec>, [">= 0"])
     s.add_dependency(%q<guard-bundler>, [">= 0"])
     s.add_dependency(%q<vcr>, ["= 2.0.0.rc1"])
