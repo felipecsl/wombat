@@ -66,10 +66,6 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<yard>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
-      s.add_development_dependency(%q<guard>, [">= 0"])
-      s.add_development_dependency(%q<growl_notify>, [">= 0"])
-      s.add_development_dependency(%q<guard-rspec>, [">= 0"])
-      s.add_development_dependency(%q<guard-bundler>, [">= 0"])
       s.add_development_dependency(%q<vcr>, ["= 2.0.0.rc1"])
       s.add_development_dependency(%q<fakeweb>, [">= 0"])
     else
@@ -80,10 +76,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<yard>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
-      s.add_dependency(%q<guard>, [">= 0"])
-      s.add_dependency(%q<growl_notify>, [">= 0"])
-      s.add_dependency(%q<guard-rspec>, [">= 0"])
-      s.add_dependency(%q<guard-bundler>, [">= 0"])
       s.add_dependency(%q<vcr>, ["= 2.0.0.rc1"])
       s.add_dependency(%q<fakeweb>, [">= 0"])
     end
@@ -95,10 +87,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<yard>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
-    s.add_dependency(%q<guard>, [">= 0"])
-    s.add_dependency(%q<growl_notify>, [">= 0"])
-    s.add_dependency(%q<guard-rspec>, [">= 0"])
-    s.add_dependency(%q<guard-bundler>, [">= 0"])
     s.add_dependency(%q<vcr>, ["= 2.0.0.rc1"])
     s.add_dependency(%q<fakeweb>, [">= 0"])
   end
