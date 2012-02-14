@@ -21,12 +21,7 @@ module Wombat
 
     module ClassMethods
       def method_missing method, *args, &block
-        if args.empty? && block
-          metadata["#{method.to_s}"] = PropertyContainer.new unless metadata["#{method.to_s}"]
-          block.call(metadata["#{method.to_s}"])
-        else
-          metadata.send method, *args, &block
-        end
+        metadata.send method, *args, &block
       end
 
       def for_each selector, &block

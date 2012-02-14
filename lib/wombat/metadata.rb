@@ -4,24 +4,12 @@ require 'wombat/iterator'
 
 module Wombat
   class Metadata < PropertyContainer
-    attr_accessor :iterators
-
-    def initialize
-      @iterators = []
-    end
-
     def base_url url
       self[:base_url] = url
     end
 
     def list_page url
       self[:list_page] = url
-    end
-
-    def for_each selector
-      Iterator.new(selector).tap do |i|
-        iterators << i
-      end
     end
   end
 end

@@ -9,5 +9,9 @@ module Wombat
       @namespaces = options[:namespaces]
       @callback = options[:callback]
     end
+
+    def flatten
+      result
+    end
   end
 end

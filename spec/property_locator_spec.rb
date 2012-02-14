@@ -28,12 +28,12 @@ describe Wombat::PropertyLocator do
 
     @locator_instance.stub(:context).and_return context
     
-    @locator_instance.locate @metadata.all_properties
+    @metadata.all_properties.each { |p| p.result = @locator_instance.locate_first p }
 
-    @metadata.get_property("blah").result.should == "abc"
-    @metadata["event"].get_property("data1").result.should == "Something cool"
-    @metadata["venue"].get_property("data2").result.should == "farms"
-    @metadata["location"].get_property("data3").result.should == "Another stuff"
+    @metadata["blah"].result.should == "abc"
+    @metadata["event"]["data1"].result.should == "Something cool"
+    @metadata["venue"]["data2"].result.should == "farms"
+    @metadata["location"]["data3"].result.should == "Another stuff"
   end
 
   it 'should support properties with html format' do
@@ -47,9 +47,9 @@ describe Wombat::PropertyLocator do
 
     @metadata["event"].another_info "xpath=/anotherData", :html
 
-    @locator_instance.locate @metadata.all_properties
+    @metadata.all_properties.each { |p| p.result = @locator_instance.locate_first p }
 
-    @metadata["event"].get_property("another_info").result.should == "some another info"
+    @metadata["event"]["another_info"].result.should == "some another info"
   end
 
   it 'should trim property contents and use namespaces if present' do
@@ -59,8 +59,8 @@ describe Wombat::PropertyLocator do
     @locator_instance.stub(:context).and_return context
     @metadata["event"].description "xpath=/event/some/description", :text, "blah"
 
-    @locator_instance.locate @metadata.all_properties
+    @metadata.all_properties.each { |p| p.result = @locator_instance.locate_first p }
 
-    @metadata["event"].get_property("description").result.should == "awesome event"
+    @metadata["event"]["description"].result.should == "awesome event"
   end
 end

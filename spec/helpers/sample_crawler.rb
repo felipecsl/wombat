@@ -13,24 +13,24 @@ class SampleCrawler
       e.date "xpath=//div[@class='scrollable-items']/div[@class='s-item active']//a" do |d|
         DateTime.strptime(d, '%d/%m')
       end
-      e.type("xpath=.") { |t| t.split(" | ").first.strip.casecmp('SHOW') == 0 ? :show : :party }
+      e.type("xpath=.type") { |t| t.split(" | ").first.strip.casecmp('SHOW') == 0 ? :show : :party }
     end
 
     venue do |v|
       v.name("xpath=.") { |n| name.split(" | ")[2].strip }
     end
+  
+    # follow_links "xpath=.//a[1]/@href" do
+    #   event { |e| e.description "css=#main-node-content", :html }
+    #   venue do |v|
+    #     v.phone "css=span.tel .value"
+    #     v.image "xpath=//div[@id='article-image']/div/img/@src"
+    #   end
 
-    follow_links "xpath=.//a[1]/@href" do
-      event { |e| e.description "css=#main-node-content", :html }
-      venue do |v|
-        v.phone "css=span.tel .value"
-        v.image "xpath=//div[@id='article-image']/div/img/@src"
-      end
-
-      location do |l|
-        l.city "css=span.locality"
-        l.street("css=span.street-address") { |s| s.gsub(/\n/, '').gsub(/  /, '') }
-      end
-    end
-  end
+    #   location do |l|
+    #     l.city "css=span.locality"
+    #     l.street("css=span.street-address") { |s| s.gsub(/\n/, '').gsub(/  /, '') }
+    #   end
+    # end
+   end
 end

@@ -33,10 +33,10 @@ describe Wombat::Crawler do
     @crawler.location { |v| v.latitude -50.2323 }
 
     @crawler_instance.should_receive(:parse) do |arg|
-      arg["event"].get_property("title").selector.should == "Fulltronic Dezembro"
-      arg["event"].get_property("time").selector.to_s.should == time.to_s
-      arg["venue"].get_property("name").selector.should == "Scooba"
-      arg["location"].get_property("latitude").selector.should == -50.2323
+      arg["event"]["title"].selector.should == "Fulltronic Dezembro"
+      arg["event"]["time"].selector.to_s.should == time.to_s
+      arg["venue"]["name"].selector.should == "Scooba"
+      arg["location"]["latitude"].selector.should == -50.2323
     end
     
     @crawler_instance.crawl
@@ -48,11 +48,11 @@ describe Wombat::Crawler do
     another_crawler_instance = another_crawler.new
 
     another_crawler.event { |e| e.title 'Ibiza' }
-    another_crawler_instance.should_receive(:parse) { |arg| arg["event"].get_property("title").selector.should == "Ibiza" }
+    another_crawler_instance.should_receive(:parse) { |arg| arg["event"]["title"].selector.should == "Ibiza" }
     another_crawler_instance.crawl
 
     @crawler.event { |e| e.title 'Fulltronic Dezembro' }
-    @crawler_instance.should_receive(:parse) { |arg| arg["event"].get_property("title").selector.should == "Fulltronic Dezembro" }
+    @crawler_instance.should_receive(:parse) { |arg| arg["event"]["title"].selector.should == "Fulltronic Dezembro" }
     @crawler_instance.crawl
   end
 
@@ -96,12 +96,17 @@ describe Wombat::Crawler do
     @crawler.for_each "css=.element" do
       title "css=.title"
       body "css=.body"
+      event do |e|
+        e.all "yeah"
+      end
     end
 
     @crawler_instance.should_receive(:parse) do |arg|
-      arg.iterators.first.selector.should == "css=.element"
-      arg.iterators.first["title"].selector.should == "css=.title"
-      arg.iterators.first["body"].selector.should == "css=.body"
+      it = arg.iterators.first
+      it.selector.should == "css=.element"
+      it["title"].selector.should == "css=.title"
+      it["body"].selector.should == "css=.body"
+      it["event"]["all"].selector.should == "yeah"
     end 
 
     @crawler_instance.crawl

@@ -15,6 +15,10 @@ describe 'basic crawler setup' do
         s.twitter "css=.ctn-bar li.last"
       end
 
+      crawler.for_each "css=.ctn-links" do
+        menu "css=a"
+      end
+
       crawler.subheader "css=h2.ttl-dynamic" do |h|
         h.gsub("London", "Londres")
       end
@@ -24,6 +28,7 @@ describe 'basic crawler setup' do
       results = crawler_instance.crawl
 
       results["search"].should == "Buscar"
+      results["menu"].should =~ ["Agenda", "Brasileiro", "Brasil", "Bolsas", "Cinema", "Galerias de Fotos", "Beleza", "Esportes", "Assine o RSS"]
       results["subheader"].should == "Londres 2012"
       results["social"]["twitter"].should == "Verão"
     end

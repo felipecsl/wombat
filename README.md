@@ -8,6 +8,8 @@ Generic Web crawler with a DSL that parses structured data from web pages.
 
 ``gem install wombat``
 
+Creating a crawler:
+
 ```ruby
 
 # => github_crawler.rb
@@ -37,8 +39,11 @@ class GithubCrawler
   end
 end
 ```
+
+Running it:
+
 ```ruby
-irb> SampleCrawler.new.crawl
+irb> GithubCrawler.new.crawl
    => 
    {
       "headline" => "1,316,633 people hosting over 3,951,378 git repositories", 

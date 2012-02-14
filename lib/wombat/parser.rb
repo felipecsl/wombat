@@ -12,14 +12,24 @@ module Wombat
     end
 
     def parse metadata
-      @context = @mechanize.get("#{metadata[:base_url]}#{metadata[:list_page]}").parser
+      self.context = @mechanize.get("#{metadata[:base_url]}#{metadata[:list_page]}").parser
+      original_context = self.context
 
-      props = metadata.all_properties
+      metadata.iterators.each do |it|
+        select_nodes(it.selector).each do |n|
+          self.context = n
+          it.all_properties.each do |p|
+            p.result ||= []
+            p.result << locate_first(p)
+          end
+        end
+      end
 
-      locate props
+      self.context = original_context
 
-      props.each do |p|
-        p.result = p.callback.call(p.result) if p.callback
+      metadata.all_properties.each do |p|
+        result = locate_first p
+        p.result = p.callback ? p.callback.call(result) : result
       end
 
       metadata.flatten

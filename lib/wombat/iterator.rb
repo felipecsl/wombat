@@ -4,6 +4,7 @@ module Wombat
 
     def initialize selector
       @selector = selector
+      super()
     end    
   end
 end
