@@ -12,10 +12,3 @@ group :development, :test do
   gem 'vcr', '2.0.0.rc1'
   gem 'fakeweb'
 end
-
-group :development do
-  gem 'guard'
-  gem 'growl_notify'
-  gem 'guard-rspec'
-  gem 'guard-bundler'
-end
