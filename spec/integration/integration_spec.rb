@@ -33,4 +33,31 @@ describe 'basic crawler setup' do
       results["social"]["twitter"].should == "Verão"
     end
   end
+
+  it 'should iterate elements' do
+    VCR.use_cassette('for_each_page') do
+      crawler = Class.new
+      crawler.send(:include, Wombat::Crawler)
+      
+      crawler.base_url "https://www.github.com"
+      crawler.list_page "/explore"
+
+      crawler.for_each "css=ol.ranked-repositories li" do
+        repo 'css=h3'
+        description 'css=p.description'
+      end
+
+      crawler_instance = crawler.new
+      results = crawler_instance.crawl
+
+      results["repo"].should =~ ["jairajs89 / Touchy.js", "mcavage / node-restify", "notlion / streetview-stereographic", "twitter / bootstrap", "stolksdorf / Parallaxjs"]
+      results["description"].should =~ [
+        "node.js REST framework specifically meant for web service APIs",
+        "A simple light-weight JavaScript library for dealing with touch events",
+        "Shader Toy + Google Map + Panoramic Explorer",
+        "HTML, CSS, and JS toolkit from Twitter",
+        "a Library for Javascript that allows easy page parallaxing"
+      ]
+    end
+  end
 end

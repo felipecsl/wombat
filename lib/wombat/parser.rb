@@ -20,7 +20,8 @@ module Wombat
           self.context = n
           it.all_properties.each do |p|
             p.result ||= []
-            p.result << locate_first(p)
+            result = locate_first(p)
+            p.result << result if result
           end
         end
       end
