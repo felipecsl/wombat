@@ -48,7 +48,7 @@ end
 my_crawler = GithubCrawler.new
 my_crawler.crawl
 
-#=> outputs: 
+#=> the line above outputs: 
 
 {
   "headline" => "1,316,633 people hosting over 3,951,378 git repositories", 
@@ -63,7 +63,7 @@ my_crawler.crawl
 }
 ```
 
-For more documentation, please see the [wiki](http://travis-ci.org/felipecsl/wombat/wiki)
+For more documentation, please see the [wiki](http://github.com/felipecsl/wombat/wiki)
 
 
 ## Contributing to Wombat
@@ -78,5 +78,5 @@ For more documentation, please see the [wiki](http://travis-ci.org/felipecsl/wom
 
 ## Copyright
 
-Copyright (c) 2011 Felipe Lima. See LICENSE.txt for further details.
+Copyright (c) 2012 Felipe Lima. See LICENSE.txt for further details.
 
