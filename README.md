@@ -63,7 +63,7 @@ my_crawler.crawl
 }
 ```
 
-For more documentation, please see the [wiki](http://github.com/felipecsl/wombat/wiki)
+### For additional documentation, please check the project [Wiki](http://github.com/felipecsl/wombat/wiki).
 
 
 ## Contributing to Wombat
