@@ -2,6 +2,7 @@ source "http://rubygems.org"
 
 gem 'mechanize'
 gem 'activesupport'
+gem 'restclient'
 
 group :development, :test do
   gem 'bundler'

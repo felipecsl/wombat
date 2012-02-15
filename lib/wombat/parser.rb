@@ -1,6 +1,7 @@
  #coding: utf-8
 require 'wombat/property_locator'
 require 'mechanize'
+require 'restclient'
 
 module Wombat
   module Parser
@@ -12,7 +13,7 @@ module Wombat
     end
 
     def parse metadata
-      self.context = @mechanize.get("#{metadata[:base_url]}#{metadata[:list_page]}").parser
+      self.context = get_parser metadata
       original_context = self.context
 
       metadata.iterators.each do |it|
@@ -34,6 +35,17 @@ module Wombat
       end
 
       metadata.flatten
+    end
+
+    private 
+    def get_parser metadata
+      url = "#{metadata[:base_url]}#{metadata[:list_page]}"
+
+      if metadata.document_format == :html
+        @mechanize.get(url).parser
+      else
+        Nokogiri::XML RestClient.get(url)
+      end
     end
   end
 end

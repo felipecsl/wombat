@@ -111,4 +111,12 @@ describe Wombat::Crawler do
 
     @crawler_instance.crawl
   end
+
+  it 'should assign metadata forma' do
+    @crawler_instance.should_receive(:parse) do |arg|
+      arg.document_format.should == :xml
+    end
+    @crawler.format :xml
+    @crawler_instance.crawl
+  end
 end

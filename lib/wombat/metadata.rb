@@ -4,6 +4,13 @@ require 'wombat/iterator'
 
 module Wombat
   class Metadata < PropertyContainer
+    attr_accessor :document_format
+
+    def initialize
+      @document_format = :html
+      super
+    end
+
     def base_url url
       self[:base_url] = url
     end
