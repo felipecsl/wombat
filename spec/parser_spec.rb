@@ -42,7 +42,7 @@ describe Wombat::Parser do
     
     @parser.mechanize.stub(:get).and_return fake_document
     @metadata.stub(:all_properties).and_return [property]
-    @parser.should_receive(:locate_first).with(property)
+    @parser.should_receive(:locate).with(property)
 
     @parser.parse @metadata
 
@@ -65,7 +65,7 @@ describe Wombat::Parser do
     
     @parser.mechanize.stub(:get).and_return fake_document
     @metadata.stub(:all_properties).and_return [property]
-    @parser.should_receive(:locate_first).with(property).and_return("blah")
+    @parser.should_receive(:locate).with(property).and_return("blah")
 
     @parser.parse @metadata
 
@@ -104,8 +104,8 @@ describe Wombat::Parser do
     @parser.should_receive(:context=).with(c1).ordered
     @parser.should_receive(:context=).with(c2).ordered
     @parser.should_receive(:context=).ordered
-    @parser.should_receive(:locate_first).with(it['prop_1']).twice
-    @parser.should_receive(:locate_first).with(it['prop_2']).twice
+    @parser.should_receive(:locate).with(it['prop_1']).twice
+    @parser.should_receive(:locate).with(it['prop_2']).twice
     @parser.stub(:locate)
 
     @parser.parse(@metadata)
@@ -128,8 +128,8 @@ describe Wombat::Parser do
     @parser.should_receive(:context=).with(c1).ordered
     @parser.should_receive(:context=).with(c2).ordered
     @parser.should_receive(:context=).ordered
-    @parser.should_receive(:locate_first).with(it['prop_1']).and_return(12)
-    @parser.should_receive(:locate_first).with(it['prop_1']).and_return(nil)
+    @parser.should_receive(:locate).with(it['prop_1']).and_return(12)
+    @parser.should_receive(:locate).with(it['prop_1']).and_return(nil)
     @parser.stub(:locate)
 
     @parser.parse(@metadata)

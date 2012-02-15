@@ -28,7 +28,7 @@ describe Wombat::PropertyLocator do
 
     @locator_instance.stub(:context).and_return context
     
-    @metadata.all_properties.each { |p| p.result = @locator_instance.locate_first p }
+    @metadata.all_properties.each { |p| p.result = @locator_instance.locate p }
 
     @metadata["blah"].result.should == "abc"
     @metadata["event"]["data1"].result.should == "Something cool"
@@ -47,7 +47,7 @@ describe Wombat::PropertyLocator do
 
     @metadata["event"].another_info "xpath=/anotherData", :html
 
-    @metadata.all_properties.each { |p| p.result = @locator_instance.locate_first p }
+    @metadata.all_properties.each { |p| p.result = @locator_instance.locate p }
 
     @metadata["event"]["another_info"].result.should == "some another info"
   end
@@ -59,8 +59,17 @@ describe Wombat::PropertyLocator do
     @locator_instance.stub(:context).and_return context
     @metadata["event"].description "xpath=/event/some/description", :text, "blah"
 
-    @metadata.all_properties.each { |p| p.result = @locator_instance.locate_first p }
+    @metadata.all_properties.each { |p| p.result = @locator_instance.locate p }
 
     @metadata["event"]["description"].result.should == "awesome event"
+  end
+
+  it 'should return array of matching nodes for list properties' do
+    context = double :context
+    @metadata.list_prop "css=.selector", :list
+    @locator_instance.stub(:context).and_return context
+    @locator_instance.should_receive(:select_nodes).with("css=.selector", nil).and_return %w(1 2 3 4 5)
+    
+    @locator_instance.locate(@metadata["list_prop"]).should == %w(1 2 3 4 5)
   end
 end

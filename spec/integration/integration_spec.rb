@@ -69,6 +69,8 @@ describe 'basic crawler setup' do
       crawler.format :xml
       crawler.base_url "http://ws.audioscrobbler.com"
       crawler.list_page "/2.0/?method=geo.getevents&location=#{URI.escape('San Francisco')}&api_key=060decb474b73437d5bbec37f527ae7b"
+
+      crawler.artist "xpath=//title", :list
       
       crawler.for_each 'xpath=//event' do
         latitude "xpath=./venue/location/geo:point/geo:lat", :text, { 'geo' => 'http://www.w3.org/2003/01/geo/wgs84_pos#' }
@@ -80,6 +82,7 @@ describe 'basic crawler setup' do
       
       results["latitude"].should =~ ["37.807775", "37.807717", "37.869784", "37.870873", "37.782348", "37.775529", "37.771079", "37.771079", "37.784963", "37.788978"] 
       results["longitude"].should =~ ["-122.272736", "-122.270059", "-122.267701", "-122.269313", "-122.408059", "-122.437757", "-122.412604", "-122.412604", "-122.418871", "-122.40664"]
+      results["artist"].should =~ ["Davka", "Digitalism (DJ Set)", "Gary Clark Jr.", "Lenny Kravitz", "Little Muddy", "Michael Schenker Group", "The Asteroids Galaxy Tour", "When Indie Attacks", "When Indie Attacks", "YOB"]
     end
   end
 end

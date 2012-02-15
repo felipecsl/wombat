@@ -21,7 +21,7 @@ module Wombat
           self.context = n
           it.all_properties.each do |p|
             p.result ||= []
-            result = locate_first(p)
+            result = locate(p)
             p.result << result if result
           end
         end
@@ -30,7 +30,7 @@ module Wombat
       self.context = original_context
 
       metadata.all_properties.each do |p|
-        result = locate_first p
+        result = locate p
         p.result = p.callback ? p.callback.call(result) : result
       end
 
