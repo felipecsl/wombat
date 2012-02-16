@@ -41,7 +41,7 @@ module Wombat
     def get_parser metadata
       url = "#{metadata[:base_url]}#{metadata[:list_page]}"
 
-      if metadata.document_format == :html
+      if metadata[:format] == :html
         @mechanize.get(url).parser
       else
         Nokogiri::XML RestClient.get(url)

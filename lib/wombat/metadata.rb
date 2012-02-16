@@ -4,10 +4,8 @@ require 'wombat/iterator'
 
 module Wombat
   class Metadata < PropertyContainer
-    attr_accessor :document_format
-
     def initialize
-      @document_format = :html
+      self[:format] = :html
       super
     end
 
@@ -17,6 +15,10 @@ module Wombat
 
     def list_page url
       self[:list_page] = url
+    end
+
+    def format format
+      self[:format] = format
     end
   end
 end

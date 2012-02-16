@@ -28,10 +28,6 @@ module Wombat
         metadata.for_each(selector).instance_eval(&block) if block
       end
 
-      def format type
-        metadata.document_format = type
-      end
-
       def follow_links selector
 
       end

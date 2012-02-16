@@ -72,6 +72,10 @@ describe Wombat::Parser do
     block_called.should be_true
   end
 
+  it 'should invoke callback inside for_each block' do
+    
+  end
+
   it 'should return hash with requested properties' do
     hash = double :results
     fake_parser = double :parser
@@ -140,7 +144,7 @@ describe Wombat::Parser do
   it 'should correctly parse xml documents' do
     fake_document = double :xml
     fake_parser = double :parser
-    @metadata.document_format = :xml
+    @metadata.format :xml
     @parser.mechanize.should_not_receive(:get)
     RestClient.should_receive(:get).and_return fake_document
     Nokogiri.should_receive(:XML).with(fake_document).and_return fake_parser
