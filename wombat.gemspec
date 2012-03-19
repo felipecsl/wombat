@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Felipe Lima"]
-  s.date = "2012-02-15"
+  s.date = "2012-03-19"
   s.description = "Generic Web crawler with a DSL that parses structured data from web pages"
   s.email = "felipe.lima@gmail.com"
   s.extra_rdoc_files = [
@@ -54,7 +54,8 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/felipecsl/wombat"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.11"
+  s.required_ruby_version = Gem::Requirement.new(">= 1.9")
+  s.rubygems_version = "1.8.15"
   s.summary = "Ruby DSL to crawl web pages"
 
   if s.respond_to? :specification_version then
