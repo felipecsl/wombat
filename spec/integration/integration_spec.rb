@@ -44,7 +44,7 @@ describe 'basic crawler setup' do
 
       crawler.for_each "css=ol.ranked-repositories li" do
         repo 'css=h3'
-        description 'css=p.description'
+        description('css=p.description') { |d| d.gsub(/for/, '') }
       end
 
       crawler_instance = crawler.new
@@ -52,11 +52,11 @@ describe 'basic crawler setup' do
 
       results["repo"].should =~ ["jairajs89 / Touchy.js", "mcavage / node-restify", "notlion / streetview-stereographic", "twitter / bootstrap", "stolksdorf / Parallaxjs"]
       results["description"].should =~ [
-        "node.js REST framework specifically meant for web service APIs",
-        "A simple light-weight JavaScript library for dealing with touch events",
+        "node.js REST framework specifically meant  web service APIs",
+        "A simple light-weight JavaScript library  dealing with touch events",
         "Shader Toy + Google Map + Panoramic Explorer",
         "HTML, CSS, and JS toolkit from Twitter",
-        "a Library for Javascript that allows easy page parallaxing"
+        "a Library  Javascript that allows easy page parallaxing"
       ]
     end
   end

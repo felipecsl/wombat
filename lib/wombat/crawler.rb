@@ -10,13 +10,8 @@ module Wombat
     include Parser
     extend ActiveSupport::Concern
 
-    module InstanceMethods
-      def crawl
-        parse self.class.send(:metadata)
-      end
-
-      def supports_city?
-      end
+    def crawl
+      parse self.class.send(:metadata)
     end
 
     module ClassMethods
@@ -30,9 +25,6 @@ module Wombat
 
       def follow_links selector
 
-      end
-
-      def supported_cities
       end
 
       def to_ary

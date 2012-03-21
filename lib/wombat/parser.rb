@@ -22,7 +22,10 @@ module Wombat
           it.all_properties.each do |p|
             p.result ||= []
             result = locate(p)
-            p.result << result if result
+            if result
+              result = p.callback ? p.callback.call(result) : result
+              p.result << result
+            end
           end
         end
       end
