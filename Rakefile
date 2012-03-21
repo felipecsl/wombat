@@ -16,6 +16,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{Generic Web crawler with a DSL that parses structured data from web pages}
   gem.email = "felipe.lima@gmail.com"
   gem.authors = ["Felipe Lima"]
+  gem.required_ruby_version = ">= 1.9"
   # dependencies defined in Gemfile
 end
 
