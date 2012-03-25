@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "wombat"
-  s.version = "0.2.5"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Felipe Lima"]
-  s.date = "2012-03-21"
+  s.date = "2012-03-25"
   s.description = "Generic Web crawler with a DSL that parses structured data from web pages"
   s.email = "felipe.lima@gmail.com"
   s.extra_rdoc_files = [
@@ -42,6 +42,7 @@ Gem::Specification.new do |s|
     "spec/crawler_spec.rb",
     "spec/helpers/sample_crawler.rb",
     "spec/integration/integration_spec.rb",
+    "spec/iterator_spec.rb",
     "spec/metadata_spec.rb",
     "spec/parser_spec.rb",
     "spec/property_container_spec.rb",
@@ -70,7 +71,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<yard>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
-      s.add_development_dependency(%q<vcr>, ["= 2.0.0.rc1"])
+      s.add_development_dependency(%q<vcr>, [">= 0"])
       s.add_development_dependency(%q<fakeweb>, [">= 0"])
     else
       s.add_dependency(%q<mechanize>, [">= 0"])
@@ -81,7 +82,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<yard>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
-      s.add_dependency(%q<vcr>, ["= 2.0.0.rc1"])
+      s.add_dependency(%q<vcr>, [">= 0"])
       s.add_dependency(%q<fakeweb>, [">= 0"])
     end
   else
@@ -93,7 +94,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<yard>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
-    s.add_dependency(%q<vcr>, ["= 2.0.0.rc1"])
+    s.add_dependency(%q<vcr>, [">= 0"])
     s.add_dependency(%q<fakeweb>, [">= 0"])
   end
 end

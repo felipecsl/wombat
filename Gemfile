@@ -10,6 +10,6 @@ group :development, :test do
   gem 'yard'
   gem 'jeweler'
   gem 'rspec'
-  gem 'vcr', '2.0.0.rc1'
+  gem 'vcr'
   gem 'fakeweb'
 end

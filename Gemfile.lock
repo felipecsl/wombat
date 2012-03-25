@@ -37,7 +37,7 @@ GEM
     unf (0.0.4)
       unf_ext
     unf_ext (0.0.4)
-    vcr (2.0.0.rc1)
+    vcr (2.0.0)
     webrobots (0.0.12)
       nokogiri (>= 1.4.4)
     yard (0.7.4)
@@ -54,5 +54,5 @@ DEPENDENCIES
   rake
   rest-client
   rspec
-  vcr (= 2.0.0.rc1)
+  vcr
   yard

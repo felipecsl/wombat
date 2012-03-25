@@ -1,12 +1,17 @@
 # Wombat
 
-[![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)](http://travis-ci.org/felipecsl/wombat)
+[![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)](travis) [![Dependency Status](https://gemnasium.com/felipecsl/wombat.png?travis)](gemnasium)
 
-Generic Web crawler with a DSL that parses structured data from web pages.
+[travis]: http://travis-ci.org/felipecsl/wombat
+[gemnasium]: https://gemnasium.com/felipecsl/wombat
+
+Generic Web crawler with an elegant DSL that parses structured data from web pages.
 
 ## Usage:
 
 ``gem install wombat``
+
+OBS: Requires ruby 1.9
 
 Creating a crawler:
 
