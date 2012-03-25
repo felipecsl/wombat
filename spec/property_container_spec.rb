@@ -55,7 +55,7 @@ describe Wombat::PropertyContainer do
           "section" => "Lorem Ipsum"
         }
       },
-      "felipe" => ["correa", "de souza", "lima"],
+      "iterator0"=>[{"felipe"=>"correa"}, {"felipe"=>"de souza"}, {"felipe"=>"lima"}],
       "footer" => "bla bla bla"
     }
   end

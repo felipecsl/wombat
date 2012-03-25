@@ -72,10 +72,6 @@ describe Wombat::Parser do
     block_called.should be_true
   end
 
-  it 'should invoke callback inside for_each block' do
-    
-  end
-
   it 'should return hash with requested properties' do
     hash = double :results
     fake_parser = double :parser
@@ -86,33 +82,6 @@ describe Wombat::Parser do
     @metadata.should_receive(:flatten).and_return hash
 
     @parser.parse(@metadata).should == hash
-  end
-
-  it 'should iterate in for_each properties' do
-    fake_parser = double :parser
-    fake_document = double :document
-    c1 = double :context
-    c2 = double :context
-    it = Wombat::Iterator.new "it_selector"
-    it.prop_1 "some_selector"
-    it.prop_2 "another_selector"
-    
-    @parser.should_receive(:context=).ordered
-    @metadata.should_receive(:iterators).and_return [it]
-    @metadata.should_receive(:flatten)
-    fake_document.should_receive(:parser).and_return(fake_parser)
-    it['prop_1'].should_receive(:result).exactly(2).times.and_return([])
-    it['prop_2'].should_receive(:result).exactly(2).times.and_return([])
-    @parser.mechanize.stub(:get).and_return fake_document
-    @parser.should_receive(:select_nodes).with("it_selector").and_return [c1, c2]
-    @parser.should_receive(:context=).with(c1).ordered
-    @parser.should_receive(:context=).with(c2).ordered
-    @parser.should_receive(:context=).ordered
-    @parser.should_receive(:locate).with(it['prop_1']).twice
-    @parser.should_receive(:locate).with(it['prop_2']).twice
-    @parser.stub(:locate)
-
-    @parser.parse(@metadata)
   end
 
   it 'should not include null results in iterated block' do

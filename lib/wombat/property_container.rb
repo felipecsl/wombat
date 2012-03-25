@@ -37,14 +37,28 @@ module Wombat
       }.compact
     end
 
-    def flatten
-      Hash.new.tap do |h|
+    def parse
+      all_properties.each do |p|
+        result = yield p if block_given?
+        p.result = p.callback ? p.callback.call(result) : result 
+      end
+    end
+
+    def flatten(depth = nil)
+      properties = Hash.new.tap do |h|
         keys.map do |k|
-          if self[k].kind_of?(PropertyContainer) || self[k].kind_of?(Property)
-            h[k] = self[k].flatten
+          val = self[k]
+          if val.is_a?(PropertyContainer) || val.is_a?(Property)
+            h[k] = val.flatten depth
           end
         end
-      end.merge(iterators.inject({}) {|memo, i| memo.merge(i.flatten) })
+      end
+
+      iters = iterators.reduce({}) do |memo, i| 
+        memo.merge("iterator#{iterators.index(i)}" => i.flatten)
+      end
+
+      properties.merge iters
     end
 
     def for_each selector

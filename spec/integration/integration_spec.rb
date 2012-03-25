@@ -28,7 +28,7 @@ describe 'basic crawler setup' do
       results = crawler_instance.crawl
 
       results["search"].should == "Buscar"
-      results["menu"].should =~ ["Agenda", "Brasileiro", "Brasil", "Bolsas", "Cinema", "Galerias de Fotos", "Beleza", "Esportes", "Assine o RSS"]
+      results["iterator0"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
       results["subheader"].should == "Londres 2012"
       results["social"]["twitter"].should == "Verão"
     end
@@ -43,21 +43,22 @@ describe 'basic crawler setup' do
       crawler.list_page "/explore"
 
       crawler.for_each "css=ol.ranked-repositories li" do
-        repo 'css=h3'
-        description('css=p.description') { |d| d.gsub(/for/, '') }
+        project do |p|
+          p.repo 'css=h3'
+          p.description('css=p.description') { |d| d.gsub(/for/, '') }
+        end
       end
 
       crawler_instance = crawler.new
       results = crawler_instance.crawl
 
-      results["repo"].should =~ ["jairajs89 / Touchy.js", "mcavage / node-restify", "notlion / streetview-stereographic", "twitter / bootstrap", "stolksdorf / Parallaxjs"]
-      results["description"].should =~ [
-        "node.js REST framework specifically meant  web service APIs",
-        "A simple light-weight JavaScript library  dealing with touch events",
-        "Shader Toy + Google Map + Panoramic Explorer",
-        "HTML, CSS, and JS toolkit from Twitter",
-        "a Library  Javascript that allows easy page parallaxing"
-      ]
+      results.should == { "iterator0" => [
+        { "project" => { "repo" => "jairajs89 / Touchy.js", "description" => "A simple light-weight JavaScript library  dealing with touch events" } },
+        { "project" => { "repo" => "mcavage / node-restify", "description" => "node.js REST framework specifically meant  web service APIs" } },
+        { "project" => { "repo" => "notlion / streetview-stereographic", "description" => "Shader Toy + Google Map + Panoramic Explorer" } },
+        { "project" => { "repo" => "twitter / bootstrap", "description" => "HTML, CSS, and JS toolkit from Twitter" } },
+        { "project" => { "repo" => "stolksdorf / Parallaxjs", "description" => "a Library  Javascript that allows easy page parallaxing" } }
+      ]}
     end
   end
 
@@ -79,9 +80,21 @@ describe 'basic crawler setup' do
 
       crawler_instance = crawler.new
       results = crawler_instance.crawl
+      iterator = results['iterator0']
+
+      iterator.should == [
+        {"latitude"=>"37.807775", "longitude"=>"-122.272736"}, 
+        {"latitude"=>"37.807717", "longitude"=>"-122.270059"}, 
+        {"latitude"=>"37.869784", "longitude"=>"-122.267701"}, 
+        {"latitude"=>"37.870873", "longitude"=>"-122.269313"}, 
+        {"latitude"=>"37.782348", "longitude"=>"-122.408059"}, 
+        {"latitude"=>"37.775529", "longitude"=>"-122.437757"}, 
+        {"latitude"=>"37.771079", "longitude"=>"-122.412604"}, 
+        {"latitude"=>"37.771079", "longitude"=>"-122.412604"}, 
+        {"latitude"=>"37.784963", "longitude"=>"-122.418871"}, 
+        {"latitude"=>"37.788978", "longitude"=>"-122.40664"}
+      ]
       
-      results["latitude"].should =~ ["37.807775", "37.807717", "37.869784", "37.870873", "37.782348", "37.775529", "37.771079", "37.771079", "37.784963", "37.788978"] 
-      results["longitude"].should =~ ["-122.272736", "-122.270059", "-122.267701", "-122.269313", "-122.408059", "-122.437757", "-122.412604", "-122.412604", "-122.418871", "-122.40664"]
       results["artist"].should =~ ["Davka", "Digitalism (DJ Set)", "Gary Clark Jr.", "Lenny Kravitz", "Little Muddy", "Michael Schenker Group", "The Asteroids Galaxy Tour", "When Indie Attacks", "When Indie Attacks", "YOB"]
     end
   end

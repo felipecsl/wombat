@@ -2,7 +2,7 @@ module Wombat
   class Property
     attr_accessor :name, :selector, :format, :namespaces, :callback, :result
 
-    def initialize options
+    def initialize(options)
       @name = options[:name]
       @selector = options[:selector]
       @format = options[:format]
@@ -10,8 +10,8 @@ module Wombat
       @callback = options[:callback]
     end
 
-    def flatten
-      result
+    def flatten(depth = nil)
+      depth ? result[depth] : result
     end
   end
 end
