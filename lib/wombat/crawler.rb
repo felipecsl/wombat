@@ -10,8 +10,19 @@ module Wombat
     include Parser
     extend ActiveSupport::Concern
 
-    def crawl
-      parse self.class.send(:metadata)
+    def crawl(&block)
+      if block
+        @metadata_dup = self.class.send(:metadata).clone
+        instance_eval do
+          def method_missing method, *args, &block
+            @metadata_dup.send method, *args, &block
+          end
+        end
+        self.instance_eval &block
+        parse @metadata_dup
+      else
+        parse self.class.send(:metadata)
+      end
     end
 
     module ClassMethods
