@@ -9,16 +9,16 @@ describe Wombat::Crawler do
 
   it 'should call the provided block' do
     event_called = false
-    
+
     @crawler.event { event_called = true }
-    
+
     event_called.should be_true
   end
 
   it 'should provide metadata to yielded block' do
     @crawler.event do |e|
       e.should_not be_nil
-    end 
+    end
   end
 
   it 'should store assigned metadata information' do
@@ -38,7 +38,7 @@ describe Wombat::Crawler do
       arg["venue"]["name"].selector.should == "Scooba"
       arg["location"]["latitude"].selector.should == -50.2323
     end
-    
+
     @crawler_instance.crawl
   end
 
@@ -57,8 +57,8 @@ describe Wombat::Crawler do
   end
 
   it 'should be able to assign arbitrary plain text metadata' do
-    @crawler.some_data("/event/list", :html, "geo") {|p| true }
-    
+    @crawler.some_data("/event/list", :html, "geo") { |p| true }
+
     @crawler_instance.should_receive(:parse) do |arg|
       prop = arg['some_data']
       prop.name.should == "some_data"
@@ -67,7 +67,7 @@ describe Wombat::Crawler do
       prop.namespaces.should == "geo"
       prop.callback.should_not be_nil
     end
-    
+
     @crawler_instance.crawl
   end
 
@@ -107,16 +107,39 @@ describe Wombat::Crawler do
       it["title"].selector.should == "css=.title"
       it["body"].selector.should == "css=.body"
       it["event"]["all"].selector.should == "yeah"
-    end 
+    end
 
     @crawler_instance.crawl
   end
 
-  it 'should assign metadata forma' do
+  it 'should assign metadata format' do
     @crawler_instance.should_receive(:parse) do |arg|
       arg[:format].should == :xml
     end
     @crawler.format :xml
     @crawler_instance.crawl
+  end
+
+  it 'should crawl with block' do
+    @crawler.base_url "danielnc.com"
+    @crawler.list_page "/itens"
+
+    @crawler_instance.should_receive(:parse) do |arg|
+      arg[:base_url].should == "danielnc.com"
+      arg[:list_page].should == "/itens/1"
+    end
+
+    @crawler_instance.crawl do
+      list_page "/itens/1"
+    end
+
+    another_instance = @crawler.new
+
+    another_instance.should_receive(:parse) do |arg|
+      arg[:base_url].should == "danielnc.com"
+      arg[:list_page].should == "/itens"
+    end
+
+    another_instance.crawl
   end
 end
