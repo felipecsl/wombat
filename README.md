@@ -85,6 +85,13 @@ my_crawler.crawl
 
  * Felipe Lima ([@felipecsl](https://github.com/felipecsl))
  * [@sigi](https://github.com/sigi)
+ * Daniel Naves de Carvalho ([@danielnc](https://github.com/danielnc))
+
+## Changelog
+
+### version 0.3.1
+
+ * Added the ability to provide a block to Crawler#crawl and override the default crawler properties for a one off run (thanks to @danielnc)
 
 ## Copyright
 
