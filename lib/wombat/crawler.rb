@@ -14,12 +14,18 @@ module Wombat
       if block
         @metadata_dup = self.class.send(:metadata).clone
         instance_eval do
+          alias :old_method_missing :method_missing
           def method_missing method, *args, &block
             @metadata_dup.send method, *args, &block
           end
         end
         self.instance_eval &block
-        parse @metadata_dup
+        parsed = parse @metadata_dup
+        instance_eval do
+          alias :method_missing :old_method_missing
+          remove_instance_variable :@metadata_dup
+        end
+        parsed
       else
         parse self.class.send(:metadata)
       end

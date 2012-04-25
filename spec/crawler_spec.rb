@@ -142,4 +142,34 @@ describe Wombat::Crawler do
 
     another_instance.crawl
   end
+  it 'should remove created method missing' do
+    @crawler.base_url "danielnc.com"
+    @crawler.list_page "/itens"
+
+    @crawler_instance.should_receive(:parse) do |arg|
+      arg[:base_url].should == "danielnc.com"
+      arg[:list_page].should == "/itens/1"
+    end
+
+    @crawler_instance.crawl do
+      list_page "/itens/1"
+    end
+
+    lambda { @craler_intance.undefined_method }.should raise_error(NoMethodError)
+  end
+  it 'should remove created instance variable' do
+    @crawler.base_url "danielnc.com"
+    @crawler.list_page "/itens"
+
+    @crawler_instance.should_receive(:parse) do |arg|
+      arg[:base_url].should == "danielnc.com"
+      arg[:list_page].should == "/itens/1"
+    end
+
+    @crawler_instance.crawl do
+      list_page "/itens/1"
+    end
+
+    @crawler_instance.instance_variables.index(:@metadata_dup).should be_nil
+  end
 end
