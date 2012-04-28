@@ -32,15 +32,15 @@ module Wombat
     end
 
     module ClassMethods
-      def method_missing method, *args, &block
+      def method_missing(method, *args, &block)
         metadata.send method, *args, &block
       end
 
-      def for_each selector, &block
+      def for_each(selector, &block)
         metadata.for_each(selector).instance_eval(&block) if block
       end
 
-      def follow_links selector
+      def follow_links(selector)
 
       end
 

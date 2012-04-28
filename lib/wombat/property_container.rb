@@ -8,7 +8,7 @@ module Wombat
       @iterators = []
     end
 
-    def method_missing method, *args, &block
+    def method_missing(method, *args, &block)
       if args.empty? && block
         self["#{method.to_s}"] = PropertyContainer.new unless self["#{method.to_s}"]
         block.call(self["#{method.to_s}"])
@@ -61,7 +61,7 @@ module Wombat
       properties.merge iters
     end
 
-    def for_each selector
+    def for_each(selector)
       Iterator.new(selector).tap do |i|
         iterators << i
       end

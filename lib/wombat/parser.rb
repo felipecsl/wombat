@@ -12,7 +12,7 @@ module Wombat
       @mechanize = Mechanize.new
     end
 
-    def parse metadata
+    def parse(metadata)
       self.context = parser_for metadata
       original_context = self.context
 
@@ -31,7 +31,7 @@ module Wombat
     end
 
     private 
-    def parser_for metadata
+    def parser_for(metadata)
       url = "#{metadata[:base_url]}#{metadata[:list_page]}"
 
       if metadata[:format] == :html

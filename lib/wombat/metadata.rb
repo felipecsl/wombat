@@ -9,15 +9,15 @@ module Wombat
       super
     end
 
-    def base_url url
+    def base_url(url)
       self[:base_url] = url
     end
 
-    def list_page url
+    def list_page(url)
       self[:list_page] = url
     end
 
-    def format format
+    def format(format)
       self[:format] = format
     end
   end
