@@ -47,6 +47,7 @@ end
 
 ###### The code above is gonna return the following hash: 
 
+```
 {
   "headline" => "1,316,633 people hosting over 3,951,378 git repositories", 
   "what_is" => "GitHub is the best way to collaborate with others.  Fork, send pull requests and manage all your <strong>public</strong> and <strong>private</strong> git repositories.",
@@ -61,6 +62,7 @@ end
 ```
 
 ### This is just a sneak peek of what Wombat can do. For the complete documentation, please check the [Wiki](http://github.com/felipecsl/wombat/wiki).
+### [API Documentation](http://rubydoc.info/gems/wombat/0.4.0/frames).
 
 
 ## Contributing to Wombat
