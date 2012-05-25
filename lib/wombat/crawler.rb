@@ -31,6 +31,14 @@ module Wombat
       end
     end
 
+    def method_missing(method, *args, &block)
+      self.class.send method, *args, &block
+    end
+
+    def for_each(selector, &block)
+      self.class.for_each selector, &block
+    end
+
     module ClassMethods
       def method_missing(method, *args, &block)
         metadata.send method, *args, &block

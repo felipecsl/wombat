@@ -34,6 +34,65 @@ describe 'basic crawler setup' do
     end
   end
 
+  it 'should crawl page through block to class instance crawl method' do
+    VCR.use_cassette('basic_crawler_page') do
+      crawler = Class.new
+      crawler.send(:include, Wombat::Crawler)
+      crawler_instance = crawler.new
+      results = crawler_instance.crawl do
+        base_url "http://www.terra.com.br"
+        list_page '/portal'
+
+        search "css=.btn-search"
+
+        social do |s|
+          s.twitter "css=.ctn-bar li.last"
+        end
+
+        for_each "css=.ctn-links" do
+          menu "css=a"
+        end
+
+        subheader "css=h2.ttl-dynamic" do |h|
+          h.gsub("London", "Londres")
+        end
+      end
+
+      results["search"].should == "Buscar"
+      results["iterator0"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
+      results["subheader"].should == "Londres 2012"
+      results["social"]["twitter"].should == "Verão"
+    end
+  end
+
+  it 'should crawl page through static crawl method' do
+    VCR.use_cassette('basic_crawler_page') do
+      results = Wombat.crawl do
+        base_url "http://www.terra.com.br"
+        list_page '/portal'
+
+        search "css=.btn-search"
+
+        social do |s|
+          s.twitter "css=.ctn-bar li.last"
+        end
+
+        for_each "css=.ctn-links" do
+          menu "css=a"
+        end
+
+        subheader "css=h2.ttl-dynamic" do |h|
+          h.gsub("London", "Londres")
+        end
+      end
+
+      results["search"].should == "Buscar"
+      results["iterator0"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
+      results["subheader"].should == "Londres 2012"
+      results["social"]["twitter"].should == "Verão"
+    end
+  end
+
   it 'should iterate elements' do
     VCR.use_cassette('for_each_page') do
       crawler = Class.new
