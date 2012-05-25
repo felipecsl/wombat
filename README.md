@@ -11,11 +11,11 @@ Generic Web crawler with an elegant DSL that parses structured data from web pag
 
 ``gem install wombat``
 
-OBS: Requires ruby 1.9
+Obs: Requires ruby 1.9
 
-Creating a crawler:
+## Crawling a page:
 
-###### Create a class that includes ``Wombat::Crawler``:
+The simplest way to use Wombat is by calling ``Wombat.crawl`` and passing it a block:
 
 ```ruby
 
@@ -24,9 +24,7 @@ Creating a crawler:
 #coding: utf-8
 require 'wombat'
 
-class GithubCrawler
-  include Wombat::Crawler
-
+Wombat.crawl do
   base_url "http://www.github.com"
   list_page "/"
 
@@ -47,13 +45,7 @@ class GithubCrawler
 end
 ```
 
-###### Run it by calling the instance method ``crawl``:
-
-```ruby
-my_crawler = GithubCrawler.new
-my_crawler.crawl
-
-#=> the line above outputs: 
+###### The code above is gonna return the following hash: 
 
 {
   "headline" => "1,316,633 people hosting over 3,951,378 git repositories", 
@@ -68,7 +60,7 @@ my_crawler.crawl
 }
 ```
 
-### For the documentation, please check the project [Wiki](http://github.com/felipecsl/wombat/wiki).
+### This is just a sneak peek of what Wombat can do. For the complete documentation, please check the [Wiki](http://github.com/felipecsl/wombat/wiki).
 
 
 ## Contributing to Wombat
@@ -88,6 +80,10 @@ my_crawler.crawl
  * Daniel Naves de Carvalho ([@danielnc](https://github.com/danielnc))
 
 ## Changelog
+
+### version 0.4.0
+
+ * Added utility method ``Wombat.crawl`` that eliminates the need to have a ruby class instance to use Wombat. Now you can use just ``Wombat.crawl`` and start working. The class based format still works as before though.
 
 ### version 0.3.1
 
