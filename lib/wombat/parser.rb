@@ -1,4 +1,4 @@
- #coding: utf-8
+#coding: utf-8
 require 'wombat/property_locator'
 require 'mechanize'
 require 'restclient'
@@ -6,7 +6,7 @@ require 'restclient'
 module Wombat
   module Parser
     include PropertyLocator
-    attr_accessor :mechanize, :context
+    attr_accessor :mechanize, :context, :response_code
 
     def initialize
       @mechanize = Mechanize.new
@@ -30,14 +30,28 @@ module Wombat
       metadata.flatten
     end
 
-    private 
+    private
     def parser_for(metadata)
       url = "#{metadata[:base_url]}#{metadata[:list_page]}"
-
-      if metadata[:format] == :html
-        @mechanize.get(url).parser
-      else
-        Nokogiri::XML RestClient.get(url)
+      page = nil
+      parser = nil
+      begin
+        if metadata[:format] == :html
+          page = @mechanize.get(url)
+          parser = page.parser
+        else
+          page = RestClient.get(url)
+          parser = Nokogiri::XML page
+        end
+        self.response_code = page.code.to_i if page.respond_to? :code
+        parser
+      rescue
+        if $!.respond_to? :http_code
+          self.response_code = $!.http_code.to_i
+        elsif $!.respond_to? :response_code
+          self.response_code = $!.response_code.to_i
+        end
+        raise $!
       end
     end
   end
