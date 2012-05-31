@@ -143,7 +143,7 @@ describe Wombat::Crawler do
 
       another_instance.crawl
     end
-    
+
     it 'should remove created method missing' do
       @crawler.base_url "danielnc.com"
       @crawler.list_page "/itens"
@@ -174,6 +174,62 @@ describe Wombat::Crawler do
       end
 
       @crawler_instance.instance_variables.index(:@metadata_dup).should be_nil
+    end
+
+    context "response code" do
+      it "should have correct mechanize response code" do
+        VCR.use_cassette('basic_crawler_page') do
+
+          @crawler.base_url "http://www.terra.com.br"
+          @crawler.list_page '/portal'
+
+          @crawler.search "css=.btn-search"
+
+          @crawler_instance.crawl
+          @crawler_instance.response_code.should be(200)
+        end
+
+      end
+      it "should have correct rest client code" do
+        VCR.use_cassette('basic_crawler_page') do
+
+          @crawler.base_url "http://www.terra.com.br"
+          @crawler.list_page '/portal'
+
+          @crawler.search "css=.btn-search"
+          @crawler.format :xml
+
+          @crawler_instance.crawl
+          @crawler_instance.response_code.should be(200)
+        end
+      end
+
+      it "should have mechanize error response code" do
+        VCR.use_cassette('error_page') do
+
+          @crawler.base_url "http://www.terra.com.br"
+          @crawler.list_page '/portal'
+
+          @crawler.search "css=.btn-search"
+
+          lambda { @crawler_instance.crawl }.should raise_error("404 => Net::HTTPNotFound for http://www.terra.com.br/portal/ -- unhandled response")
+          @crawler_instance.response_code.should be(404)
+        end
+      end
+
+      it "should have rest client error response code" do
+        VCR.use_cassette('error_page') do
+
+          @crawler.base_url "http://www.terra.com.br"
+          @crawler.list_page '/portal'
+
+          @crawler.search "css=.btn-search"
+          @crawler.format :xml
+          lambda { @crawler_instance.crawl }.should raise_error(RestClient::ResourceNotFound)
+          @crawler_instance.response_code.should be(404)
+        end
+      end
+
     end
   end
 end
