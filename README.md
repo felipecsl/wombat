@@ -83,7 +83,7 @@ end
 
 ## Changelog
 
-### version 0.4.1
+### version 1.0.0
 
  * [Fixed a bug on malformed selectors](https://github.com/felipecsl/wombat/commit/e0f4eec20e1e2bb07a1813a1edd019933edeceaa)
  * [Fixed a bug where multiple calls to #crawl would not clean up previously iterated array results and yield repeated results](https://github.com/felipecsl/wombat/commit/40b09a5bf8b9ba08aa51b6f41f706b7c3c4e4252)

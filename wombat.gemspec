@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "wombat"
-  s.version = "0.4.0"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Felipe Lima"]
-  s.date = "2012-05-25"
+  s.date = "2012-06-25"
   s.description = "Generic Web crawler with a DSL that parses structured data from web pages"
   s.email = "felipe.lima@gmail.com"
   s.extra_rdoc_files = [
@@ -28,6 +28,8 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "fixtures/vcr_cassettes/basic_crawler_page.yml",
+    "fixtures/vcr_cassettes/broken_selector.yml",
+    "fixtures/vcr_cassettes/error_page.yml",
     "fixtures/vcr_cassettes/for_each_page.yml",
     "fixtures/vcr_cassettes/xml_with_namespace.yml",
     "lib/wombat.rb",
@@ -57,7 +59,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.required_ruby_version = Gem::Requirement.new(">= 1.9")
-  s.rubygems_version = "1.8.18"
+  s.rubygems_version = "1.8.24"
   s.summary = "Ruby DSL to crawl web pages"
 
   if s.respond_to? :specification_version then
