@@ -62,7 +62,7 @@ end
 ```
 
 ### This is just a sneak peek of what Wombat can do. For the complete documentation, please check the [project Wiki](http://github.com/felipecsl/wombat/wiki).
-### [API Documentation](http://rubydoc.info/gems/wombat/0.5.0/frames).
+### [API Documentation](http://rubydoc.info/gems/wombat/1.0.0/frames).
 
 
 ## Contributing to Wombat
