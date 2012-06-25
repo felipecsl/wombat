@@ -10,7 +10,7 @@ module Wombat
     def parse
     	raise ArgumentError.new('Must provide a block to locate property values') unless block_given?
 
-    	all_properties.each do |p|
+      all_properties.each do |p|
         p.result ||= []
         result = yield p
         if result
@@ -18,6 +18,10 @@ module Wombat
           p.result << result
         end
       end
+    end
+
+    def reset
+      all_properties.each { |p| p.reset }
     end
 
     def flatten(depth = nil)

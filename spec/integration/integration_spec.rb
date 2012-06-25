@@ -34,6 +34,34 @@ describe 'basic crawler setup' do
     end
   end
 
+  it 'should clear iterators between multiple runs' do
+    crawler = Class.new
+    crawler.send(:include, Wombat::Crawler)
+
+    crawler.base_url "http://www.terra.com.br"
+    crawler.list_page '/portal'
+
+    crawler.for_each "css=.ctn-links" do
+      menu "css=a"
+    end
+
+    crawler_instance = crawler.new
+    result_hash = [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
+    results = nil
+
+    VCR.use_cassette('basic_crawler_page') do
+      results = crawler_instance.crawl
+    end
+
+    results["iterator0"].should == result_hash
+
+    VCR.use_cassette('basic_crawler_page') do
+      results = crawler_instance.crawl
+    end
+    
+    results["iterator0"].should == result_hash
+  end
+
   it 'should crawl page through block to class instance crawl method' do
     VCR.use_cassette('basic_crawler_page') do
       crawler = Class.new
@@ -121,7 +149,7 @@ describe 'basic crawler setup' do
     end
   end
 
-  it  'should crawl xml with namespaces' do
+  it 'should crawl xml with namespaces' do
     VCR.use_cassette('xml_with_namespace') do
       crawler = Class.new
       crawler.send(:include, Wombat::Crawler)

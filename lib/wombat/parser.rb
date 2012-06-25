@@ -17,6 +17,7 @@ module Wombat
       original_context = self.context
 
       metadata.iterators.each do |it|
+        it.reset # Clean up iterator results before starting
         select_nodes(it.selector).each do |node|
           self.context = node
           it.parse { |p| locate p }

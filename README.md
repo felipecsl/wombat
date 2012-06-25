@@ -78,10 +78,16 @@ end
 ## Contributors
 
  * Felipe Lima ([@felipecsl](https://github.com/felipecsl))
- * [@sigi](https://github.com/sigi)
  * Daniel Naves de Carvalho ([@danielnc](https://github.com/danielnc))
+ * [@sigi](https://github.com/sigi)
 
 ## Changelog
+
+### version 0.4.1
+
+ * Fixed a bug on malformed selectors (e0f4eec20e1e2bb07a1813a1edd019933edeceaa)
+ * Fixed a bug where multiple calls to #crawl would not clean up previously iterated array
+ results and yield repeated results.
 
 ### version 0.4.0
 

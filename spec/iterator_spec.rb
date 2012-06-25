@@ -26,6 +26,15 @@ describe Wombat::Iterator do
 	  end
 	end
 
+	context 'reset' do
+		it 'should clean up properties results' do
+			it.prop_1 'some_selector'
+			it['prop_1'].result = [1, 2]
+			it.reset
+			it['prop_1'].result.should be_nil
+		end
+	end
+
   it 'should flatten properties to plain hash format' do
   	it.prop_1 "some_selector"
     it.prop_2 "another_selector"

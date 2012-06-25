@@ -13,5 +13,9 @@ module Wombat
     def flatten(depth = nil)
       depth ? result[depth] : result
     end
+
+    def reset
+      self.result = nil
+    end
   end
 end
