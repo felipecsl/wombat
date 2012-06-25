@@ -37,7 +37,7 @@ module Wombat
       page = nil
       parser = nil
       begin
-        if metadata[:format] == :html
+        if metadata[:document_format] == :html
           page = @mechanize.get(url)
           parser = page.parser
         else

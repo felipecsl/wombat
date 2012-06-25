@@ -154,7 +154,7 @@ describe 'basic crawler setup' do
       crawler = Class.new
       crawler.send(:include, Wombat::Crawler)
       
-      crawler.format :xml
+      crawler.document_format :xml
       crawler.base_url "http://ws.audioscrobbler.com"
       crawler.list_page "/2.0/?method=geo.getevents&location=#{URI.escape('San Francisco')}&api_key=060decb474b73437d5bbec37f527ae7b"
 

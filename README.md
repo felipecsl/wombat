@@ -83,6 +83,10 @@ end
 
 ## Changelog
 
+### version 1.0.0
+
+ * Breaking change: Metadata#format renamed to Metadata#document_format due to method name clash with [Kernel#format](http://www.ruby-doc.org/core-1.9.3/Kernel.html#method-i-format)
+
 ### version 0.5.0
 
  * [Fixed a bug on malformed selectors](https://github.com/felipecsl/wombat/commit/e0f4eec20e1e2bb07a1813a1edd019933edeceaa)

@@ -5,7 +5,7 @@ require 'wombat/iterator'
 module Wombat
   class Metadata < PropertyContainer
     def initialize
-      self[:format] = :html
+      self[:document_format] = :html
       super
     end
 
@@ -17,8 +17,8 @@ module Wombat
       self[:list_page] = url
     end
 
-    def format(format)
-      self[:format] = format
+    def document_format(format)
+      self[:document_format] = format
     end
   end
 end

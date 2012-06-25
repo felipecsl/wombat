@@ -115,9 +115,9 @@ describe Wombat::Crawler do
 
     it 'should assign metadata format' do
       @crawler_instance.should_receive(:parse) do |arg|
-        arg[:format].should == :xml
+        arg[:document_format].should == :xml
       end
-      @crawler.format :xml
+      @crawler.document_format :xml
       @crawler_instance.crawl
     end
 
@@ -197,7 +197,7 @@ describe Wombat::Crawler do
           @crawler.list_page '/portal'
 
           @crawler.search "css=.btn-search"
-          @crawler.format :xml
+          @crawler.document_format :xml
 
           @crawler_instance.crawl
           @crawler_instance.response_code.should be(200)
@@ -224,12 +224,11 @@ describe Wombat::Crawler do
           @crawler.list_page '/portal'
 
           @crawler.search "css=.btn-search"
-          @crawler.format :xml
+          @crawler.document_format :xml
           lambda { @crawler_instance.crawl }.should raise_error(RestClient::ResourceNotFound)
           @crawler_instance.response_code.should be(404)
         end
       end
-
     end
   end
 end

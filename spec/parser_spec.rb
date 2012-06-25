@@ -113,7 +113,7 @@ describe Wombat::Parser do
   it 'should correctly parse xml documents' do
     fake_document = double :xml
     fake_parser = double :parser
-    @metadata.format :xml
+    @metadata.document_format :xml
     @parser.mechanize.should_not_receive(:get)
     RestClient.should_receive(:get).and_return fake_document
     Nokogiri.should_receive(:XML).with(fake_document).and_return fake_parser
