@@ -85,9 +85,9 @@ end
 
 ### version 0.4.1
 
- * Fixed a bug on malformed selectors e0f4eec20e1e2bb07a1813a1edd019933edeceaa
+ * Fixed a bug on malformed selectors (SHA: e0f4eec20e1e2bb07a1813a1edd019933edeceaa)
  * Fixed a bug where multiple calls to #crawl would not clean up previously iterated array
- results and yield repeated results 40b09a5bf8b9ba08aa51b6f41f706b7c3c4e4252
+ results and yield repeated results (SHA: 40b09a5bf8b9ba08aa51b6f41f706b7c3c4e4252)
 
 ### version 0.4.0
 
