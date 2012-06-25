@@ -62,7 +62,8 @@ end
 ```
 
 ### This is just a sneak peek of what Wombat can do. For the complete documentation, please check the [project Wiki](http://github.com/felipecsl/wombat/wiki).
-### [API Documentation](http://rubydoc.info/gems/wombat/1.0.0/frames).
+### [API Documentation](http://rubydoc.info/gems/wombat/1.0.0/frames)
+### [Changelog](https://github.com/felipecsl/wombat/wiki/Changelog)
 
 
 ## Contributing to Wombat
@@ -80,8 +81,6 @@ end
  * Felipe Lima ([@felipecsl](https://github.com/felipecsl))
  * Daniel Naves de Carvalho ([@danielnc](https://github.com/danielnc))
  * [@sigi](https://github.com/sigi)
-
-## [Changelog](https://github.com/felipecsl/wombat/wiki/Changelog)
 
 ## Copyright
 
