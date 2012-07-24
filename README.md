@@ -5,7 +5,7 @@
 [travis]: http://travis-ci.org/felipecsl/wombat
 [gemnasium]: https://gemnasium.com/felipecsl/wombat
 
-Generic Web crawler with an elegant DSL that parses structured data from web pages.
+Web scraper with an elegant DSL that parses structured data from web pages.
 
 ## Usage:
 
@@ -13,13 +13,13 @@ Generic Web crawler with an elegant DSL that parses structured data from web pag
 
 Obs: Requires ruby 1.9
 
-## Crawling a page:
+## Scraping a page:
 
 The simplest way to use Wombat is by calling ``Wombat.crawl`` and passing it a block:
 
 ```ruby
 
-# => github_crawler.rb
+# => github_scraper.rb
 
 #coding: utf-8
 require 'wombat'
