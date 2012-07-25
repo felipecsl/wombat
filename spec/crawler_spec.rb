@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe Wombat::Crawler do
-  describe '#crawl' do
-    before(:each) do
-      @crawler = Class.new
-      @crawler.send(:include, Wombat::Crawler)
-      @crawler_instance = @crawler.new
-    end
+  before(:each) do
+    @crawler = Class.new
+    @crawler.send(:include, Wombat::Crawler)
+    @crawler_instance = @crawler.new
+  end
 
+  describe '#crawl' do
     it 'should call the provided block' do
       event_called = false
 
@@ -229,6 +229,13 @@ describe Wombat::Crawler do
           @crawler_instance.response_code.should be(404)
         end
       end
+    end
+  end
+
+  describe '#scrape' do
+    it 'should alias to crawl' do
+      @crawler_instance.should_receive :parse
+      @crawler_instance.scrape
     end
   end
 end

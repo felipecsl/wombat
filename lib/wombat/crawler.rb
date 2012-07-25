@@ -31,12 +31,18 @@ module Wombat
       end
     end
 
+    alias_method :scrape, :crawl
+
     def method_missing(method, *args, &block)
       self.class.send method, *args, &block
     end
 
     def for_each(selector, &block)
       self.class.for_each selector, &block
+    end
+
+    def follow_links(selector, options, &block)
+      self.class.follow_links selector, options, &block
     end
 
     module ClassMethods
@@ -46,6 +52,10 @@ module Wombat
 
       def for_each(selector, &block)
         metadata.for_each(selector).instance_eval(&block) if block
+      end
+
+      def follow_links(selector, options, &block)
+        
       end
 
       def follow_links(selector)

@@ -6,25 +6,25 @@ require 'restclient'
 module Wombat
   module Parser
     include PropertyLocator
-    attr_accessor :mechanize, :context, :response_code
+    attr_accessor :mechanize, :context, :response_code, :page
 
     def initialize
       @mechanize = Mechanize.new
     end
 
     def parse(metadata)
-      self.context = parser_for metadata
-      original_context = self.context
+      @context = parser_for metadata
+      original_context = @context
 
       metadata.iterators.each do |it|
         it.reset # Clean up iterator results before starting
         select_nodes(it.selector).each do |node|
-          self.context = node
+          @context = node
           it.parse { |p| locate p }
         end
       end
 
-      self.context = original_context
+      @context = original_context
 
       metadata.parse { |p| locate p }
 
@@ -38,19 +38,19 @@ module Wombat
       parser = nil
       begin
         if metadata[:document_format] == :html
-          page = @mechanize.get(url)
-          parser = page.parser
+          @page = @mechanize.get(url)
+          parser = @page.parser
         else
-          page = RestClient.get(url)
-          parser = Nokogiri::XML page
+          @page = RestClient.get(url)
+          parser = Nokogiri::XML @page
         end
-        self.response_code = page.code.to_i if page.respond_to? :code
+        @response_code = @page.code.to_i if @page.respond_to? :code
         parser
       rescue
         if $!.respond_to? :http_code
-          self.response_code = $!.http_code.to_i
+          @response_code = $!.http_code.to_i
         elsif $!.respond_to? :response_code
-          self.response_code = $!.response_code.to_i
+          @response_code = $!.response_code.to_i
         end
         raise $!
       end

@@ -1,4 +1,6 @@
 module Wombat
+  # Each iterator property keeps an array
+  # with the results of each iteration pass.
   class Iterator < PropertyContainer
     attr_accessor :selector
 
@@ -25,10 +27,13 @@ module Wombat
     end
 
     def flatten(depth = nil)
-    	# determine the iterator length by the biggest property array that we have
+    	# Determine the iterator array length by the biggest property result array that we have
     	length = all_properties.map(&:result).sort { |a| a.length }.last.size
 
-    	Array.new.tap do |a|
+    	# Allocate an array and fall back to default
+      # flatten implementation to fill the resulting hash
+      # based on the current property depth.
+      Array.new.tap do |a|
 		  	length.times do |i|
 		  		a << super(i)
 		  	end

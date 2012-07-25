@@ -185,4 +185,32 @@ describe 'basic crawler setup' do
       results["artist"].should =~ ["Davka", "Digitalism (DJ Set)", "Gary Clark Jr.", "Lenny Kravitz", "Little Muddy", "Michael Schenker Group", "The Asteroids Galaxy Tour", "When Indie Attacks", "When Indie Attacks", "YOB"]
     end
   end
+
+  xit 'should follow links' do
+    VCR.use_cassette('follow_links') do
+      crawler = Class.new
+      crawler.send(:include, Wombat::Crawler)
+      
+      crawler.document_format :html
+      crawler.base_url "https://www.github.com"
+      crawler.list_page "/"
+
+      crawler.github 'xpath=//ul[@class="footer_nav"][1]//a', :follow do
+        heading 'css=h1'
+      end
+
+      crawler_instance = crawler.new
+      results = crawler_instance.crawl
+
+      results.should == { "github" => [
+        { "heading"=>"GitHub helps people build software together."},
+        { "heading"=>""},
+        { "heading"=>"Features"},
+        { "heading"=>"Contact GitHub"},
+        { "heading"=>"GitHub Training — Git Training from the Experts"},
+        { "heading"=>"GitHub on Your Servers"},
+        { "heading"=>"Battle station fully operational"}
+      ]}
+    end
+  end
 end

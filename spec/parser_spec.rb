@@ -92,15 +92,11 @@ describe Wombat::Parser do
     it = Wombat::Iterator.new "it_selector"
     it.prop_1 "some_selector"
     
-    @parser.should_receive(:context=).ordered
     @metadata.should_receive(:iterators).and_return [it]
     @metadata.should_receive(:flatten)
     fake_document.should_receive(:parser).and_return(fake_parser)
     @parser.mechanize.stub(:get).and_return fake_document
     @parser.should_receive(:select_nodes).with("it_selector").and_return [c1, c2]
-    @parser.should_receive(:context=).with(c1).ordered
-    @parser.should_receive(:context=).with(c2).ordered
-    @parser.should_receive(:context=).ordered
     @parser.should_receive(:locate).with(it['prop_1']).and_return(12)
     @parser.should_receive(:locate).with(it['prop_1']).and_return(nil)
     @parser.stub(:locate)
@@ -117,9 +113,7 @@ describe Wombat::Parser do
     @parser.mechanize.should_not_receive(:get)
     RestClient.should_receive(:get).and_return fake_document
     Nokogiri.should_receive(:XML).with(fake_document).and_return fake_parser
-    @parser.should_receive(:context=).with(fake_parser)
-    @parser.should_receive(:context=)
-
+    
     @parser.parse @metadata
   end
 end

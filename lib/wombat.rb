@@ -3,9 +3,13 @@
 require 'wombat/crawler'
 
 module Wombat
-	def self.crawl(&block)
-		klass = Class.new
-		klass.send(:include, Wombat::Crawler)
-		klass.new.crawl(&block)
+	class << self
+		def crawl(&block)
+			klass = Class.new
+			klass.send(:include, Wombat::Crawler)
+			klass.new.crawl(&block)
+		end
+		
+		alias_method :scrape, :crawl
 	end
 end

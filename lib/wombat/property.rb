@@ -5,7 +5,7 @@ module Wombat
     def initialize(options)
       @name = options[:name]
       @selector = options[:selector]
-      @format = options[:format]
+      @format = options[:format] || :text
       @namespaces = options[:namespaces]
       @callback = options[:callback]
     end
