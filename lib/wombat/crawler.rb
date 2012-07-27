@@ -1,13 +1,13 @@
 #coding: utf-8
-require 'wombat/metadata'
-require 'wombat/property'
-require 'wombat/parser'
+require 'wombat/dsl/metadata'
+require 'wombat/dsl/property'
+require 'wombat/processing/parser'
 require 'active_support'
 require 'date'
 
 module Wombat
   module Crawler
-    include Parser
+    include Processing::Parser
     extend ActiveSupport::Concern
 
     def crawl(&block)
@@ -37,17 +37,9 @@ module Wombat
       self.class.send method, *args, &block
     end
 
-    def for_each(selector, &block)
-      self.class.for_each selector, &block
-    end
-
     module ClassMethods
       def method_missing(method, *args, &block)
         metadata.send method, *args, &block
-      end
-
-      def for_each(selector, &block)
-        metadata.for_each(selector).instance_eval(&block) if block
       end
 
       def to_ary

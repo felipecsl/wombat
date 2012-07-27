@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Wombat::Iterator do
-	let(:it) { Wombat::Iterator.new "it_selector" }
+describe Wombat::DSL::Iterator do
+	let(:it) { Wombat::DSL::Iterator.new "it_selector" }
 
    context 'parse' do
 	   it 'should iterate in for_each properties' do

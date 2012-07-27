@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Wombat::Parser do
+describe Wombat::Processing::Parser do
   before(:each) do
     crawler = Class.new
     crawler.send(:include, Wombat::Parser)

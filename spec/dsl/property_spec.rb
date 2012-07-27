@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Wombat::Property do
+describe Wombat::DSL::Property do
   it 'should store property data' do
-    property = Wombat::Property.new(
+    property = Wombat::DSL::Property.new(
       name: "title",
       selector: "/some/selector", 
       format: :html,

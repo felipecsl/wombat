@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe Wombat::PropertyContainer do
+describe Wombat::DSL::PropertyContainer do
   before(:each) do
-    @metadata = Wombat::PropertyContainer.new
+    @metadata = Wombat::DSL::PropertyContainer.new
   end
 
   it 'should return an array with all the metadata properties excluding iterators' do
-    @metadata["event"] = Wombat::PropertyContainer.new
-    @metadata["venue"] = Wombat::PropertyContainer.new
+    @metadata["event"] = Wombat::DSL::PropertyContainer.new
+    @metadata["venue"] = Wombat::DSL::PropertyContainer.new
     @metadata.another_property "/some/selector", :text
-    @metadata["event"]["something"] = Wombat::PropertyContainer.new
+    @metadata["event"]["something"] = Wombat::DSL::PropertyContainer.new
     @metadata["event"]["something"].else "Wohooo"
     @metadata["venue"].awesome "whooea"
     it = Wombat::Iterator.new "it_selector"
@@ -34,10 +34,10 @@ describe Wombat::PropertyContainer do
   it 'should return metadata in plain hash format including iterators' do
     @metadata.title "/some/selector"
     @metadata["title"].result = "Gogobot Inc."
-    @metadata["holder"] = Wombat::PropertyContainer.new
+    @metadata["holder"] = Wombat::DSL::PropertyContainer.new
     @metadata["holder"].heading "css=.heading"
     @metadata["holder"]["heading"].result = 123456
-    @metadata["holder"]["subheader"] = Wombat::PropertyContainer.new
+    @metadata["holder"]["subheader"] = Wombat::DSL::PropertyContainer.new
     @metadata["holder"]["subheader"].section "/blah"
     @metadata["holder"]["subheader"]["section"].result = "Lorem Ipsum"
     it = Wombat::Iterator.new "it_selector"

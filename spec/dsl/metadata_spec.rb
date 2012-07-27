@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Wombat::Metadata do
+describe Wombat::DSL::Metadata do
   before(:each) do
-    @metadata = Wombat::Metadata.new
+    @metadata = Wombat::DSL::Metadata.new
   end
 
   it 'should not include non-properties in all properties list' do

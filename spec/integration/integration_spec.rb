@@ -15,7 +15,7 @@ describe 'basic crawler setup' do
         s.twitter "css=.ctn-bar li.last"
       end
 
-      crawler.for_each "css=.ctn-links" do
+      crawler.links "css=.ctn-links", :iterator do
         menu "css=a"
       end
 
