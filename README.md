@@ -1,6 +1,6 @@
 # Wombat
 
-[![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/felipecsl/wombat.png?travis)][gemnasium] {<img src="https://codeclimate.com/badge.png" />}[codeclimate]
+[![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/felipecsl/wombat.png?travis)][gemnasium] [![Code Climate](https://codeclimate.com/badge.png)][codeclimate]
 
 [travis]: http://travis-ci.org/felipecsl/wombat
 [gemnasium]: https://gemnasium.com/felipecsl/wombat
