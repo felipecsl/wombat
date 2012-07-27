@@ -1,11 +1,10 @@
 #coding: utf-8
-require 'wombat/property_locator'
+require 'wombat/locators/factory'
 require 'mechanize'
 require 'restclient'
 
 module Wombat
   module Parser
-    include PropertyLocator
     attr_accessor :mechanize, :context, :response_code, :page
 
     def initialize

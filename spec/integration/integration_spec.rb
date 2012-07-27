@@ -187,7 +187,6 @@ describe 'basic crawler setup' do
   end
 
   it 'should follow links' do
-    pending('Not implemented yet.')
     VCR.use_cassette('follow_links') do
       crawler = Class.new
       crawler.send(:include, Wombat::Crawler)
@@ -197,7 +196,7 @@ describe 'basic crawler setup' do
       crawler.list_page "/"
 
       crawler.github 'xpath=//ul[@class="footer_nav"][1]//a', :follow do
-        heading 'css=h1'
+        #heading 'css=h1'
       end
 
       crawler_instance = crawler.new
