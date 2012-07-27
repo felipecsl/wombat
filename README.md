@@ -1,9 +1,10 @@
 # Wombat
 
-[![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/felipecsl/wombat.png?travis)][gemnasium]
+[![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/felipecsl/wombat.png?travis)][gemnasium] {<img src="https://codeclimate.com/badge.png" />}[codeclimate]
 
 [travis]: http://travis-ci.org/felipecsl/wombat
 [gemnasium]: https://gemnasium.com/felipecsl/wombat
+[codeclimate]: https://codeclimate.com/github/felipecsl/wombat
 
 Web scraper with an elegant DSL that parses structured data from web pages.
 
