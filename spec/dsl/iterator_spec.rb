@@ -1,52 +1,14 @@
 require 'spec_helper'
 
 describe Wombat::DSL::Iterator do
-	let(:it) { Wombat::DSL::Iterator.new "it_selector" }
+  let(:it) { Wombat::DSL::Iterator.new "it_selector", "blaj" }
 
-   context 'parse' do
-	   it 'should iterate in for_each properties' do
-	    it.prop_1 "some_selector"
-	    it.prop_2 "another_selector"
-	    
-	    it['prop_1'].should_receive(:result).twice.and_return([])
-	    it['prop_2'].should_receive(:result).twice.and_return([])
-	    
-	    parser = double :parser
-	    parser.should_receive(:locate).with(it['prop_1']).twice
-	    parser.should_receive(:locate).with(it['prop_2']).twice
-
-	    it.parse { |p| parser.locate p }
-	    it.parse { |p| parser.locate p }
-	  end
-
-	  it 'should raise if no block given' do
-	  	expect{
-	  		it.parse
-  		}.to raise_error(ArgumentError)
-	  end
-	end
-
-	context 'reset' do
-		it 'should clean up properties results' do
-			it.prop_1 'some_selector'
-			it['prop_1'].result = [1, 2]
-			it.reset
-			it['prop_1'].result.should be_nil
-		end
-	end
-
-  it 'should flatten properties to plain hash format' do
-  	it.prop_1 "some_selector"
-    it.prop_2 "another_selector"
-
-    it.parse {|p| }
-    it.parse {|p| }
-    it['prop_1'].result = ['result 1', 'result 2']
-    it['prop_2'].result = ['result 3', 'result 4']
-
-    it.flatten.should == [
-    	{ "prop_1" => "result 1", "prop_2" => "result 3" },
-    	{ "prop_1" => "result 2", "prop_2" => "result 4" }
-    ]
+   context 'reset' do
+    it 'should clean up properties results' do
+      it.prop_1 'some_selector'
+      it['prop_1'].result = [1, 2]
+      it.reset
+      it['prop_1'].result.should be_nil
+    end
   end
 end

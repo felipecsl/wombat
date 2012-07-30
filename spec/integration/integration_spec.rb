@@ -28,7 +28,7 @@ describe 'basic crawler setup' do
       results = crawler_instance.crawl
 
       results["search"].should == "Buscar"
-      results["iterator0"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
+      results["links"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
       results["subheader"].should == "Londres 2012"
       results["social"]["twitter"].should == "Verão"
     end
@@ -41,7 +41,7 @@ describe 'basic crawler setup' do
     crawler.base_url "http://www.terra.com.br"
     crawler.list_page '/portal'
 
-    crawler.for_each "css=.ctn-links" do
+    crawler.links "css=.ctn-links", :iterator do
       menu "css=a"
     end
 
@@ -53,13 +53,13 @@ describe 'basic crawler setup' do
       results = crawler_instance.crawl
     end
 
-    results["iterator0"].should == result_hash
+    results["links"].should == result_hash
 
     VCR.use_cassette('basic_crawler_page') do
       results = crawler_instance.crawl
     end
     
-    results["iterator0"].should == result_hash
+    results["links"].should == result_hash
   end
 
   it 'should crawl page through block to class instance crawl method' do
@@ -77,7 +77,7 @@ describe 'basic crawler setup' do
           s.twitter "css=.ctn-bar li.last"
         end
 
-        for_each "css=.ctn-links" do
+        links "css=.ctn-links", :iterator do
           menu "css=a"
         end
 
@@ -87,7 +87,7 @@ describe 'basic crawler setup' do
       end
 
       results["search"].should == "Buscar"
-      results["iterator0"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
+      results["links"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
       results["subheader"].should == "Londres 2012"
       results["social"]["twitter"].should == "Verão"
     end
@@ -105,7 +105,7 @@ describe 'basic crawler setup' do
           s.twitter "css=.ctn-bar li.last"
         end
 
-        for_each "css=.ctn-links" do
+        links "css=.ctn-links", :iterator do
           menu "css=a"
         end
 
@@ -115,7 +115,7 @@ describe 'basic crawler setup' do
       end
 
       results["search"].should == "Buscar"
-      results["iterator0"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
+      results["links"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
       results["subheader"].should == "Londres 2012"
       results["social"]["twitter"].should == "Verão"
     end
@@ -129,22 +129,22 @@ describe 'basic crawler setup' do
       crawler.base_url "https://www.github.com"
       crawler.list_page "/explore"
 
-      crawler.for_each "css=ol.ranked-repositories li" do
+      crawler.repos "css=ol.ranked-repositories>li", :iterator do
         project do |p|
           p.repo 'css=h3'
-          p.description('css=p.description') { |d| d.gsub(/for/, '') }
+          p.description('css=p.description') { |d| d ? d.gsub(/for/, '') : nil }
         end
       end
 
-      crawler_instance = crawler.new
-      results = crawler_instance.crawl
+      results = crawler.new.crawl
 
-      results.should == { "iterator0" => [
+      results.should == { "repos" => [
         { "project" => { "repo" => "jairajs89 / Touchy.js", "description" => "A simple light-weight JavaScript library  dealing with touch events" } },
         { "project" => { "repo" => "mcavage / node-restify", "description" => "node.js REST framework specifically meant  web service APIs" } },
         { "project" => { "repo" => "notlion / streetview-stereographic", "description" => "Shader Toy + Google Map + Panoramic Explorer" } },
         { "project" => { "repo" => "twitter / bootstrap", "description" => "HTML, CSS, and JS toolkit from Twitter" } },
-        { "project" => { "repo" => "stolksdorf / Parallaxjs", "description" => "a Library  Javascript that allows easy page parallaxing" } }
+        { "project" => { "repo" => "stolksdorf / Parallaxjs", "description" => "a Library  Javascript that allows easy page parallaxing" } },
+        { "project" => { "repo" => nil, "description" => nil}}
       ]}
     end
   end
@@ -160,14 +160,14 @@ describe 'basic crawler setup' do
 
       crawler.artist "xpath=//title", :list
       
-      crawler.for_each 'xpath=//event' do
+      crawler.location 'xpath=//event', :iterator do
         latitude "xpath=./venue/location/geo:point/geo:lat", :text, { 'geo' => 'http://www.w3.org/2003/01/geo/wgs84_pos#' }
         longitude "xpath=./venue/location/geo:point/geo:long", :text, { 'geo' => 'http://www.w3.org/2003/01/geo/wgs84_pos#' }
       end
 
       crawler_instance = crawler.new
       results = crawler_instance.crawl
-      iterator = results['iterator0']
+      iterator = results['location']
 
       iterator.should == [
         {"latitude"=>"37.807775", "longitude"=>"-122.272736"}, 

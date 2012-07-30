@@ -30,33 +30,4 @@ describe Wombat::DSL::PropertyContainer do
     @metadata.all_properties.first.selector = "abc"
     @metadata["another_property"].selector.should == "abc"
   end
-
-  it 'should return metadata in plain hash format including iterators' do
-    @metadata.title "/some/selector"
-    @metadata["title"].result = "Gogobot Inc."
-    @metadata["holder"] = Wombat::DSL::PropertyContainer.new
-    @metadata["holder"].heading "css=.heading"
-    @metadata["holder"]["heading"].result = 123456
-    @metadata["holder"]["subheader"] = Wombat::DSL::PropertyContainer.new
-    @metadata["holder"]["subheader"].section "/blah"
-    @metadata["holder"]["subheader"]["section"].result = "Lorem Ipsum"
-    it = Wombat::Iterator.new "it_selector"
-    it.felipe "lima"
-    it["felipe"].result = ["correa", "de souza", "lima"]
-    @metadata.iterators = [it]
-    @metadata.footer("another thing", :html) { |a| true }
-    @metadata["footer"].result = "bla bla bla"
-    
-    @metadata.flatten.should == { 
-      "title" => "Gogobot Inc.",
-      "holder" => { 
-        "heading" => 123456,
-        "subheader" => {
-          "section" => "Lorem Ipsum"
-        }
-      },
-      "iterator0"=>[{"felipe"=>"correa"}, {"felipe"=>"de souza"}, {"felipe"=>"lima"}],
-      "footer" => "bla bla bla"
-    }
-  end
 end

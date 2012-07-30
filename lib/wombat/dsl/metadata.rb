@@ -1,5 +1,5 @@
 #coding: utf-8
-require 'wombat/dsl/roperty_container'
+require 'wombat/dsl/property_container'
 require 'wombat/dsl/iterator'
 
 module Wombat

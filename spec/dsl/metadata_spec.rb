@@ -11,10 +11,4 @@ describe Wombat::DSL::Metadata do
     @metadata.list_page "/yeah"
     @metadata.all_properties.should == [@metadata['another_property']]
   end
-
-  it 'should store iterators' do
-    @metadata.for_each("some_selector").kind_of?(Wombat::Iterator).should be_true
-    @metadata.iterators.size.should == 1
-    @metadata.iterators.first.selector.should == "some_selector"
-  end
 end

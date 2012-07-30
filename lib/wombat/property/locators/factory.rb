@@ -3,6 +3,7 @@ require 'wombat/property/locators/base'
 require 'wombat/property/locators/follow'
 require 'wombat/property/locators/html'
 require 'wombat/property/locators/iterator'
+require 'wombat/property/locators/property_container'
 require 'wombat/property/locators/list'
 require 'wombat/property/locators/text'
 
@@ -13,20 +14,24 @@ module Wombat
 		module Locators
 			module Factory
 				def self.locator_for(property, context)
-					case(property.format)
+					klass = case(property.format)
 					when :text 
-						TextPropertyLocator.new(property, context)
+						Text
 					when :list
-						ListPropertyLocator.new(property, context)
+						List
 					when :html 
-						HtmlPropertyLocator.new(property, context)
+						Html
 					when :iterator
-						IteratorPropertyLocator.new(property, context)
+						Iterator
+					when :container
+						PropertyContainer
 					when :follow
-						FollowPropertyLocator.new(property, context)
+						Follow
 					else 
 	      		raise Wombat::Property::Locators::UnknownTypeException.new("Unknown property format #{property.format}.")
 					end
+
+					klass.new(property, context)
 				end
 			end
 		end

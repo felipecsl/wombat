@@ -1,5 +1,5 @@
 #coding: utf-8
-require 'wombat/locators/factory'
+require 'wombat/property/locators/factory'
 require 'mechanize'
 require 'restclient'
 
@@ -15,7 +15,7 @@ module Wombat
       def parse(metadata)
         @context = parser_for metadata
 
-        metadata.parse(@context).flatten
+        Wombat::Property::Locators::Factory.locator_for(metadata, @context).locate
       end
 
       private

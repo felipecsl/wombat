@@ -6,7 +6,7 @@ module Wombat
 	    class Html < Base
 	    	def locate
 	    		node = locate_nodes.first
-	    		node.inner_html.strip
+	    		super { node.inner_html.strip }
 	    	end
 	    end
 	  end

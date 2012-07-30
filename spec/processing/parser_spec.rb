@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Wombat::Processing::Parser do
   before(:each) do
     crawler = Class.new
-    crawler.send(:include, Wombat::Parser)
+    crawler.send(:include, Wombat::Processing::Parser)
     @parser = crawler.new
-    @metadata = Wombat::Metadata.new
+    @metadata = Wombat::DSL::Metadata.new
   end
 
   it 'should request page document with correct url' do
@@ -70,18 +70,6 @@ describe Wombat::Processing::Parser do
     @parser.parse @metadata
 
     block_called.should be_true
-  end
-
-  it 'should return hash with requested properties' do
-    hash = double :results
-    fake_parser = double :parser
-    fake_document = double :document
-
-    fake_document.should_receive(:parser).and_return fake_parser
-    @parser.mechanize.stub(:get).and_return fake_document
-    @metadata.should_receive(:flatten).and_return hash
-
-    @parser.parse(@metadata).should == hash
   end
 
   it 'should not include null results in iterated block' do

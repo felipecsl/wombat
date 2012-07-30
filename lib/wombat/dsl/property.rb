@@ -3,6 +3,9 @@ module Wombat
     class Property
       attr_accessor :name, :selector, :format, :namespaces, :callback, :result
 
+      # TODO: This class should receive method_name, args and block
+      # and do the assignment of properties itself, instead of receiving
+      # an options hash.
       def initialize(options)
         @name = options[:name]
         @selector = options[:selector]
@@ -15,13 +18,8 @@ module Wombat
         depth ? result[depth] : result
       end
 
-      def parse(locator)
-        result = locator.locate
-        self.result = callback ? callback.call(result) : result
-      end
-
       def reset
-        self.result = nil
+        @result = nil
       end
     end
   end

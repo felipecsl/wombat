@@ -47,7 +47,7 @@ module Wombat
 
       private
       def metadata
-        @metadata ||= Metadata.new
+        @metadata ||= DSL::Metadata.new
       end
     end
   end

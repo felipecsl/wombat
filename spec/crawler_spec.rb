@@ -30,7 +30,10 @@ describe Wombat::Crawler do
         e.time Time.now
       end
 
-      @crawler.venue { |v| v.name "Scooba" }
+      @crawler.venue do |v| 
+        v.name "Scooba"
+      end
+
       @crawler.location { |v| v.latitude -50.2323 }
 
       @crawler_instance.should_receive(:parse) do |arg|
@@ -91,26 +94,6 @@ describe Wombat::Crawler do
 
     it 'should not explode if no block given' do
       @crawler.event
-    end
-
-    it 'should iterate on elements inside for_each block' do
-      @crawler.for_each "css=.element" do
-        title "css=.title"
-        body "css=.body"
-        event do |e|
-          e.all "yeah"
-        end
-      end
-
-      @crawler_instance.should_receive(:parse) do |arg|
-        it = arg.iterators.first
-        it.selector.should == "css=.element"
-        it["title"].selector.should == "css=.title"
-        it["body"].selector.should == "css=.body"
-        it["event"]["all"].selector.should == "yeah"
-      end
-
-      @crawler_instance.crawl
     end
 
     it 'should assign metadata format' do
