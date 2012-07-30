@@ -2,8 +2,6 @@ require 'wombat/processing/node_selector'
 
 module Wombat
   module DSL
-    # Each iterator property keeps an array
-    # with the results of each iteration pass.
     class Iterator < PropertyContainer
       attr_accessor :name, :selector
 
@@ -18,10 +16,6 @@ module Wombat
       # as an iterator property.
       def format
         :iterator
-      end
-
-      def reset
-        all_properties.each { |p| p.reset }
       end
     end
   end

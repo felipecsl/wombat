@@ -45,18 +45,6 @@ module Wombat
         # TODO: Called by NodeSelector. Fix this
         nil
       end
-
-      def all_properties
-        values.flat_map { |v|
-          if v.kind_of? PropertyContainer
-            v.all_properties
-          elsif v.kind_of? Property
-            v
-          else
-            nil
-          end
-        }.compact
-      end
     end
   end
 end

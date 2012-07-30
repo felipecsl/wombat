@@ -7,8 +7,6 @@ module Wombat
       class Iterator < Base
       	def locate
           super do
-            @property.reset
-
             locate_nodes.flat_map do |node|
               Hash.new.tap do |h|
                 @property.values
