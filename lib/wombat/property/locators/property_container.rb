@@ -9,11 +9,8 @@ module Wombat
             Hash.new.tap do |h|
               @property.values
                 .select { |v| v.is_a?(Wombat::DSL::Property) || v.is_a?(Wombat::DSL::PropertyContainer) }
-                .map do |p|
-                  result = Factory.locator_for(p, @context).locate
-
-                  h.merge! result
-                end
+                .map { |p| Factory.locator_for(p, @context).locate }
+                .map { |p| h.merge! p }
             end
           end
         end

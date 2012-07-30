@@ -12,7 +12,7 @@ module Wombat
                 @property.values
                   .select { |v| v.is_a?(Wombat::DSL::Property) || v.is_a?(Wombat::DSL::PropertyContainer) }
                   .map { |p| Factory.locator_for(p, node).locate }
-                  .each { |p| h.merge! p }
+                  .map { |p| h.merge! p }
               end
             end
           end
