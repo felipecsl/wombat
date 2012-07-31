@@ -19,12 +19,16 @@ module Wombat
           self[property_name] = property_group
           property_group.instance_eval(&block)
         else
-          unless args[1] == :iterator
-            self[property_name] = Property.new(property_name, *args, &block)
-          else
+          if args[1] == :iterator
             it = Iterator.new(property_name, args.first)
             self[property_name] = it
             it.instance_eval(&block) if block
+          elsif args[1] == :follow
+            it = Follower.new(property_name, args.first)
+            self[property_name] = it
+            it.instance_eval(&block) if block
+          else
+            self[property_name] = Property.new(property_name, *args, &block)
           end
         end      
       end

@@ -1,5 +1,3 @@
-require 'wombat/processing/node_selector'
-
 module Wombat
   module DSL
     class Iterator < PropertyGroup

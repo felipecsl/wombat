@@ -4,7 +4,7 @@ module Wombat
   module Property
     module Locators
       class Text < Base
-        def locate(context)
+        def locate(context, page = nil)
           node = locate_nodes(context).first
           
           value = 

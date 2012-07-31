@@ -12,7 +12,7 @@ module Wombat
           @property = property
         end
 
-        def locate(context)
+        def locate(context, page = nil)
           @context = context
           
           raw_data = yield if block_given?

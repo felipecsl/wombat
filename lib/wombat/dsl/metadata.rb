@@ -1,6 +1,7 @@
 #coding: utf-8
 require 'wombat/dsl/property_group'
 require 'wombat/dsl/iterator'
+require 'wombat/dsl/follower'
 
 module Wombat
   module DSL
