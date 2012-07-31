@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Wombat : Web crawler/scraper with an elegant DSL which extracts structured data from web pages" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Wombat</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/felipecsl/wombat">View on GitHub</a>
+
+          <h1 id="project_title">Wombat</h1>
+          <h2 id="project_tagline">Web crawler/scraper with an elegant DSL which extracts structured data from web pages</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/felipecsl/wombat/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/felipecsl/wombat/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Wombat</h1>
+
+<p>Web scraper with an elegant DSL that parses structured data from web pages.</p>
+
+<h2>Usage:</h2>
+
+<p><code>gem install wombat</code></p>
+
+<p>Obs: Requires ruby 1.9</p>
+
+<h2>Scraping a page:</h2>
+
+<p>The simplest way to use Wombat is by calling <code>Wombat.crawl</code> and passing it a block:</p>
+
+<div class="highlight"><pre><span class="c1"># =&gt; github_scraper.rb</span>
+
+<span class="c1">#coding: utf-8</span>
+<span class="nb">require</span> <span class="s1">'wombat'</span>
+
+<span class="no">Wombat</span><span class="o">.</span><span class="n">crawl</span> <span class="k">do</span>
+  <span class="n">base_url</span> <span class="s2">"http://www.github.com"</span>
+  <span class="n">path</span> <span class="s2">"/"</span>
+
+  <span class="n">headline</span> <span class="s2">"xpath=//h1"</span>
+
+  <span class="n">what_is</span> <span class="s2">"css=.column.secondary p"</span><span class="p">,</span> <span class="ss">:html</span>
+
+  <span class="n">explore</span> <span class="s2">"xpath=//ul/li[2]/a"</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span>
+    <span class="n">e</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/Explore/</span><span class="p">,</span> <span class="s2">"LOVE"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">benefits</span> <span class="k">do</span>
+    <span class="n">first_benefit</span> <span class="s2">"css=.column.leftmost h3"</span>
+    <span class="n">second_benefit</span> <span class="s2">"css=.column.leftmid h3"</span>
+    <span class="n">third_benefit</span> <span class="s2">"css=.column.rightmid h3"</span>
+    <span class="n">fourth_benefit</span> <span class="s2">"css=.column.rightmost h3"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<h6>The code above is gonna return the following hash:</h6>
+
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">"headline"</span> <span class="o">=&gt;</span> <span class="s2">"1,316,633 people hosting over 3,951,378 git repositories"</span><span class="p">,</span> 
+  <span class="s2">"what_is"</span> <span class="o">=&gt;</span> <span class="s2">"GitHub is the best way to collaborate with others.  Fork, send pull requests and manage all your &lt;strong&gt;public&lt;/strong&gt; and &lt;strong&gt;private&lt;/strong&gt; git repositories."</span><span class="p">,</span>
+  <span class="s2">"explore"</span> <span class="o">=&gt;</span> <span class="s2">"LOVE GitHub"</span><span class="p">,</span>
+  <span class="s2">"benefits"</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="s2">"first_benefit"</span>  <span class="o">=&gt;</span> <span class="s2">"Team management"</span><span class="p">,</span> 
+    <span class="s2">"second_benefit"</span> <span class="o">=&gt;</span> <span class="s2">"Code review"</span><span class="p">,</span> 
+    <span class="s2">"third_benefit"</span>  <span class="o">=&gt;</span> <span class="s2">"Reliable code hosting"</span><span class="p">,</span> 
+    <span class="s2">"fourth_benefit"</span> <span class="o">=&gt;</span> <span class="s2">"Open source collaboration"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>This is just a sneak peek of what Wombat can do. For the complete documentation, please check the <a href="http://github.com/felipecsl/wombat/wiki">project Wiki</a>.</h3>
+
+<h3><a href="http://rubydoc.info/gems/wombat/1.0.0/frames">API Documentation</a></h3>
+
+<h3><a href="https://github.com/felipecsl/wombat/wiki/Changelog">Changelog</a></h3>
+
+<h2>Contributing to Wombat</h2>
+
+<ul>
+<li>Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet</li>
+<li>Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it</li>
+<li>Fork the project</li>
+<li>Start a feature/bugfix branch</li>
+<li>Commit and push until you are happy with your contribution</li>
+<li>Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.</li>
+<li>Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.</li>
+</ul><h2>Contributors</h2>
+
+<ul>
+<li>Felipe Lima (<a href="https://github.com/felipecsl">@felipecsl</a>)</li>
+<li>Daniel Naves de Carvalho (<a href="https://github.com/danielnc">@danielnc</a>)</li>
+<li><a href="https://github.com/sigi">@sigi</a></li>
+</ul><h2>Copyright</h2>
+
+<p>Copyright (c) 2012 Felipe Lima. See LICENSE.txt for further details.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Wombat maintained by <a href="https://github.com/felipecsl">felipecsl</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-32887005-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
