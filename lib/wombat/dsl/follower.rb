@@ -1,17 +1,18 @@
 module Wombat
   module DSL
-    class Follower < PropertyContainer
-      attr_accessor :name, :selector
+    class Follower < PropertyGroup
+      attr_accessor :wombat_property_name, :selector
 
       def initialize(name, selector)
-        @name = name
         @selector = selector
         
-        # Explicitly send 0 arguments to superclass constructor
-        super()
+        super(name)
       end
 
-      def parse(context)
+      # So that Property::Locators::Iterator can identify this class
+      # as an iterator property.
+      def format
+        :iterator
       end
     end
   end

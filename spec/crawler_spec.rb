@@ -65,7 +65,7 @@ describe Wombat::Crawler do
 
       @crawler_instance.should_receive(:parse) do |arg|
         prop = arg['some_data']
-        prop.name.should == "some_data"
+        prop.wombat_property_name.should == "some_data"
         prop.selector.should == "/event/list"
         prop.format.should == :html
         prop.namespaces.should == "geo"

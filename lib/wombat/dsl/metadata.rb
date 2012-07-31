@@ -1,10 +1,10 @@
 #coding: utf-8
-require 'wombat/dsl/property_container'
+require 'wombat/dsl/property_group'
 require 'wombat/dsl/iterator'
 
 module Wombat
   module DSL
-    class Metadata < PropertyContainer
+    class Metadata < PropertyGroup
       def initialize
         self[:document_format] = :html
         super

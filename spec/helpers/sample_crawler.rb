@@ -19,18 +19,5 @@ class SampleCrawler
     venue do |v|
       v.venue_name("xpath=.") { |n| name.split(" | ")[2].strip }
     end
-  
-    # follow_links "xpath=.//a[1]/@href" do
-    #   event { |e| e.description "css=#main-node-content", :html }
-    #   venue do |v|
-    #     v.phone "css=span.tel .value"
-    #     v.image "xpath=//div[@id='article-image']/div/img/@src"
-    #   end
-
-    #   location do |l|
-    #     l.city "css=span.locality"
-    #     l.street("css=span.street-address") { |s| s.gsub(/\n/, '').gsub(/  /, '') }
-    #   end
-    # end
    end
 end

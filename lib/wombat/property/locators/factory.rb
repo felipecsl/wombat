@@ -3,7 +3,7 @@ require 'wombat/property/locators/base'
 require 'wombat/property/locators/follow'
 require 'wombat/property/locators/html'
 require 'wombat/property/locators/iterator'
-require 'wombat/property/locators/property_container'
+require 'wombat/property/locators/property_group'
 require 'wombat/property/locators/list'
 require 'wombat/property/locators/text'
 
@@ -24,7 +24,7 @@ module Wombat
 					when :iterator
 						Iterator
 					when :container
-						PropertyContainer
+						PropertyGroup
 					when :follow
 						Follow
 					else 

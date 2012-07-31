@@ -2,13 +2,12 @@ require 'wombat/processing/node_selector'
 
 module Wombat
   module DSL
-    class Iterator < PropertyContainer
-      attr_accessor :name, :selector
+    class Iterator < PropertyGroup
+      attr_accessor :selector
 
       def initialize(name, selector)
         @selector = selector
         
-        # Explicitly send 0 arguments to superclass constructor
         super(name)
       end
 

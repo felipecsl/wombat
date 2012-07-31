@@ -16,8 +16,8 @@ module Wombat
         def locate
           raw_data = yield if block_given?
           data = @property.respond_to?(:callback) && @property.callback ? @property.callback.call(raw_data) : raw_data 
-          
-          @property.name ? { @property.name => data } : data
+
+          @property.wombat_property_name ? { @property.wombat_property_name => data } : data
         end
 
       protected
