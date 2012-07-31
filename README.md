@@ -19,10 +19,6 @@ Obs: Requires ruby 1.9
 The simplest way to use Wombat is by calling ``Wombat.crawl`` and passing it a block:
 
 ```ruby
-
-# => github_scraper.rb
-
-#coding: utf-8
 require 'wombat'
 
 Wombat.crawl do
@@ -64,7 +60,7 @@ end
 ```
 
 ### This is just a sneak peek of what Wombat can do. For the complete documentation, please check the [project Wiki](http://github.com/felipecsl/wombat/wiki).
-### [API Documentation](http://rubydoc.info/gems/wombat/1.0.0/frames)
+### [API Documentation](http://rubydoc.info/gems/wombat/2.0.0/frames)
 ### [Changelog](https://github.com/felipecsl/wombat/wiki/Changelog)
 
 
