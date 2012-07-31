@@ -71,8 +71,8 @@ describe 'basic crawler setup' do
 
         search "css=.btn-search"
 
-        social do |s|
-          s.twitter "css=.ctn-bar li.last"
+        social do
+          twitter "css=.ctn-bar li.last"
         end
 
         links "css=.ctn-links", :iterator do
@@ -99,8 +99,8 @@ describe 'basic crawler setup' do
 
         search "css=.btn-search"
 
-        social do |s|
-          s.twitter "css=.ctn-bar li.last"
+        social do
+          twitter "css=.ctn-bar li.last"
         end
 
         links "css=.ctn-links", :iterator do
@@ -128,9 +128,9 @@ describe 'basic crawler setup' do
       crawler.path "/explore"
 
       crawler.repos "css=ol.ranked-repositories>li", :iterator do
-        project do |p|
-          p.repo 'css=h3'
-          p.description('css=p.description') { |d| d ? d.gsub(/for/, '') : nil }
+        project do
+          repo 'css=h3'
+          description('css=p.description') { |d| d ? d.gsub(/for/, '') : nil }
         end
       end
 
