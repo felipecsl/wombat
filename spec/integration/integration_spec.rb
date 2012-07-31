@@ -189,7 +189,6 @@ describe 'basic crawler setup' do
       crawler = Class.new
       crawler.send(:include, Wombat::Crawler)
       
-      crawler.document_format :html
       crawler.base_url "https://www.github.com"
       crawler.path "/"
 
@@ -202,13 +201,13 @@ describe 'basic crawler setup' do
 
       results.should == { 
         "github" => [
-          { "heading"=>"GitHub helps people build software together."},
-          { "heading"=>nil},
-          { "heading"=>"Features"},
-          { "heading"=>"Contact GitHub"},
-          { "heading"=>"GitHub Training — Git Training from the Experts"},
-          { "heading"=>"GitHub on Your Servers"},
-          { "heading"=>"Loading..."}
+          { "heading"=>"GitHub helps people build software together." },
+          { "heading"=>nil },
+          { "heading"=>"Features" },
+          { "heading"=>"Contact GitHub" },
+          { "heading"=>"GitHub Training — Git Training from the Experts" },
+          { "heading"=>"GitHub on Your Servers" },
+          { "heading"=>"Loading..." }
         ]
       }
     end

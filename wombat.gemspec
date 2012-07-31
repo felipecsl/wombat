@@ -66,7 +66,7 @@ Gem::Specification.new do |s|
     "spec/wombat_spec.rb",
     "wombat.gemspec"
   ]
-  s.homepage = "http://github.com/felipecsl/wombat"
+  s.homepage = "http://felipecsl.github.com/wombat"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.required_ruby_version = Gem::Requirement.new(">= 1.9")

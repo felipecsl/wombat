@@ -30,8 +30,8 @@ Wombat.crawl do
   path "/"
 
   headline "xpath=//h1"
-
   what_is "css=.column.secondary p", :html
+  repositories "css=a.repo", :list
 
   explore "xpath=//ul/li[2]/a" do |e|
     e.gsub(/Explore/, "LOVE")
@@ -53,6 +53,7 @@ end
   "headline" => "1,316,633 people hosting over 3,951,378 git repositories", 
   "what_is" => "GitHub is the best way to collaborate with others.  Fork, send pull requests and manage all your <strong>public</strong> and <strong>private</strong> git repositories.",
   "explore" => "LOVE GitHub",
+  "repositories" => ["jQuery", "reddit", "Sparkle", "curl", "Ruby on Rails", "node.js", "ClickToFlash", "Erlang/OTP", "CakePHP", "Redis"]
   "benefits" => {
     "first_benefit"  => "Team management", 
     "second_benefit" => "Code review", 
