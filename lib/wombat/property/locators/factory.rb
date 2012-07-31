@@ -13,7 +13,7 @@ module Wombat
 	module Property
 		module Locators
 			module Factory
-				def self.locator_for(property, context)
+				def self.locator_for(property)
 					klass = case(property.wombat_property_format)
 					when :text 
 						Text
@@ -31,7 +31,7 @@ module Wombat
 	      		raise Wombat::Property::Locators::UnknownTypeException.new("Unknown property format #{property.format}.")
 					end
 
-					klass.new(property, context)
+					klass.new(property)
 				end
 			end
 		end

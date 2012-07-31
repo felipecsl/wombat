@@ -8,12 +8,13 @@ module Wombat
       class Base
         include Wombat::Processing::NodeSelector
         
-        def initialize(property, context)
+        def initialize(property)
           @property = property
-          @context = context
         end
 
-        def locate
+        def locate(context)
+          @context = context
+          
           raw_data = yield if block_given?
           data = @property.respond_to?(:callback) && @property.callback ? @property.callback.call(raw_data) : raw_data 
 
@@ -21,7 +22,9 @@ module Wombat
         end
 
       protected
-        def locate_nodes
+        def locate_nodes(context)
+          @context = context
+
           select_nodes @property.wombat_property_selector, @property.wombat_property_namespaces
         end
       end

@@ -185,7 +185,7 @@ describe 'basic crawler setup' do
   end
 
   it 'should follow links' do
-    pending('this functionality is not implemented yet')
+    pending
     VCR.use_cassette('follow_links') do
       crawler = Class.new
       crawler.send(:include, Wombat::Crawler)
@@ -195,21 +195,23 @@ describe 'basic crawler setup' do
       crawler.path "/"
 
       crawler.github 'xpath=//ul[@class="footer_nav"][1]//a', :follow do
-        #heading 'css=h1'
+        heading 'css=h1'
       end
 
       crawler_instance = crawler.new
       results = crawler_instance.crawl
 
-      results.should == { "github" => [
-        { "heading"=>"GitHub helps people build software together."},
-        { "heading"=>""},
-        { "heading"=>"Features"},
-        { "heading"=>"Contact GitHub"},
-        { "heading"=>"GitHub Training — Git Training from the Experts"},
-        { "heading"=>"GitHub on Your Servers"},
-        { "heading"=>"Battle station fully operational"}
-      ]}
+      results.should == { 
+        "github" => [
+          { "heading"=>"GitHub helps people build software together."},
+          { "heading"=>""},
+          { "heading"=>"Features"},
+          { "heading"=>"Contact GitHub"},
+          { "heading"=>"GitHub Training — Git Training from the Experts"},
+          { "heading"=>"GitHub on Your Servers"},
+          { "heading"=>"Battle station fully operational"}
+        ]
+      }
     end
   end
 end

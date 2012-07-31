@@ -4,8 +4,8 @@ module Wombat
   module Property
     module Locators
       class Text < Base
-        def locate
-          node = locate_nodes.first
+        def locate(context)
+          node = locate_nodes(context).first
           
           value = 
             unless node

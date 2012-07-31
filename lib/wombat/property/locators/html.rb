@@ -4,8 +4,8 @@ module Wombat
 	module Property
 	  module Locators
 	    class Html < Base
-	    	def locate
-	    		node = locate_nodes.first
+	    	def locate(context)
+	    		node = locate_nodes(context).first
 	    		super { node.inner_html.strip }
 	    	end
 	    end

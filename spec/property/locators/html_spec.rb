@@ -8,8 +8,8 @@ describe Wombat::Property::Locators::Html do
 		context.stub(:xpath).with("/abc", nil).and_return [fake_elem]
 		property = Wombat::DSL::Property.new('data1', 'xpath=/abc', :html)
 
-		locator = Wombat::Property::Locators::Html.new(property, context)
+		locator = Wombat::Property::Locators::Html.new(property)
 
-		locator.locate.should == { "data1" => "Something cool" }
+		locator.locate(context).should == { "data1" => "Something cool" }
 	end
 end

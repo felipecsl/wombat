@@ -4,9 +4,9 @@ module Wombat
 	module Property
 	  module Locators
 	    class List < Base
-	    	def locate
+	    	def locate(context)
 	    		super do
-	    			locate_nodes.map do |n| 
+	    			locate_nodes(context).map do |n| 
 	    				n.is_a?(String) ? n.strip : n.inner_text.strip
 	    			end
 	    		end

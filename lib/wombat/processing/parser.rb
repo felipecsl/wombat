@@ -15,7 +15,7 @@ module Wombat
       def parse(metadata)
         @context = parser_for metadata
 
-        Wombat::Property::Locators::Factory.locator_for(metadata, @context).locate
+        Wombat::Property::Locators::Factory.locator_for(metadata).locate(@context)
       end
 
       private

@@ -5,13 +5,13 @@ module Wombat
   module Property
     module Locators
       class Iterator < Base
-      	def locate
+      	def locate(contex)
           super do
-            locate_nodes.flat_map do |node|
+            locate_nodes(contex).flat_map do |node|
               Hash.new.tap do |h|
                 @property.values
                   .select { |v| v.is_a?(Wombat::DSL::Property) || v.is_a?(Wombat::DSL::PropertyGroup) }
-                  .map { |p| Factory.locator_for(p, node).locate }
+                  .map { |p| Factory.locator_for(p).locate(node) }
                   .map { |p| h.merge! p }
               end
             end
