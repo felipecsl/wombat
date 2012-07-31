@@ -39,7 +39,7 @@ Wombat.crawl do
 
   benefits do
     first_benefit "css=.column.leftmost h3"
-    second_benefir "css=.column.leftmid h3"
+    second_benefit "css=.column.leftmid h3"
     third_benefit "css=.column.rightmid h3"
     fourth_benefit "css=.column.rightmost h3"
   end
