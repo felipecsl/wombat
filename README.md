@@ -27,7 +27,7 @@ require 'wombat'
 
 Wombat.crawl do
   base_url "http://www.github.com"
-  list_page "/"
+  path "/"
 
   headline "xpath=//h1"
 
@@ -37,11 +37,11 @@ Wombat.crawl do
     e.gsub(/Explore/, "LOVE")
   end
 
-  benefits do |b|
-    b.first_benefit "css=.column.leftmost h3"
-    b.second_benefir "css=.column.leftmid h3"
-    b.third_benefit "css=.column.rightmid h3"
-    b.fourth_benefit "css=.column.rightmost h3"
+  benefits do
+    first_benefit "css=.column.leftmost h3"
+    second_benefir "css=.column.leftmid h3"
+    third_benefit "css=.column.rightmid h3"
+    fourth_benefit "css=.column.rightmost h3"
   end
 end
 ```
