@@ -31,7 +31,7 @@ describe Wombat::Crawler do
       end
 
       @crawler.venue do |v| 
-        v.venue_name "Scooba"
+        v.name "Scooba"
       end
 
       @crawler.location { |v| v.latitude -50.2323 }
@@ -39,7 +39,7 @@ describe Wombat::Crawler do
       @crawler_instance.should_receive(:parse) do |arg|
         arg["event"]["title"].selector.should == "Fulltronic Dezembro"
         arg["event"]["time"].selector.to_s.should == time.to_s
-        arg["venue"]["venue_name"].selector.should == "Scooba"
+        arg["venue"]["name"].selector.should == "Scooba"
         arg["location"]["latitude"].selector.should == -50.2323
       end
 

@@ -29,15 +29,11 @@ module Wombat
       def to_ary
       end
 
-      # So that Property::Locators::Iterator can identify this class
-      # as an iterator property.
-      # TODO: Called by NodeSelector. Fix this
-      def format
+      def wombat_property_format
         :container
       end
 
-      def namespaces
-        # TODO: Called by NodeSelector. Fix this
+      def wombat_property_namespaces
         nil
       end
     end

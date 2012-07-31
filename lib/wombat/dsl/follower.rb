@@ -11,7 +11,7 @@ module Wombat
 
       # So that Property::Locators::Iterator can identify this class
       # as an iterator property.
-      def format
+      def wombat_property_format
         :iterator
       end
     end

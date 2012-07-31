@@ -17,7 +17,7 @@ class SampleCrawler
     end
 
     venue do |v|
-      v.venue_name("xpath=.") { |n| name.split(" | ")[2].strip }
+      v.name("xpath=.") { |n| name.split(" | ")[2].strip }
     end
    end
 end

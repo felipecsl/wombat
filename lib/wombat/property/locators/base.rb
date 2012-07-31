@@ -22,7 +22,7 @@ module Wombat
 
       protected
         def locate_nodes
-          select_nodes @property.selector, @property.namespaces
+          select_nodes @property.wombat_property_selector, @property.wombat_property_namespaces
         end
       end
     end

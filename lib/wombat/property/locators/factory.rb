@@ -14,7 +14,7 @@ module Wombat
 		module Locators
 			module Factory
 				def self.locator_for(property, context)
-					klass = case(property.format)
+					klass = case(property.wombat_property_format)
 					when :text 
 						Text
 					when :list
