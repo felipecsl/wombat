@@ -187,6 +187,7 @@ describe 'basic crawler setup' do
   end
 
   it 'should follow links' do
+    pending('this functionality is not implemented yet')
     VCR.use_cassette('follow_links') do
       crawler = Class.new
       crawler.send(:include, Wombat::Crawler)

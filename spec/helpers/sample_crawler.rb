@@ -7,7 +7,7 @@ class SampleCrawler
   base_url "http://www.obaoba.com.br"
   list_page "/porto-alegre/agenda"
   
-  for_each "css=div.title-agenda" do
+  event_group "css=div.title-agenda", :iterator do
     event do |e|
       e.title("xpath=.") { |t| t.split(" | ")[1].strip }
       e.date "xpath=//div[@class='scrollable-items']/div[@class='s-item active']//a" do |d|
@@ -17,7 +17,7 @@ class SampleCrawler
     end
 
     venue do |v|
-      v.name("xpath=.") { |n| name.split(" | ")[2].strip }
+      v.venue_name("xpath=.") { |n| name.split(" | ")[2].strip }
     end
   
     # follow_links "xpath=.//a[1]/@href" do
