@@ -17,12 +17,7 @@ module Wombat
           block.call self[property_name]
         else
           unless args[1] == :iterator
-            self[property_name] = Property.new(
-              wombat_property_name: property_name,
-              selector: args.first,
-              format: args[1],
-              namespaces: args[2],
-              callback: block)
+            self[property_name] = Property.new(property_name, *args, &block)
           else
             it = Iterator.new(property_name, args.first)
             self[property_name] = it
