@@ -22,7 +22,7 @@ describe Wombat do
 			lambda { 
 				Wombat.crawl do
 					base_url "http://www.github.com"
-		  		list_page "/"
+		  		path "/"
 
 		  		source :obaoba
 			    description 'Oba Oba'

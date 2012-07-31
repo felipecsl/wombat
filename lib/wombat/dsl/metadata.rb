@@ -14,8 +14,8 @@ module Wombat
         self[:base_url] = url
       end
 
-      def list_page(url)
-        self[:list_page] = url
+      def path(url)
+        self[:path] = url
       end
 
       def document_format(format)

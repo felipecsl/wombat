@@ -5,7 +5,7 @@ class SampleCrawler
   include Wombat::Crawler
 
   base_url "http://www.obaoba.com.br"
-  list_page "/porto-alegre/agenda"
+  path "/porto-alegre/agenda"
   
   event_group "css=div.title-agenda", :iterator do
     event do |e|

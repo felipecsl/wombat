@@ -8,17 +8,15 @@ describe 'basic crawler setup' do
       crawler.send(:include, Wombat::Crawler)
       
       crawler.base_url "http://www.terra.com.br"
-      crawler.list_page '/portal'
+      crawler.path '/portal'
 
       crawler.search "css=.btn-search"
-      crawler.social do |s|
-        s.twitter "css=.ctn-bar li.last"
+      crawler.social do
+        twitter "css=.ctn-bar li.last"
       end
-
       crawler.links "css=.ctn-links", :iterator do
         menu "css=a"
       end
-
       crawler.subheader "css=h2.ttl-dynamic" do |h|
         h.gsub("London", "Londres")
       end
@@ -39,7 +37,7 @@ describe 'basic crawler setup' do
     crawler.send(:include, Wombat::Crawler)
 
     crawler.base_url "http://www.terra.com.br"
-    crawler.list_page '/portal'
+    crawler.path '/portal'
 
     crawler.links "css=.ctn-links", :iterator do
       menu "css=a"
@@ -69,7 +67,7 @@ describe 'basic crawler setup' do
       crawler_instance = crawler.new
       results = crawler_instance.crawl do
         base_url "http://www.terra.com.br"
-        list_page '/portal'
+        path '/portal'
 
         search "css=.btn-search"
 
@@ -97,7 +95,7 @@ describe 'basic crawler setup' do
     VCR.use_cassette('basic_crawler_page') do
       results = Wombat.crawl do
         base_url "http://www.terra.com.br"
-        list_page '/portal'
+        path '/portal'
 
         search "css=.btn-search"
 
@@ -127,7 +125,7 @@ describe 'basic crawler setup' do
       crawler.send(:include, Wombat::Crawler)
       
       crawler.base_url "https://www.github.com"
-      crawler.list_page "/explore"
+      crawler.path "/explore"
 
       crawler.repos "css=ol.ranked-repositories>li", :iterator do
         project do |p|
@@ -156,7 +154,7 @@ describe 'basic crawler setup' do
       
       crawler.document_format :xml
       crawler.base_url "http://ws.audioscrobbler.com"
-      crawler.list_page "/2.0/?method=geo.getevents&location=#{URI.escape('San Francisco')}&api_key=060decb474b73437d5bbec37f527ae7b"
+      crawler.path "/2.0/?method=geo.getevents&location=#{URI.escape('San Francisco')}&api_key=060decb474b73437d5bbec37f527ae7b"
 
       crawler.artist "xpath=//title", :list
       
@@ -194,7 +192,7 @@ describe 'basic crawler setup' do
       
       crawler.document_format :html
       crawler.base_url "https://www.github.com"
-      crawler.list_page "/"
+      crawler.path "/"
 
       crawler.github 'xpath=//ul[@class="footer_nav"][1]//a', :follow do
         #heading 'css=h1'

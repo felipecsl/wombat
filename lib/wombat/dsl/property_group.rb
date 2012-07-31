@@ -13,8 +13,11 @@ module Wombat
         property_name = method.to_s
 
         if args.empty? && block
-          self[property_name] = PropertyGroup.new(property_name) unless self[property_name]
-          block.call self[property_name]
+          # TODO: Verify if another property with same name already exists
+          # before overwriting
+          property_group = self[property_name] || PropertyGroup.new(property_name)
+          self[property_name] = property_group
+          property_group.instance_eval(&block)
         else
           unless args[1] == :iterator
             self[property_name] = Property.new(property_name, *args, &block)

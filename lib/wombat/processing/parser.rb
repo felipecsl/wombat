@@ -20,7 +20,7 @@ module Wombat
 
       private
       def parser_for(metadata)
-        url = "#{metadata[:base_url]}#{metadata[:list_page]}"
+        url = "#{metadata[:base_url]}#{metadata[:path]}"
         page = nil
         parser = nil
         begin

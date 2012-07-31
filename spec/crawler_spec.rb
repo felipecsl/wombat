@@ -17,8 +17,8 @@ describe Wombat::Crawler do
     end
 
     it 'should provide metadata to yielded block' do
-      @crawler.event do |e|
-        e.should_not be_nil
+      @crawler.event do
+        self.class.should == Wombat::DSL::PropertyGroup
       end
     end
 
@@ -76,12 +76,12 @@ describe Wombat::Crawler do
     end
 
     it 'should be able to specify arbitrary block structure more than once' do
-      @crawler.structure do |s|
-        s.data "xpath=/xyz"
+      @crawler.structure do
+        data "xpath=/xyz"
       end
 
-      @crawler.structure do |s|
-        s.another "css=.information"
+      @crawler.structure do
+        another "css=.information"
       end
 
       @crawler_instance.should_receive(:parse) do |arg|
@@ -106,22 +106,22 @@ describe Wombat::Crawler do
 
     it 'should crawl with block' do
       @crawler.base_url "danielnc.com"
-      @crawler.list_page "/itens"
+      @crawler.path "/itens"
 
       @crawler_instance.should_receive(:parse) do |arg|
         arg[:base_url].should == "danielnc.com"
-        arg[:list_page].should == "/itens/1"
+        arg[:path].should == "/itens/1"
       end
 
       @crawler_instance.crawl do
-        list_page "/itens/1"
+        path "/itens/1"
       end
 
       another_instance = @crawler.new
 
       another_instance.should_receive(:parse) do |arg|
         arg[:base_url].should == "danielnc.com"
-        arg[:list_page].should == "/itens"
+        arg[:path].should == "/itens"
       end
 
       another_instance.crawl
@@ -129,15 +129,15 @@ describe Wombat::Crawler do
 
     it 'should remove created method missing' do
       @crawler.base_url "danielnc.com"
-      @crawler.list_page "/itens"
+      @crawler.path "/itens"
 
       @crawler_instance.should_receive(:parse) do |arg|
         arg[:base_url].should == "danielnc.com"
-        arg[:list_page].should == "/itens/1"
+        arg[:path].should == "/itens/1"
       end
 
       @crawler_instance.crawl do
-        list_page "/itens/1"
+        path "/itens/1"
       end
 
       lambda { @craler_intance.undefined_method }.should raise_error(NoMethodError)
@@ -145,15 +145,15 @@ describe Wombat::Crawler do
 
     it 'should remove created instance variable' do
       @crawler.base_url "danielnc.com"
-      @crawler.list_page "/itens"
+      @crawler.path "/itens"
 
       @crawler_instance.should_receive(:parse) do |arg|
         arg[:base_url].should == "danielnc.com"
-        arg[:list_page].should == "/itens/1"
+        arg[:path].should == "/itens/1"
       end
 
       @crawler_instance.crawl do
-        list_page "/itens/1"
+        path "/itens/1"
       end
 
       @crawler_instance.instance_variables.index(:@metadata_dup).should be_nil
@@ -164,7 +164,7 @@ describe Wombat::Crawler do
         VCR.use_cassette('basic_crawler_page') do
 
           @crawler.base_url "http://www.terra.com.br"
-          @crawler.list_page '/portal'
+          @crawler.path '/portal'
 
           @crawler.search "css=.btn-search"
 
@@ -177,7 +177,7 @@ describe Wombat::Crawler do
         VCR.use_cassette('basic_crawler_page') do
 
           @crawler.base_url "http://www.terra.com.br"
-          @crawler.list_page '/portal'
+          @crawler.path '/portal'
 
           @crawler.search "css=.btn-search"
           @crawler.document_format :xml
@@ -191,7 +191,7 @@ describe Wombat::Crawler do
         VCR.use_cassette('error_page') do
 
           @crawler.base_url "http://www.terra.com.br"
-          @crawler.list_page '/portal'
+          @crawler.path '/portal'
 
           @crawler.search "css=.btn-search"
 
@@ -204,7 +204,7 @@ describe Wombat::Crawler do
         VCR.use_cassette('error_page') do
 
           @crawler.base_url "http://www.terra.com.br"
-          @crawler.list_page '/portal'
+          @crawler.path '/portal'
 
           @crawler.search "css=.btn-search"
           @crawler.document_format :xml

@@ -16,7 +16,7 @@ describe SampleCrawler do
       it["venue"]["name"].wombat_property_selector.should == "xpath=."
 
       args[:base_url].should == 'http://www.obaoba.com.br'
-      args[:list_page].should == '/porto-alegre/agenda' 
+      args[:path].should == '/porto-alegre/agenda' 
     end
 
     @sample_crawler.crawl

@@ -10,7 +10,7 @@ describe Wombat::Processing::Parser do
 
   it 'should request page document with correct url' do
     @metadata.base_url "http://www.google.com"
-    @metadata.list_page "/search"
+    @metadata.path "/search"
     fake_document = double :document
     fake_parser = double :parser
     fake_document.should_receive(:parser).and_return(fake_parser)
