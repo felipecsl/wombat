@@ -12,4 +12,15 @@ describe Wombat::Property::Locators::Html do
 
 		locator.locate(context).should == { "data1" => "Something cool" }
 	end
+
+	it 'should return null if the property cannot be found' do
+		fake_elem = double :element
+		context   = double :context
+		context.stub(:xpath).with("/abc", nil).and_return []
+		property = Wombat::DSL::Property.new('data1', 'xpath=/abc', :html)
+
+		locator = Wombat::Property::Locators::Html.new(property)
+
+		locator.locate(context).should == { "data1" => nil }
+	end
 end
