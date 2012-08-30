@@ -12,7 +12,8 @@ module Wombat
 
     private
     def _locate(property)
-      result = select_nodes(property.selector, property.namespaces).to_a
+      result = select_nodes(property.selector, property.namespaces)
+      result = result.respond_to?(:to_a) ? result.to_a : [result]
       result.map! {|r| r.inner_html.strip } if property.format == :html
       result.map {|r| r.kind_of?(String) ? r : r.inner_text }.map(&:strip)
     end
