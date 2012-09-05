@@ -13,6 +13,10 @@ module Wombat
         @mechanize = Mechanize.new
       end
 
+      def set_proxy(host, port)
+      	@mechanize.set_proxy host, port
+      end
+
       def parse(metadata)
         @context = parser_for metadata
 
