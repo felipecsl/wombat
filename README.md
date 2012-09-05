@@ -77,8 +77,7 @@ end
 ## Contributors
 
  * Felipe Lima ([@felipecsl](https://github.com/felipecsl))
- * Daniel Naves de Carvalho ([@danielnc](https://github.com/danielnc))
- * [@sigi](https://github.com/sigi)
+ * [List of all contributors](https://github.com/felipecsl/wombat/wiki/Contributors)
 
 ## Copyright
 
