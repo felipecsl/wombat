@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "wombat"
-  s.version = "2.0.0"
+  s.version = "2.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Felipe Lima"]
-  s.date = "2012-07-31"
+  s.date = "2012-09-06"
   s.description = "Generic Web crawler with a DSL that parses structured data from web pages"
   s.email = "felipe.lima@gmail.com"
   s.extra_rdoc_files = [
@@ -27,6 +27,10 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "examples/iterator.rb",
+    "examples/list.rb",
+    "examples/no_class.rb",
+    "examples/xml.rb",
     "fixtures/vcr_cassettes/basic_crawler_page.yml",
     "fixtures/vcr_cassettes/broken_selector.yml",
     "fixtures/vcr_cassettes/error_page.yml",
