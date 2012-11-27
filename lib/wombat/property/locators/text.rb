@@ -5,8 +5,9 @@ module Wombat
     module Locators
       class Text < Base
         def locate(context, page = nil)
-          node = locate_nodes(context).first
-          
+          node = locate_nodes(context)
+          node = node.first unless node.is_a?(String)
+
           value = 
             unless node
               nil

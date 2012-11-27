@@ -11,7 +11,17 @@ describe Wombat::Property::Locators::Text do
 		locator = Wombat::Property::Locators::Text.new(property)
 	
 		locator.locate(context).should == { "data1" => "Something cool" }
-	end
+  end
+
+  it 'should locate text property with xpath selector using xpath functions' do
+    context   = double :context
+    context.stub(:xpath).with('concat(/abc, /def)', nil).and_return "    Something "
+    property = Wombat::DSL::Property.new('data1', 'xpath=concat(/abc, /def)', :text)
+
+    locator = Wombat::Property::Locators::Text.new(property)
+
+    locator.locate(context).should == { "data1" => "Something" }
+  end
 
 	it 'should locate text property with css selector' do
 		fake_elem = double :element
