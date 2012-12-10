@@ -2,6 +2,7 @@
 require 'wombat/dsl/property_group'
 require 'wombat/dsl/iterator'
 require 'wombat/dsl/follower'
+require 'wombat/dsl/headers'
 
 module Wombat
   module DSL
