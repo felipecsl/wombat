@@ -4,6 +4,14 @@ require 'wombat/processing/node_selector'
 require 'mechanize'
 require 'restclient'
 
+module Nokogiri
+  module XML
+    class Document
+      attr_accessor :headers
+    end
+  end
+end
+
 module Wombat
   module Processing
     module Parser
@@ -32,9 +40,11 @@ module Wombat
           if metadata[:document_format] == :html
             @page = @mechanize.get(url)
             parser = @page.parser
+            parser.headers = @page.header
           else
             @page = RestClient.get(url)
             parser = Nokogiri::XML @page
+            parser.headers = @page.headers
           end
           @response_code = @page.code.to_i if @page.respond_to? :code
           parser
