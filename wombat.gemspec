@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "wombat"
-  s.version = "2.0.1"
+  s.version = "2.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Felipe Lima"]
-  s.date = "2012-09-06"
+  s.date = "2012-12-15"
   s.description = "Generic Web crawler with a DSL that parses structured data from web pages"
   s.email = "felipe.lima@gmail.com"
   s.extra_rdoc_files = [
@@ -36,10 +36,12 @@ Gem::Specification.new do |s|
     "fixtures/vcr_cassettes/error_page.yml",
     "fixtures/vcr_cassettes/follow_links.yml",
     "fixtures/vcr_cassettes/for_each_page.yml",
+    "fixtures/vcr_cassettes/headers_selector.yml",
     "fixtures/vcr_cassettes/xml_with_namespace.yml",
     "lib/wombat.rb",
     "lib/wombat/crawler.rb",
     "lib/wombat/dsl/follower.rb",
+    "lib/wombat/dsl/headers.rb",
     "lib/wombat/dsl/iterator.rb",
     "lib/wombat/dsl/metadata.rb",
     "lib/wombat/dsl/property.rb",
@@ -49,6 +51,7 @@ Gem::Specification.new do |s|
     "lib/wombat/property/locators/base.rb",
     "lib/wombat/property/locators/factory.rb",
     "lib/wombat/property/locators/follow.rb",
+    "lib/wombat/property/locators/headers.rb",
     "lib/wombat/property/locators/html.rb",
     "lib/wombat/property/locators/iterator.rb",
     "lib/wombat/property/locators/list.rb",
@@ -61,6 +64,7 @@ Gem::Specification.new do |s|
     "spec/processing/parser_spec.rb",
     "spec/property/locators/factory_spec.rb",
     "spec/property/locators/follow_spec.rb",
+    "spec/property/locators/headers_spec.rb",
     "spec/property/locators/html_spec.rb",
     "spec/property/locators/iterator_spec.rb",
     "spec/property/locators/list_spec.rb",
