@@ -5,9 +5,9 @@ module Wombat
   module Property
     module Locators
       class Iterator < Base
-      	def locate(contex, page = nil)
+      	def locate(context, page = nil)
           super do
-            locate_nodes(contex).flat_map do |node|
+            locate_nodes(context).flat_map do |node|
               filter_properties(node, page)
             end
           end
