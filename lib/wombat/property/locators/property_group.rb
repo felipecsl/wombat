@@ -6,12 +6,7 @@ module Wombat
       class PropertyGroup < Base
         def locate(context, page = nil)
           super do
-            Hash.new.tap do |h|
-              @property.values
-                .select { |v| v.is_a?(Wombat::DSL::Property) || v.is_a?(Wombat::DSL::PropertyGroup) }
-                .map { |p| Factory.locator_for(p).locate(context, page) }
-                .map { |p| h.merge! p }
-            end
+            filter_properties(context, page)
           end
         end
       end

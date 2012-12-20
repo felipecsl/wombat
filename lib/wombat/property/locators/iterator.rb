@@ -5,15 +5,10 @@ module Wombat
   module Property
     module Locators
       class Iterator < Base
-      	def locate(contex, page = nil)
+      	def locate(context, page = nil)
           super do
-            locate_nodes(contex).flat_map do |node|
-              Hash.new.tap do |h|
-                @property.values
-                  .select { |v| v.is_a?(Wombat::DSL::Property) || v.is_a?(Wombat::DSL::PropertyGroup) }
-                  .map { |p| Factory.locator_for(p).locate(node, page) }
-                  .map { |p| h.merge! p }
-              end
+            locate_nodes(context).flat_map do |node|
+              filter_properties(node, page)
             end
           end
         end
