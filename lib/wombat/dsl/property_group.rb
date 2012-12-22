@@ -19,18 +19,10 @@ module Wombat
           self[property_name] = property_group
           property_group.instance_eval(&block)
         else
-          if args[1] == :iterator
-            it = Iterator.new(property_name, args.first)
-            self[property_name] = it
-            it.instance_eval(&block) if block
-          elsif args[1] == :follow
-            it = Follower.new(property_name, args.first)
-            self[property_name] = it
-            it.instance_eval(&block) if block
-          else
-            self[property_name] = Property.new(property_name, *args, &block)
-          end
-        end      
+          it = build_property(property_name, *args, &block)
+          self[property_name] = it
+          it.instance_eval(&block) unless not block_given? or it.instance_of?(Property)
+        end
       end
 
       def to_ary
@@ -42,6 +34,18 @@ module Wombat
 
       def wombat_property_namespaces
         nil
+      end
+
+      protected
+
+      def build_property(name, *args, &block)
+        if args[1] == :iterator
+          Iterator.new(name, args.first)
+        elsif args[1] == :follow
+          Follower.new(name, args.first)
+        else
+          Property.new(name, *args, &block)
+        end
       end
     end
   end
