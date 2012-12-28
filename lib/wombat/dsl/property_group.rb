@@ -21,7 +21,7 @@ module Wombat
         else
           it = build_property(property_name, *args, &block)
           self[property_name] = it
-          it.instance_eval(&block) unless not block_given? or it.instance_of?(Property)
+          it.instance_eval(&block) if block_given? && !it.instance_of?(Property)
         end
       end
 
