@@ -20,6 +20,10 @@ module Wombat
         self[:path] = url
       end
 
+      def should_cache(truth)
+        self[:should_cache] = truth
+      end
+
       def document_format(format)
         self[:document_format] = format
       end
