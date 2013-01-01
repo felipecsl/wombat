@@ -3,6 +3,7 @@ require 'wombat/property/locators/factory'
 require 'wombat/processing/node_selector'
 require 'mechanize'
 require 'restclient'
+require 'vcr'
 
 module Nokogiri
   module XML
@@ -19,6 +20,10 @@ module Wombat
 
       def initialize
         @mechanize = Mechanize.new
+        VCR.configure do |c|
+          c.cassette_library_dir = 'fixtures/vcr_cassettes'
+          c.hook_into :fakeweb
+        end
       end
 
       def set_proxy(host, port)
@@ -38,11 +43,24 @@ module Wombat
         parser = nil
         begin
           if metadata[:document_format] == :html
-            @page = @mechanize.get(url)
+            if metadata[:should_cache] == :true
+              VCR.use_cassette('parser') do
+                @page = @mechanize.get(url)
+              end
+            else            
+                @page = @mechanize.get(url)
+            end
+  
             parser = @page.parser
             parser.headers = @page.header
           else
-            @page = RestClient.get(url)
+            if metadata[:should_cache] == :true
+              VCR.use_cassette('parser') do
+                @page = RestClient.get(url)
+              end
+            else
+                @page = RestClient.get(url)
+            end
             parser = Nokogiri::XML @page
             parser.headers = @page.headers
           end
