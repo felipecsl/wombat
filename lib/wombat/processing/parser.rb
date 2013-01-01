@@ -45,7 +45,7 @@ module Wombat
         begin
           if metadata[:document_format] == :html
             if metadata[:should_cache] == :true
-              VCR.use_cassette('parser') do
+              VCR.use_cassette('parser', :record => :new_episodes) do
                 @page = @mechanize.get(url)
               end
             else            
@@ -56,7 +56,7 @@ module Wombat
             parser.headers = @page.header
           else
             if metadata[:should_cache] == :true
-              VCR.use_cassette('parser') do
+              VCR.use_cassette('parser', :record => :new_episodes) do
                 @page = RestClient.get(url)
               end
             else
