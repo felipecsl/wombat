@@ -6,7 +6,7 @@ describe 'basic crawler setup' do
     VCR.use_cassette('basic_crawler_page') do
       crawler = Class.new
       crawler.send(:include, Wombat::Crawler)
-      
+
       crawler.base_url "http://www.terra.com.br"
       crawler.path '/portal'
 
@@ -18,6 +18,36 @@ describe 'basic crawler setup' do
         menu "css=a"
       end
       crawler.subheader "css=h2.ttl-dynamic" do |h|
+        h.gsub("London", "Londres")
+      end
+
+      crawler_instance = crawler.new
+
+      results = crawler_instance.crawl
+
+      results["search"].should == "Buscar"
+      results["links"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
+      results["subheader"].should == "Londres 2012"
+      results["social"]["twitter"].should == "Verão"
+    end
+  end
+
+  it 'should support hash based selectors' do
+    VCR.use_cassette('basic_crawler_page') do
+      crawler = Class.new
+      crawler.send(:include, Wombat::Crawler)
+
+      crawler.base_url "http://www.terra.com.br"
+      crawler.path '/portal'
+
+      crawler.search css: ".btn-search"
+      crawler.social do
+        twitter css: ".ctn-bar li.last"
+      end
+      crawler.links({css: ".ctn-links"}, :iterator) do
+        menu css: "a"
+      end
+      crawler.subheader css: "h2.ttl-dynamic" do |h|
         h.gsub("London", "Londres")
       end
 
@@ -56,7 +86,7 @@ describe 'basic crawler setup' do
     VCR.use_cassette('basic_crawler_page') do
       results = crawler_instance.crawl
     end
-    
+
     results["links"].should == result_hash
   end
 
@@ -123,7 +153,7 @@ describe 'basic crawler setup' do
     VCR.use_cassette('for_each_page') do
       crawler = Class.new
       crawler.send(:include, Wombat::Crawler)
-      
+
       crawler.base_url "https://www.github.com"
       crawler.path "/explore"
 
@@ -151,13 +181,13 @@ describe 'basic crawler setup' do
     VCR.use_cassette('xml_with_namespace') do
       crawler = Class.new
       crawler.send(:include, Wombat::Crawler)
-      
+
       crawler.document_format :xml
       crawler.base_url "http://ws.audioscrobbler.com"
       crawler.path "/2.0/?method=geo.getevents&location=#{URI.escape('San Francisco')}&api_key=060decb474b73437d5bbec37f527ae7b"
 
       crawler.artist "xpath=//title", :list
-      
+
       crawler.location 'xpath=//event', :iterator do
         latitude "xpath=./venue/location/geo:point/geo:lat", :text, { 'geo' => 'http://www.w3.org/2003/01/geo/wgs84_pos#' }
         longitude "xpath=./venue/location/geo:point/geo:long", :text, { 'geo' => 'http://www.w3.org/2003/01/geo/wgs84_pos#' }
@@ -168,18 +198,18 @@ describe 'basic crawler setup' do
       iterator = results['location']
 
       iterator.should == [
-        {"latitude"=>"37.807775", "longitude"=>"-122.272736"}, 
-        {"latitude"=>"37.807717", "longitude"=>"-122.270059"}, 
-        {"latitude"=>"37.869784", "longitude"=>"-122.267701"}, 
-        {"latitude"=>"37.870873", "longitude"=>"-122.269313"}, 
-        {"latitude"=>"37.782348", "longitude"=>"-122.408059"}, 
-        {"latitude"=>"37.775529", "longitude"=>"-122.437757"}, 
-        {"latitude"=>"37.771079", "longitude"=>"-122.412604"}, 
-        {"latitude"=>"37.771079", "longitude"=>"-122.412604"}, 
-        {"latitude"=>"37.784963", "longitude"=>"-122.418871"}, 
+        {"latitude"=>"37.807775", "longitude"=>"-122.272736"},
+        {"latitude"=>"37.807717", "longitude"=>"-122.270059"},
+        {"latitude"=>"37.869784", "longitude"=>"-122.267701"},
+        {"latitude"=>"37.870873", "longitude"=>"-122.269313"},
+        {"latitude"=>"37.782348", "longitude"=>"-122.408059"},
+        {"latitude"=>"37.775529", "longitude"=>"-122.437757"},
+        {"latitude"=>"37.771079", "longitude"=>"-122.412604"},
+        {"latitude"=>"37.771079", "longitude"=>"-122.412604"},
+        {"latitude"=>"37.784963", "longitude"=>"-122.418871"},
         {"latitude"=>"37.788978", "longitude"=>"-122.40664"}
       ]
-      
+
       results["artist"].should =~ ["Davka", "Digitalism (DJ Set)", "Gary Clark Jr.", "Lenny Kravitz", "Little Muddy", "Michael Schenker Group", "The Asteroids Galaxy Tour", "When Indie Attacks", "When Indie Attacks", "YOB"]
     end
   end
@@ -188,7 +218,7 @@ describe 'basic crawler setup' do
     VCR.use_cassette('follow_links') do
       crawler = Class.new
       crawler.send(:include, Wombat::Crawler)
-      
+
       crawler.base_url "https://www.github.com"
       crawler.path "/"
 
@@ -199,7 +229,7 @@ describe 'basic crawler setup' do
       crawler_instance = crawler.new
       results = crawler_instance.crawl
 
-      results.should == { 
+      results.should == {
         "github" => [
           { "heading"=>"GitHub helps people build software together." },
           { "heading"=>nil },

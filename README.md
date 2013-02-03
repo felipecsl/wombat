@@ -1,7 +1,8 @@
 # Wombat
 
-[![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/felipecsl/wombat.png?travis)][gemnasium] [![Code Climate](https://codeclimate.com/github/felipecsl/wombat.png)][codeclimate]
+[[![Gem Version](https://badge.fury.io/rb/wombat.png)](http://badge.fury.io/rb/wombat)][rubygems] [![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/felipecsl/wombat.png?travis)][gemnasium] [![Code Climate](https://codeclimate.com/github/felipecsl/wombat.png)][codeclimate]
 
+[rubygems]: http://rubygems.org/gems/wombat
 [travis]: http://travis-ci.org/felipecsl/wombat
 [gemnasium]: https://gemnasium.com/felipecsl/wombat
 [codeclimate]: https://codeclimate.com/github/felipecsl/wombat
@@ -25,19 +26,19 @@ Wombat.crawl do
   base_url "http://www.github.com"
   path "/"
 
-  headline "xpath=//h1"
-  subheading "css=p.subheading"
+  headline xpath: "//h1"
+  subheading css: "p.subheading"
 
-  what_is "css=.teaser h3", :list
+  what_is({ css: ".teaser h3" }, :list)
 
   links do
-    explore 'xpath=//*[@id="wrapper"]/div[1]/div/ul/li[1]/a' do |e|
+    explore xpath: '//*[@id="wrapper"]/div[1]/div/ul/li[1]/a' do |e|
       e.gsub(/Explore/, "Love")
     end
 
-    search 'css=.search'
-    features 'css=.features'
-    blog 'css=.blog'
+    search css: '.search'
+    features css: '.features'
+    blog css: '.blog'
   end
 end
 ```
@@ -63,7 +64,7 @@ end
 ```
 
 ### This is just a sneak peek of what Wombat can do. For the complete documentation, please check the [project Wiki](http://github.com/felipecsl/wombat/wiki).
-### [API Documentation](http://rubydoc.info/gems/wombat/2.0.0/frames)
+### [API Documentation](http://rubydoc.info/gems/wombat/2.1.1/frames)
 ### [Changelog](https://github.com/felipecsl/wombat/wiki/Changelog)
 
 

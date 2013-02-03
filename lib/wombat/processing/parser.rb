@@ -19,10 +19,7 @@ module Wombat
 
       def initialize
         @mechanize = Mechanize.new
-      end
-
-      def set_proxy(host, port)
-      	@mechanize.set_proxy host, port
+        @mechanize.set_proxy(*Wombat.proxy_args) if Wombat.proxy_args
       end
 
       def parse(metadata)
