@@ -26,35 +26,38 @@ Wombat.crawl do
   path "/"
 
   headline "xpath=//h1"
-  what_is "css=.column.secondary p", :html
-  repositories "css=a.repo", :list
+  subheading "css=p.subheading"
 
-  explore "xpath=//ul/li[2]/a" do |e|
-    e.gsub(/Explore/, "LOVE")
-  end
+  what_is "css=.teaser h3", :list
 
-  benefits do
-    first_benefit "css=.column.leftmost h3"
-    second_benefit "css=.column.leftmid h3"
-    third_benefit "css=.column.rightmid h3"
-    fourth_benefit "css=.column.rightmost h3"
+  links do
+    explore 'xpath=//*[@id="wrapper"]/div[1]/div/ul/li[1]/a' do |e|
+      e.gsub(/Explore/, "Love")
+    end
+
+    search 'css=.search'
+    features 'css=.features'
+    blog 'css=.blog'
   end
 end
 ```
 
-###### The code above is gonna return the following hash: 
+###### The code above is gonna return the following hash:
 
 ```ruby
 {
-  "headline" => "1,316,633 people hosting over 3,951,378 git repositories", 
-  "what_is" => "GitHub is the best way to collaborate with others.  Fork, send pull requests and manage all your <strong>public</strong> and <strong>private</strong> git repositories.",
-  "explore" => "LOVE GitHub",
-  "repositories" => ["jQuery", "reddit", "Sparkle", "curl", "Ruby on Rails", "node.js", "ClickToFlash", "Erlang/OTP", "CakePHP", "Redis"]
-  "benefits" => {
-    "first_benefit"  => "Team management", 
-    "second_benefit" => "Code review", 
-    "third_benefit"  => "Reliable code hosting", 
-    "fourth_benefit" => "Open source collaboration"
+  "headline"=>"Build software better, together.",
+  "subheading"=> "Powerful collaboration, review, and code management for open source and private development projects.",
+  "what_is"=> [
+    "Great collaboration starts with communication.",
+    "Manage and contribute from all your devices.",
+    "The world’s largest open source community."
+  ],
+  "links"=> {
+    "explore"=>"Love GitHub",
+    "search"=>"Search",
+    "features"=>"Features",
+    "blog"=>"Blog"
   }
 }
 ```
@@ -65,7 +68,7 @@ end
 
 
 ## Contributing to Wombat
- 
+
  * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
  * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
  * Fork the project
