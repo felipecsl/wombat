@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "wombat"
-  s.version = "2.1.1"
+  s.version = "2.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Felipe Lima"]
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "examples/hashes.rb",
     "examples/iterator.rb",
     "examples/list.rb",
     "examples/no_class.rb",

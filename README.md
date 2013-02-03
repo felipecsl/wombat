@@ -63,10 +63,11 @@ end
 }
 ```
 
-### This is just a sneak peek of what Wombat can do. For the complete documentation, please check the [project Wiki](http://github.com/felipecsl/wombat/wiki).
+### This is just a sneak peek of what Wombat can do. For the complete documentation, please check the links below:
+
+### [Wiki](http://github.com/felipecsl/wombat/wiki).
 ### [API Documentation](http://rubydoc.info/gems/wombat/2.1.1/frames)
 ### [Changelog](https://github.com/felipecsl/wombat/wiki/Changelog)
-
 
 ## Contributing to Wombat
 
