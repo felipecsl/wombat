@@ -18,7 +18,7 @@ describe Wombat::Processing::Parser do
     fake_document.should_receive(:header).and_return(fake_header)
     fake_parser.should_receive(:headers=)
     @parser.mechanize.should_receive(:get).with("http://www.google.com/search").and_return fake_document
-    
+
     @parser.parse @metadata
   end
 
@@ -32,7 +32,20 @@ describe Wombat::Processing::Parser do
     Nokogiri.should_receive(:XML).with(fake_document).and_return fake_parser
     fake_document.should_receive(:headers).and_return(fake_headers)
     fake_parser.should_receive(:headers=)
-    
+
     @parser.parse @metadata
   end
+
+  it 'should accept a Mechanize::Page' do
+    VCR.use_cassette('basic_crawler_page') do
+      m = Mechanize.new
+      page = m.get('http://www.terra.com.br/portal')
+      @metadata.page page
+
+      @parser.mechanize.should_not_receive(:get)
+
+      @parser.parse @metadata
+    end
+  end
+
 end

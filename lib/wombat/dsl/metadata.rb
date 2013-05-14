@@ -23,6 +23,10 @@ module Wombat
       def document_format(format)
         self[:document_format] = format
       end
+
+      def page(page)
+        self[:page] = page
+      end
     end
   end
 end
