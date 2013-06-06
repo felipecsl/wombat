@@ -32,6 +32,37 @@ describe 'basic crawler setup' do
     end
   end
 
+  it 'should crawl a Mechanize::Page' do
+    VCR.use_cassette('basic_crawler_page') do
+      crawler = Class.new
+      crawler.send(:include, Wombat::Crawler)
+
+      m = Mechanize.new
+      mp = m.get "http://www.terra.com.br/portal"
+      crawler.page mp
+
+      crawler.search "css=.btn-search"
+      crawler.social do
+        twitter "css=.ctn-bar li.last"
+      end
+      crawler.links "css=.ctn-links", :iterator do
+        menu "css=a"
+      end
+      crawler.subheader "css=h2.ttl-dynamic" do |h|
+        h.gsub("London", "Londres")
+      end
+
+      crawler_instance = crawler.new
+
+      results = crawler_instance.crawl
+
+      results["search"].should == "Buscar"
+      results["links"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
+      results["subheader"].should == "Londres 2012"
+      results["social"]["twitter"].should == "Verão"
+    end
+  end
+
   it 'should support hash based selectors' do
     VCR.use_cassette('basic_crawler_page') do
       crawler = Class.new
