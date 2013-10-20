@@ -13,7 +13,7 @@ Web scraper with an elegant DSL that parses structured data from web pages.
 
 ``gem install wombat``
 
-Obs: Requires ruby 1.9
+Obs: Requires ruby 1.9.3 (activesupport requires Ruby version >= 1.9.3)
 
 ## Scraping a page:
 
