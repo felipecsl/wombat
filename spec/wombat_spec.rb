@@ -12,7 +12,7 @@ describe Wombat do
 	it 'should redirect .scrape to .crawl' do
 		fake_class = double :fake
 		fake_class.stub :include
-		fake_class.should_receive(:new).and_return(stub(crawl: nil))
+		fake_class.should_receive(:new).and_return(double(crawl: nil))
 		Class.stub :new => fake_class
 		Wombat.scrape
 	end
