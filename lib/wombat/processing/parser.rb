@@ -17,8 +17,11 @@ module Wombat
     module Parser
       attr_accessor :mechanize, :context, :response_code, :page
 
-      def initialize
+      def initialize(opts={})
         @mechanize = Mechanize.new
+        if opts[:allowed_error_codes]
+          @mechanize.agent.allowed_error_codes = opts[:allowed_error_codes]
+        end
         @mechanize.set_proxy(*Wombat.proxy_args) if Wombat.proxy_args
       end
 

@@ -245,32 +245,68 @@ describe 'basic crawler setup' do
     end
   end
 
-  it 'should follow links' do
-    VCR.use_cassette('follow_links') do
-      crawler = Class.new
-      crawler.send(:include, Wombat::Crawler)
+  context "when following links" do
+    it "should be successful when all links are valid" do
+      VCR.use_cassette('follow_links') do
+        crawler = Class.new
+        crawler.send(:include, Wombat::Crawler)
 
-      crawler.base_url "https://www.github.com"
-      crawler.path "/"
+        crawler.base_url "https://www.github.com"
+        crawler.path "/"
 
-      crawler.github 'xpath=//ul[@class="footer_nav"][1]//a', :follow do
-        heading 'css=h1'
+        crawler.github 'xpath=//ul[@class="footer_nav"][1]//a', :follow do
+          heading 'css=h1'
+        end
+
+        crawler_instance = crawler.new
+        results = crawler_instance.crawl
+
+        results.should == {
+          "github" => [
+            { "heading"=>"GitHub helps people build software together." },
+            { "heading"=>nil },
+            { "heading"=>"Features" },
+            { "heading"=>"Contact GitHub" },
+            { "heading"=>"GitHub Training — Git Training from the Experts" },
+            { "heading"=>"GitHub on Your Servers" },
+            { "heading"=>"Loading..." }
+          ]
+        }
       end
+    end
 
-      crawler_instance = crawler.new
-      results = crawler_instance.crawl
+    it "should be successful when respecting allowed_error_codes" do
+      VCR.use_cassette('follow_links') do
+        crawler = Class.new
+        crawler.send(:include, Wombat::Crawler)
 
-      results.should == {
-        "github" => [
-          { "heading"=>"GitHub helps people build software together." },
-          { "heading"=>nil },
-          { "heading"=>"Features" },
-          { "heading"=>"Contact GitHub" },
-          { "heading"=>"GitHub Training — Git Training from the Experts" },
-          { "heading"=>"GitHub on Your Servers" },
-          { "heading"=>"Loading..." }
-        ]
-      }
+        crawler.base_url "https://www.github.com"
+        crawler.path "/"
+
+        # This takes precedence over the VCR cassette
+        FakeWeb.register_uri(:get, "https://github.com/contact",
+                 body: "<h1>This is not the web page you are looking for.</h1>",
+                 status: ["404", "Not Found"])
+
+        crawler.github 'xpath=//ul[@class="footer_nav"][1]//a', :follow do
+          heading 'css=h1'
+        end
+
+        crawler_instance = crawler.new(allowed_error_codes: ['404'])
+        results = crawler_instance.crawl
+
+        results.should == {
+          "github" => [
+            { "heading"=>"GitHub helps people build software together." },
+            { "heading"=>nil },
+            { "heading"=>"Features" },
+            { "heading"=>"This is not the web page you are looking for." },
+            { "heading"=>"GitHub Training — Git Training from the Experts" },
+            { "heading"=>"GitHub on Your Servers" },
+            { "heading"=>"Loading..." }
+          ]
+        }
+      end
     end
   end
 end
