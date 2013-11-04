@@ -8,6 +8,7 @@ module Wombat
 	    		super do
             locate_nodes(context).flat_map do |node|
               target_page = page.click node
+              page.back # necessary in order to correctly resolve relative links
               context = target_page.parser
 
               filter_properties(context, page)
