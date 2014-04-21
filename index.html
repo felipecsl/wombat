@@ -31,68 +31,85 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>Wombat</h1>
+        <h1>
+<a name="wombat" class="anchor" href="#wombat"><span class="octicon octicon-link"></span></a>Wombat</h1>
+
+<p><a href="http://rubygems.org/gems/wombat"></a><a href="http://badge.fury.io/rb/wombat"><img src="https://badge.fury.io/rb/wombat.png" alt="Gem Version"></a> <a href="http://travis-ci.org/felipecsl/wombat"><img src="https://secure.travis-ci.org/felipecsl/wombat.png?branch=master" alt="CI Build Status"></a> <a href="https://gemnasium.com/felipecsl/wombat"><img src="https://gemnasium.com/felipecsl/wombat.png?travis" alt="Dependency Status"></a> <a href="https://codeclimate.com/github/felipecsl/wombat"><img src="https://codeclimate.com/github/felipecsl/wombat.png" alt="Code Climate"></a> <a href="https://coveralls.io/r/felipecsl/wombat?branch=master"><img src="https://coveralls.io/repos/felipecsl/wombat/badge.png?branch=master" alt="Coverage Status"></a></p>
 
 <p>Web scraper with an elegant DSL that parses structured data from web pages.</p>
 
-<h2>Usage:</h2>
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage:</h2>
 
 <p><code>gem install wombat</code></p>
 
-<p>Obs: Requires ruby 1.9</p>
+<p>Obs: Requires ruby 1.9.3 (activesupport requires Ruby version &gt;= 1.9.3)</p>
 
-<h2>Scraping a page:</h2>
+<h2>
+<a name="scraping-a-page" class="anchor" href="#scraping-a-page"><span class="octicon octicon-link"></span></a>Scraping a page:</h2>
 
 <p>The simplest way to use Wombat is by calling <code>Wombat.crawl</code> and passing it a block:</p>
 
-<div class="highlight"><pre><span class="c1"># =&gt; github_scraper.rb</span>
-
-<span class="c1">#coding: utf-8</span>
-<span class="nb">require</span> <span class="s1">'wombat'</span>
+<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'wombat'</span>
 
 <span class="no">Wombat</span><span class="o">.</span><span class="n">crawl</span> <span class="k">do</span>
   <span class="n">base_url</span> <span class="s2">"http://www.github.com"</span>
   <span class="n">path</span> <span class="s2">"/"</span>
 
-  <span class="n">headline</span> <span class="s2">"xpath=//h1"</span>
+  <span class="n">headline</span> <span class="ss">xpath</span><span class="p">:</span> <span class="s2">"//h1"</span>
+  <span class="n">subheading</span> <span class="ss">css</span><span class="p">:</span> <span class="s2">"p.subheading"</span>
 
-  <span class="n">what_is</span> <span class="s2">"css=.column.secondary p"</span><span class="p">,</span> <span class="ss">:html</span>
+  <span class="n">what_is</span><span class="p">({</span> <span class="ss">css</span><span class="p">:</span> <span class="s2">".teaser h3"</span> <span class="p">},</span> <span class="ss">:list</span><span class="p">)</span>
 
-  <span class="n">explore</span> <span class="s2">"xpath=//ul/li[2]/a"</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span>
-    <span class="n">e</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/Explore/</span><span class="p">,</span> <span class="s2">"LOVE"</span><span class="p">)</span>
-  <span class="k">end</span>
+  <span class="n">links</span> <span class="k">do</span>
+    <span class="n">explore</span> <span class="ss">xpath</span><span class="p">:</span> <span class="s1">'//*[@id="wrapper"]/div[1]/div/ul/li[1]/a'</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span>
+      <span class="n">e</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/Explore/</span><span class="p">,</span> <span class="s2">"Love"</span><span class="p">)</span>
+    <span class="k">end</span>
 
-  <span class="n">benefits</span> <span class="k">do</span>
-    <span class="n">first_benefit</span> <span class="s2">"css=.column.leftmost h3"</span>
-    <span class="n">second_benefit</span> <span class="s2">"css=.column.leftmid h3"</span>
-    <span class="n">third_benefit</span> <span class="s2">"css=.column.rightmid h3"</span>
-    <span class="n">fourth_benefit</span> <span class="s2">"css=.column.rightmost h3"</span>
+    <span class="n">search</span> <span class="ss">css</span><span class="p">:</span> <span class="s1">'.search'</span>
+    <span class="n">features</span> <span class="ss">css</span><span class="p">:</span> <span class="s1">'.features'</span>
+    <span class="n">blog</span> <span class="ss">css</span><span class="p">:</span> <span class="s1">'.blog'</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </pre></div>
 
-<h6>The code above is gonna return the following hash:</h6>
+<h6>
+<a name="the-code-above-is-gonna-return-the-following-hash" class="anchor" href="#the-code-above-is-gonna-return-the-following-hash"><span class="octicon octicon-link"></span></a>The code above is gonna return the following hash:</h6>
 
-<div class="highlight"><pre><span class="p">{</span>
-  <span class="s2">"headline"</span> <span class="o">=&gt;</span> <span class="s2">"1,316,633 people hosting over 3,951,378 git repositories"</span><span class="p">,</span> 
-  <span class="s2">"what_is"</span> <span class="o">=&gt;</span> <span class="s2">"GitHub is the best way to collaborate with others.  Fork, send pull requests and manage all your &lt;strong&gt;public&lt;/strong&gt; and &lt;strong&gt;private&lt;/strong&gt; git repositories."</span><span class="p">,</span>
-  <span class="s2">"explore"</span> <span class="o">=&gt;</span> <span class="s2">"LOVE GitHub"</span><span class="p">,</span>
-  <span class="s2">"benefits"</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="s2">"first_benefit"</span>  <span class="o">=&gt;</span> <span class="s2">"Team management"</span><span class="p">,</span> 
-    <span class="s2">"second_benefit"</span> <span class="o">=&gt;</span> <span class="s2">"Code review"</span><span class="p">,</span> 
-    <span class="s2">"third_benefit"</span>  <span class="o">=&gt;</span> <span class="s2">"Reliable code hosting"</span><span class="p">,</span> 
-    <span class="s2">"fourth_benefit"</span> <span class="o">=&gt;</span> <span class="s2">"Open source collaboration"</span>
+<div class="highlight highlight-ruby"><pre><span class="p">{</span>
+  <span class="s2">"headline"</span><span class="o">=&gt;</span><span class="s2">"Build software better, together."</span><span class="p">,</span>
+  <span class="s2">"subheading"</span><span class="o">=&gt;</span> <span class="s2">"Powerful collaboration, review, and code management for open source and private development projects."</span><span class="p">,</span>
+  <span class="s2">"what_is"</span><span class="o">=&gt;</span> <span class="o">[</span>
+    <span class="s2">"Great collaboration starts with communication."</span><span class="p">,</span>
+    <span class="s2">"Manage and contribute from all your devices."</span><span class="p">,</span>
+    <span class="s2">"The world’s largest open source community."</span>
+  <span class="o">]</span><span class="p">,</span>
+  <span class="s2">"links"</span><span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="s2">"explore"</span><span class="o">=&gt;</span><span class="s2">"Love GitHub"</span><span class="p">,</span>
+    <span class="s2">"search"</span><span class="o">=&gt;</span><span class="s2">"Search"</span><span class="p">,</span>
+    <span class="s2">"features"</span><span class="o">=&gt;</span><span class="s2">"Features"</span><span class="p">,</span>
+    <span class="s2">"blog"</span><span class="o">=&gt;</span><span class="s2">"Blog"</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 
-<h3>This is just a sneak peek of what Wombat can do. For the complete documentation, please check the <a href="http://github.com/felipecsl/wombat/wiki">project Wiki</a>.</h3>
+<h3>
+<a name="this-is-just-a-sneak-peek-of-what-wombat-can-do-for-the-complete-documentation-please-check-the-links-below" class="anchor" href="#this-is-just-a-sneak-peek-of-what-wombat-can-do-for-the-complete-documentation-please-check-the-links-below"><span class="octicon octicon-link"></span></a>This is just a sneak peek of what Wombat can do. For the complete documentation, please check the links below:</h3>
 
-<h3><a href="http://rubydoc.info/gems/wombat/1.0.0/frames">API Documentation</a></h3>
+<h3>
+<a name="wiki" class="anchor" href="#wiki"><span class="octicon octicon-link"></span></a><a href="http://github.com/felipecsl/wombat/wiki">Wiki</a>
+</h3>
 
-<h3><a href="https://github.com/felipecsl/wombat/wiki/Changelog">Changelog</a></h3>
+<h3>
+<a name="api-documentation" class="anchor" href="#api-documentation"><span class="octicon octicon-link"></span></a><a href="http://rubydoc.info/gems/wombat/2.1.1/frames">API Documentation</a>
+</h3>
 
-<h2>Contributing to Wombat</h2>
+<h3>
+<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a><a href="https://github.com/felipecsl/wombat/wiki/Changelog">Changelog</a>
+</h3>
+
+<h2>
+<a name="contributing-to-wombat" class="anchor" href="#contributing-to-wombat"><span class="octicon octicon-link"></span></a>Contributing to Wombat</h2>
 
 <ul>
 <li>Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet</li>
@@ -102,13 +119,14 @@
 <li>Commit and push until you are happy with your contribution</li>
 <li>Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.</li>
 <li>Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.</li>
-</ul><h2>Contributors</h2>
+</ul><h2>
+<a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h2>
 
 <ul>
 <li>Felipe Lima (<a href="https://github.com/felipecsl">@felipecsl</a>)</li>
-<li>Daniel Naves de Carvalho (<a href="https://github.com/danielnc">@danielnc</a>)</li>
-<li><a href="https://github.com/sigi">@sigi</a></li>
-</ul><h2>Copyright</h2>
+<li><a href="https://github.com/felipecsl/wombat/wiki/Contributors">List of all contributors</a></li>
+</ul><h2>
+<a name="copyright" class="anchor" href="#copyright"><span class="octicon octicon-link"></span></a>Copyright</h2>
 
 <p>Copyright (c) 2012 Felipe Lima. See LICENSE.txt for further details.</p>
       </section>
