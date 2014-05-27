@@ -24,21 +24,21 @@ The simplest way to use Wombat is by calling ``Wombat.crawl`` and passing it a b
 require 'wombat'
 
 Wombat.crawl do
-  base_url "http://www.github.com"
+  base_url "https://www.github.com"
   path "/"
 
   headline xpath: "//h1"
   subheading css: "p.subheading"
 
-  what_is({ css: ".teaser h3" }, :list)
+  what_is({ css: ".one-half h3" }, :list)
 
   links do
-    explore xpath: '//*[@id="wrapper"]/div[1]/div/ul/li[1]/a' do |e|
+    explore xpath: '//*[@class="wrapper"]/div[1]/div[1]/div[2]/ul/li[1]/a' do |e|
       e.gsub(/Explore/, "Love")
     end
 
-    search css: '.search'
     features css: '.features'
+    enterprise css: '.enterprise'
     blog css: '.blog'
   end
 end
@@ -48,17 +48,18 @@ end
 
 ```ruby
 {
-  "headline"=>"Build software better, together.",
-  "subheading"=> "Powerful collaboration, review, and code management for open source and private development projects.",
-  "what_is"=> [
-    "Great collaboration starts with communication.",
-    "Manage and contribute from all your devices.",
-    "The world’s largest open source community."
-  ],
-  "links"=> {
-    "explore"=>"Love GitHub",
-    "search"=>"Search",
-    "features"=>"Features",
+  "headline"=>"Build software better, together.", 
+  "subheading"=>"Powerful collaboration, code review, and code management for open source and private projects. Need private repositories? Upgraded plans start at $7/mo.", 
+  "what_is"=>[
+    "Great collaboration starts with communication.", 
+    "Friction-less development across teams.", 
+    "World's largest open source community.", 
+    "Do more with powerful integrations."
+  ], 
+  "links"=>{
+    "explore"=>"Love", 
+    "features"=>"Features", 
+    "enterprise"=>"Enterprise", 
     "blog"=>"Blog"
   }
 }
