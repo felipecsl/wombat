@@ -245,32 +245,64 @@ describe 'basic crawler setup' do
     end
   end
 
-  it 'should follow links' do
-    VCR.use_cassette('follow_links') do
-      crawler = Class.new
-      crawler.send(:include, Wombat::Crawler)
+  context 'following links' do
+    it 'should follow absolute links' do
+      VCR.use_cassette('follow_absolute_links') do
+        crawler = Class.new
+        crawler.send(:include, Wombat::Crawler)
 
-      crawler.base_url "https://www.github.com"
-      crawler.path "/"
+        crawler.base_url "https://www.github.com"
+        crawler.path "/"
 
-      crawler.github 'xpath=//ul[@class="footer_nav"][1]//a', :follow do
-        heading 'css=h1'
+        crawler.github 'xpath=//ul[@class="footer_nav"][1]//a', :follow do
+          heading 'css=h1'
+        end
+
+        crawler_instance = crawler.new
+        results = crawler_instance.crawl
+
+        results.should == {
+          "github" => [
+            { "heading"=>"GitHub helps people build software together." },
+            { "heading"=>nil },
+            { "heading"=>"Features" },
+            { "heading"=>"Contact GitHub" },
+            { "heading"=>"GitHub Training — Git Training from the Experts" },
+            { "heading"=>"GitHub on Your Servers" },
+            { "heading"=>"Loading..." }
+          ]
+        }
       end
+    end
 
-      crawler_instance = crawler.new
-      results = crawler_instance.crawl
+    it 'should follow relative links' do
+      VCR.use_cassette('follow_relative_links') do
+        crawler = Class.new
+        crawler.send(:include, Wombat::Crawler)
 
-      results.should == {
-        "github" => [
-          { "heading"=>"GitHub helps people build software together." },
-          { "heading"=>nil },
-          { "heading"=>"Features" },
-          { "heading"=>"Contact GitHub" },
-          { "heading"=>"GitHub Training — Git Training from the Experts" },
-          { "heading"=>"GitHub on Your Servers" },
-          { "heading"=>"Loading..." }
-        ]
-      }
+        crawler.base_url "https://sfbay.craigslist.org"
+        crawler.path "/"
+
+        crawler.craigslist_gigs 'css=#ggg .cats a', :follow do
+          category 'css=.breadcrumbs .crumb:nth-child(4)'
+        end
+
+        crawler_instance = crawler.new
+        results = crawler_instance.crawl
+
+        results.should == {
+          "craigslist_gigs" => [
+            {"category"=>"crew gigs"},
+            {"category"=>"event gigs"},
+            {"category"=>"labor gigs"},
+            {"category"=>"talent gigs"},
+            {"category"=>"computer gigs"},
+            {"category"=>"creative gigs"},
+            {"category"=>"domestic gigs"},
+            {"category"=>"writing gigs"}
+          ]
+        }
+      end
     end
   end
 end
