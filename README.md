@@ -84,7 +84,7 @@ end
 ## Contributors
 
  * Felipe Lima ([@felipecsl](https://github.com/felipecsl))
- * [List of all contributors](https://github.com/felipecsl/wombat/wiki/Contributors)
+ * [List of all contributors](https://github.com/felipecsl/wombat/graphs/contributors)
 
 ## Copyright
 
