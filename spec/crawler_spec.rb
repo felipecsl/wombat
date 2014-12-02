@@ -13,7 +13,7 @@ describe Wombat::Crawler do
 
       @crawler.event { event_called = true }
 
-      event_called.should be_true
+      event_called.should eq(true)
     end
 
     it 'should provide metadata to yielded block' do
@@ -30,7 +30,7 @@ describe Wombat::Crawler do
         e.time Time.now
       end
 
-      @crawler.venue do |v| 
+      @crawler.venue do |v|
         v.name "Scooba"
       end
 
