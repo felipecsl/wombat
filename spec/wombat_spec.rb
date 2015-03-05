@@ -20,8 +20,12 @@ describe Wombat do
 	it 'should provide configuration method with block' do
 		Wombat.configure do |config|
 			config.set_proxy "10.0.0.1", 8080
+			config.set_user_agent "Wombat"
+			config.set_user_agent_alias 'Mac Safari'
 		end
 		Wombat.proxy_args.should == ["10.0.0.1", 8080]
+		Wombat.user_agent.should == 'Wombat'
+		Wombat.user_agent_alias.should == 'Mac Safari'
 	end
 
 	it 'should accept regular properties (non-selectors)' do

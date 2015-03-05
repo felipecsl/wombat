@@ -27,6 +27,8 @@ module Wombat
           }
         }
         @mechanize.set_proxy(*Wombat.proxy_args) if Wombat.proxy_args
+        @mechanize.user_agent = Wombat.user_agent if Wombat.user_agent
+        @mechanize.user_agent_alias = Wombat.user_agent_alias if Wombat.user_agent_alias
       end
 
       def parse(metadata)
