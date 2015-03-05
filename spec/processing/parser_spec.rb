@@ -17,6 +17,7 @@ describe Wombat::Processing::Parser do
     fake_document.should_receive(:parser).and_return(fake_parser)
     fake_document.should_receive(:header).and_return(fake_header)
     fake_parser.should_receive(:headers=)
+    fake_parser.should_receive(:mechanize_page=)
     @parser.mechanize.should_receive(:get).with("http://www.google.com/search").and_return fake_document
 
     @parser.parse @metadata

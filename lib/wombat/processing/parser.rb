@@ -10,6 +10,11 @@ module Nokogiri
       attr_accessor :headers
     end
   end
+  module HTML
+    class Document
+      attr_accessor :mechanize_page
+    end
+  end
 end
 
 module Wombat
@@ -47,7 +52,8 @@ module Wombat
 
           if metadata[:document_format] == :html
             @page = @mechanize.get(url) unless @page
-            parser = @page.parser
+            parser = @page.parser         # Nokogiri::HTML::Document
+            parser.mechanize_page = @page # Mechanize::Page 
             parser.headers = @page.header
           else
             @page = RestClient.get(url) unless @page
