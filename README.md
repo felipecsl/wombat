@@ -14,8 +14,6 @@ Web scraper with an elegant DSL that parses structured data from web pages.
 
 ``gem install wombat``
 
-Obs: Requires ruby 1.9.3 (activesupport requires Ruby version >= 1.9.3)
-
 ## Scraping a page:
 
 The simplest way to use Wombat is by calling ``Wombat.crawl`` and passing it a block:
@@ -48,18 +46,18 @@ end
 
 ```ruby
 {
-  "headline"=>"Build software better, together.", 
-  "subheading"=>"Powerful collaboration, code review, and code management for open source and private projects. Need private repositories? Upgraded plans start at $7/mo.", 
+  "headline"=>"Build software better, together.",
+  "subheading"=>"Powerful collaboration, code review, and code management for open source and private projects. Need private repositories? Upgraded plans start at $7/mo.",
   "what_is"=>[
-    "Great collaboration starts with communication.", 
-    "Friction-less development across teams.", 
-    "World's largest open source community.", 
+    "Great collaboration starts with communication.",
+    "Friction-less development across teams.",
+    "World's largest open source community.",
     "Do more with powerful integrations."
-  ], 
+  ],
   "links"=>{
-    "explore"=>"Love", 
-    "features"=>"Features", 
-    "enterprise"=>"Enterprise", 
+    "explore"=>"Love",
+    "features"=>"Features",
+    "enterprise"=>"Enterprise",
     "blog"=>"Blog"
   }
 }
@@ -89,4 +87,3 @@ end
 ## Copyright
 
 Copyright (c) 2012 Felipe Lima. See LICENSE.txt for further details.
-
