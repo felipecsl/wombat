@@ -17,30 +17,30 @@ end
 p IteratorCrawler.new.crawl
 {"repos"=>
   [
-  	{	
-  		"repo"=>"bernii / gauge.js",
-    	"description"=>"100% native and cool looking JavaScript gauge"
-  	},
-   	{
-   		"repo"=>"ZeitOnline / briefkasten",
-    	"description"=>"a reasonably secure web application for submitting content anonymously"
-  	},
-   	{
-   		"repo"=>"nothingmagical / cheddar-ios", 
-   		"description"=>"Cheddar for iOS"
- 		},
-   	{
-   		"repo"=>"nathanmarz / storm-mesos",
-    	"description"=>"Run Storm on top of the Mesos cluster resource manager"
-  	},
-   	{
-   		"repo"=>"Netflix / SimianArmy",
-    	"description"=>"Tools for keeping your cloud operating in top form. Chaos Monkey is a resiliency tool that helps ..."
+    {
+      "repo"=>"bernii / gauge.js",
+      "description"=>"100% native and cool looking JavaScript gauge"
     },
-   	{
-   		"repo"=>nil, 
-   		"description"=>nil
-   	}
-	]
+     {
+       "repo"=>"ZeitOnline / briefkasten",
+      "description"=>"a reasonably secure web application for submitting content anonymously"
+    },
+     {
+       "repo"=>"nothingmagical / cheddar-ios",
+       "description"=>"Cheddar for iOS"
+     },
+     {
+       "repo"=>"nathanmarz / storm-mesos",
+      "description"=>"Run Storm on top of the Mesos cluster resource manager"
+    },
+     {
+       "repo"=>"Netflix / SimianArmy",
+      "description"=>"Tools for keeping your cloud operating in top form. Chaos Monkey is a resiliency tool that helps ..."
+    },
+     {
+       "repo"=>nil,
+       "description"=>nil
+     }
+  ]
 }
 =end

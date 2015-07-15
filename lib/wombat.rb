@@ -3,15 +3,15 @@
 require 'wombat/crawler'
 
 module Wombat
-	class << self
+  class << self
 
     attr_reader :proxy_args, :user_agent, :user_agent_alias
 
-		def crawl(&block)
-			klass = Class.new
-			klass.send(:include, Wombat::Crawler)
-			klass.new.crawl(&block)
-		end
+    def crawl(&block)
+      klass = Class.new
+      klass.send(:include, Wombat::Crawler)
+      klass.new.crawl(&block)
+    end
 
     def configure
       yield self
@@ -29,6 +29,6 @@ module Wombat
       @user_agent_alias = user_agent_alias
     end
 
-		alias_method :scrape, :crawl
-	end
+    alias_method :scrape, :crawl
+  end
 end
