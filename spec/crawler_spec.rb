@@ -36,7 +36,7 @@ describe Wombat::Crawler do
 
       @crawler.location { |v| v.latitude -50.2323 }
 
-      @crawler_instance.should_receive(:parse) do |arg|
+      expect(@crawler_instance).to receive(:parse) do |arg|
         expect(arg["event"]["title"].selector).to eq("Fulltronic Dezembro")
         expect(arg["event"]["time"].selector.to_s).to eq(time.to_s)
         expect(arg["venue"]["name"].selector).to eq("Scooba")
@@ -52,13 +52,13 @@ describe Wombat::Crawler do
       another_crawler_instance = another_crawler.new
 
       another_crawler.event { |e| e.title 'Ibiza' }
-      another_crawler_instance.should_receive(:parse) { |arg|
+      expect(another_crawler_instance).to receive(:parse) { |arg|
         expect(arg["event"]["title"].selector).to eq("Ibiza")
       }
       another_crawler_instance.crawl
 
       @crawler.event { |e| e.title 'Fulltronic Dezembro' }
-      @crawler_instance.should_receive(:parse) { |arg|
+      expect(@crawler_instance).to receive(:parse) { |arg|
         expect(arg["event"]["title"].selector).to eq("Fulltronic Dezembro")
       }
       @crawler_instance.crawl
@@ -67,7 +67,7 @@ describe Wombat::Crawler do
     it 'should be able to assign arbitrary plain text metadata' do
       @crawler.some_data("/event/list", :html, "geo") { |p| true }
 
-      @crawler_instance.should_receive(:parse) do |arg|
+      expect(@crawler_instance).to receive(:parse) do |arg|
         prop = arg['some_data']
         expect(prop.wombat_property_name).to eq("some_data")
         expect(prop.selector).to eq("/event/list")
@@ -88,7 +88,7 @@ describe Wombat::Crawler do
         another "css=.information"
       end
 
-      @crawler_instance.should_receive(:parse) do |arg|
+      expect(@crawler_instance).to receive(:parse) do |arg|
         expect(arg["structure"]["data"].selector).to eq("xpath=/xyz")
         expect(arg["structure"]["another"].selector).to eq("css=.information")
       end
@@ -101,7 +101,7 @@ describe Wombat::Crawler do
     end
 
     it 'should assign metadata format' do
-      @crawler_instance.should_receive(:parse) do |arg|
+      expect(@crawler_instance).to receive(:parse) do |arg|
         expect(arg[:document_format]).to eq(:xml)
       end
       @crawler.document_format :xml
@@ -112,7 +112,7 @@ describe Wombat::Crawler do
       @crawler.base_url "danielnc.com"
       @crawler.path "/itens"
 
-      @crawler_instance.should_receive(:parse) do |arg|
+      expect(@crawler_instance).to receive(:parse) do |arg|
         expect(arg[:base_url]).to eq("danielnc.com")
         expect(arg[:path]).to eq("/itens/1")
       end
@@ -123,7 +123,7 @@ describe Wombat::Crawler do
 
       another_instance = @crawler.new
 
-      another_instance.should_receive(:parse) do |arg|
+      expect(another_instance).to receive(:parse) do |arg|
         expect(arg[:base_url]).to eq("danielnc.com")
         expect(arg[:path]).to eq("/itens")
       end
@@ -135,7 +135,7 @@ describe Wombat::Crawler do
       @crawler.base_url "danielnc.com"
       @crawler.path "/itens"
 
-      @crawler_instance.should_receive(:parse) do |arg|
+      expect(@crawler_instance).to receive(:parse) do |arg|
         expect(arg[:base_url]).to eq("danielnc.com")
         expect(arg[:path]).to eq("/itens/1")
       end
@@ -144,14 +144,16 @@ describe Wombat::Crawler do
         path "/itens/1"
       end
 
-      lambda { @craler_intance.undefined_method }.should raise_error(NoMethodError)
+      expect(lambda {
+        @craler_intance.undefined_method
+      }).to raise_error(NoMethodError)
     end
 
     it 'should remove created instance variable' do
       @crawler.base_url "danielnc.com"
       @crawler.path "/itens"
 
-      @crawler_instance.should_receive(:parse) do |arg|
+      expect(@crawler_instance).to receive(:parse) do |arg|
         expect(arg[:base_url]).to eq("danielnc.com")
         expect(arg[:path]).to eq("/itens/1")
       end
@@ -160,7 +162,7 @@ describe Wombat::Crawler do
         path "/itens/1"
       end
 
-      @crawler_instance.instance_variables.index(:@metadata_dup).should be_nil
+      expect(@crawler_instance.instance_variables.index(:@metadata_dup)).to be_nil
     end
 
     context "response code" do
@@ -173,7 +175,7 @@ describe Wombat::Crawler do
           @crawler.search "css=.btn-search"
 
           @crawler_instance.crawl
-          @crawler_instance.response_code.should be(200)
+          expect(@crawler_instance.response_code).to be(200)
         end
 
       end
@@ -187,7 +189,7 @@ describe Wombat::Crawler do
           @crawler.document_format :xml
 
           @crawler_instance.crawl
-          @crawler_instance.response_code.should be(200)
+          expect(@crawler_instance.response_code).to be(200)
         end
       end
 
@@ -199,9 +201,9 @@ describe Wombat::Crawler do
 
           @crawler.search "css=.btn-search"
 
-          lambda { @crawler_instance.crawl }.should raise_error(
+          expect(lambda { @crawler_instance.crawl }).to raise_error(
             "404 => Net::HTTPNotFound for http://www.terra.com.br/portal/ -- unhandled response")
-          @crawler_instance.response_code.should be(404)
+          expect(@crawler_instance.response_code).to be(404)
         end
       end
 
@@ -213,8 +215,8 @@ describe Wombat::Crawler do
 
           @crawler.search "css=.btn-search"
           @crawler.document_format :xml
-          lambda { @crawler_instance.crawl }.should raise_error(RestClient::ResourceNotFound)
-          @crawler_instance.response_code.should be(404)
+          expect(lambda { @crawler_instance.crawl }).to raise_error(RestClient::ResourceNotFound)
+          expect(@crawler_instance.response_code).to be(404)
         end
       end
     end
@@ -222,7 +224,7 @@ describe Wombat::Crawler do
 
   describe '#scrape' do
     it 'should alias to crawl' do
-      @crawler_instance.should_receive :parse
+      expect(@crawler_instance).to receive :parse
       @crawler_instance.scrape
     end
   end
