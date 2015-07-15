@@ -215,7 +215,9 @@ describe Wombat::Crawler do
 
           @crawler.search "css=.btn-search"
           @crawler.document_format :xml
-          expect(lambda { @crawler_instance.crawl }).to raise_error(RestClient::ResourceNotFound)
+          expect(lambda {
+            @crawler_instance.crawl
+          }).to raise_error(RestClient::ResourceNotFound)
           expect(@crawler_instance.response_code).to be(404)
         end
       end
