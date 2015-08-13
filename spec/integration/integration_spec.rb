@@ -273,4 +273,23 @@ describe 'basic crawler setup' do
       }
     end
   end
+
+  it 'should make post requests if needed' do
+    VCR.use_cassette('make_post_request') do
+      data = { your_name: "Name" }
+      crawler = Class.new
+      crawler.send(:include, Wombat::Crawler)
+      crawler.base_url "http://hroch486.icpf.cas.cz"
+      crawler.path "/cgi-bin/echo.pl"
+      crawler.http_method :post
+      crawler.data data
+
+      crawler.my_name 'css=ul:last li:last'
+
+      crawler_instance = crawler.new
+      results = crawler_instance.crawl
+
+      results["my_name"].should eq("your_name = Name")
+    end
+  end
 end

@@ -20,6 +20,7 @@ end
 module Wombat
   module Processing
     module Parser
+      HTTP_METHODS = [:get, :post, :put, :patch, :delete, :head]
       attr_accessor :mechanize, :context, :response_code, :page
 
       def initialize
@@ -47,16 +48,19 @@ module Wombat
         url = "#{metadata[:base_url]}#{metadata[:path]}"
         page = nil
         parser = nil
+        _method = method_from(metadata[:http_method])
+        data = metadata[:data]
+        args = [url, data].compact
         begin
           @page = metadata[:page]
 
           if metadata[:document_format] == :html
-            @page = @mechanize.get(url) unless @page
+            @page = @mechanize.public_send(_method, *args) unless @page
             parser = @page.parser         # Nokogiri::HTML::Document
             parser.mechanize_page = @page # Mechanize::Page 
             parser.headers = @page.header
           else
-            @page = RestClient.get(url) unless @page
+            @page = RestClient.public_send(_method, *args) unless @page
             parser = Nokogiri::XML @page
             parser.headers = @page.headers
           end
@@ -70,6 +74,11 @@ module Wombat
           end
           raise $!
         end
+      end
+
+      def method_from(_method)
+        return :get if _method.nil?
+        HTTP_METHODS.detect(->{:get}){ |i| i == _method.downcase.to_sym }
       end
     end
   end

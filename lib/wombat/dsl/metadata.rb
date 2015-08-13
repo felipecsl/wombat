@@ -20,6 +20,14 @@ module Wombat
         self[:path] = url
       end
 
+      def http_method(http_method)
+        self[:http_method] = http_method
+      end
+
+      def data(data)
+        self[:data] = data
+      end
+
       def document_format(format)
         self[:document_format] = format
       end
