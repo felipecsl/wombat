@@ -23,6 +23,25 @@ describe Wombat::Processing::Parser do
     @parser.parse @metadata
   end
 
+  it 'should able to make post requests' do
+    data = { your_name: "Name" }
+    @metadata.base_url "http://hroch486.icpf.cas.cz"
+    @metadata.path "/cgi-bin/echo.pl"
+    @metadata.http_method :post
+    @metadata.data data
+
+    fake_document = double :document
+    fake_parser = double :parser
+    fake_header = double :header
+    fake_document.should_receive(:parser).and_return(fake_parser)
+    fake_document.should_receive(:header).and_return(fake_header)
+    fake_parser.should_receive(:headers=)
+    fake_parser.should_receive(:mechanize_page=)
+    @parser.mechanize.should_receive(:post).with("http://hroch486.icpf.cas.cz/cgi-bin/echo.pl", data).and_return fake_document
+
+    @parser.parse @metadata
+  end
+
   it 'should correctly parse xml documents' do
     fake_document = double :xml
     fake_parser = double :parser
