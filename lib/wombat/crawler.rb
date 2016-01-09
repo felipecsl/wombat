@@ -10,6 +10,13 @@ module Wombat
     include Processing::Parser
     extend ActiveSupport::Concern
 
+    included do
+      class << self
+        attr_accessor :metadata
+      end
+      self.metadata = DSL::Metadata.new
+    end
+
     def crawl(&block)
       if block
         @metadata_dup = self.class.send(:metadata).clone
@@ -45,9 +52,8 @@ module Wombat
       def to_ary
       end
 
-      private
-      def metadata
-        @metadata ||= DSL::Metadata.new
+      def inherited(subclass)
+        subclass.metadata = self.metadata.clone
       end
     end
   end
