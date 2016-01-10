@@ -1,6 +1,5 @@
 # coding: utf-8
 require 'spec_helper'
-require 'byebug'
 
 describe 'crawler base and one derived class' do
   class A
