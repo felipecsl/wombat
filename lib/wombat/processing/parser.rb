@@ -37,15 +37,15 @@ module Wombat
         @mechanize.user_agent_alias = Wombat.user_agent_alias if Wombat.user_agent_alias
       end
 
-      def parse(metadata)
-        @context = parser_for metadata
+      def parse(metadata, url=nil)
+        @context = parser_for(metadata, url)
 
         Wombat::Property::Locators::Factory.locator_for(metadata).locate(@context, @mechanize)
       end
 
       private
-      def parser_for(metadata)
-        url = "#{metadata[:base_url]}#{metadata[:path]}"
+      def parser_for(metadata, url)
+        url ||= "#{metadata[:base_url]}#{metadata[:path]}"
         page = nil
         parser = nil
         _method = method_from(metadata[:http_method])
