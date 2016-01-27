@@ -292,4 +292,15 @@ describe 'basic crawler setup' do
       results["my_name"].should eq("your_name = Name")
     end
   end
+
+  it 'should let the url be passed as an argument to crawl' do
+    VCR.use_cassette('basic_crawler_page') do
+      crawler = Class.new
+      crawler.send(:include, Wombat::Crawler)
+      crawler.send(:title, 'xpath=//head/title')
+      crawler_instance = crawler.new
+      results = crawler_instance.crawl('http://www.terra.com.br/portal')
+      results['title'].should eq('Terra - Notícias, vídeos, esportes, economia, diversão, música, moda, fotolog, blog, chat')
+    end
+  end
 end

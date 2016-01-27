@@ -131,6 +131,19 @@ describe Wombat::Crawler do
       another_instance.crawl
     end
 
+    it 'should crawl with url and block' do
+      url = 'http://danielinc.com/itens'
+
+      expect(@crawler_instance).to receive(:parse).with(anything, url)
+      @crawler_instance.crawl(url) do
+      end
+
+      another_instance = @crawler.new
+      expect(another_instance).to receive(:parse).with(anything, url)
+
+      another_instance.crawl(url)
+    end
+
     it 'should remove created method missing' do
       @crawler.base_url "danielnc.com"
       @crawler.path "/itens"
