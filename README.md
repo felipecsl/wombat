@@ -44,7 +44,7 @@ end
 
 ###### The code above is gonna return the following hash:
 
-``ruby
+```ruby
 {
   "headline"=>"Build software better, together.",
   "subheading"=>"Powerful collaboration, code review, and code management for open source and private projects. Need private repositories? Upgraded plans start at $7/mo.",
