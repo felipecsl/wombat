@@ -12,11 +12,11 @@ Web scraper with an elegant DSL that parses structured data from web pages.
 
 ## Usage:
 
-``gem install wombat``
+`gem install wombat`
 
 ## Scraping a page:
 
-The simplest way to use Wombat is by calling ``Wombat.crawl`` and passing it a block:
+The simplest way to use Wombat is by calling `Wombat.crawl` and passing it a block:
 
 ```ruby
 require 'wombat'
@@ -40,11 +40,11 @@ Wombat.crawl do
     blog css: '.blog'
   end
 end
-```
+``
 
 ###### The code above is gonna return the following hash:
 
-```ruby
+``ruby
 {
   "headline"=>"Build software better, together.",
   "subheading"=>"Powerful collaboration, code review, and code management for open source and private projects. Need private repositories? Upgraded plans start at $7/mo.",
