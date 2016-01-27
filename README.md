@@ -40,7 +40,7 @@ Wombat.crawl do
     blog css: '.blog'
   end
 end
-``
+```
 
 ###### The code above is gonna return the following hash:
 
