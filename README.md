@@ -67,7 +67,7 @@ end
 
 ### [Wiki](http://github.com/felipecsl/wombat/wiki)
 ### [API Documentation](http://rubydoc.info/gems/wombat/2.1.1/frames)
-### [Changelog](https://github.com/felipecsl/wombat/wiki/Changelog)
+### [Changelog](https://github.com/felipecsl/wombat/blob/master/CHANGELOG.md)
 
 ## Contributing to Wombat
 
