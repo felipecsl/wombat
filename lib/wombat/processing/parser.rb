@@ -9,6 +9,9 @@ module Nokogiri
     class Document
       attr_accessor :headers
     end
+    class Element
+      attr_accessor :mechanize_page
+    end
   end
   module HTML
     class Document

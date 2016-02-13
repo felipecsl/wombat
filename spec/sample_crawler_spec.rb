@@ -10,13 +10,14 @@ describe SampleCrawler do
     @sample_crawler.should_receive(:parse) do |args|
       args['event_group'].wombat_property_selector.should == "css=div.title-agenda"
       it = args['event_group']
-      it["event"]["title"].wombat_property_selector.should == "xpath=."
-      it["event"]["date"].wombat_property_selector.should == "xpath=//div[@class='scrollable-items']/div[@class='s-item active']//a"
-      it["event"]["type"].wombat_property_selector.should == "xpath=.type"
-      it["venue"]["name"].wombat_property_selector.should == "xpath=."
+      expect(it["event"]["title"].wombat_property_selector).to eq("xpath=.")
+      expect(it["event"]["date"].wombat_property_selector).to(
+        eq("xpath=//div[@class='scrollable-items']/div[@class='s-item active']//a"))
+      expect(it["event"]["type"].wombat_property_selector).to eq("xpath=.type")
+      expect(it["venue"]["name"].wombat_property_selector).to eq("xpath=.")
 
       args[:base_url].should == 'http://www.obaoba.com.br'
-      args[:path].should == '/porto-alegre/agenda' 
+      args[:path].should == '/porto-alegre/agenda'
     end
 
     @sample_crawler.crawl

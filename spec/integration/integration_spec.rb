@@ -274,6 +274,130 @@ describe 'basic crawler setup' do
     end
   end
 
+  it 'should follow links - issue #53' do
+    VCR.use_cassette('follow_links_v2') do
+      result = Wombat.crawl do
+        base_url "http://www.icy-veins.com/"
+        path "heroes/hero-guides"
+
+        heroes  "css=.page_content .nav_content_block_entry_heroes_hero", :iterator do
+          name "xpath=."
+          builds "xpath=./a", :follow do
+              title "css=h1"
+          end
+        end
+      end
+
+      expect(result).to eq(
+        {"heroes"=>
+          [{"name"=>"Abathur",
+            "builds"=>[{"title"=>"Abathur Build Guide “You. Enhanced. Improved.”"}]},
+           {"name"=>"Anub'arak",
+            "builds"=>[{"title"=>"Anub'arak Build Guide “Time is fleeting.”"}]},
+           {"name"=>"Artanis",
+            "builds"=>[{"title"=>"Artanis Build Guide “Direct my wrath.”"}]},
+           {"name"=>"Arthas",
+            "builds"=>[{"title"=>"Arthas Build Guide “Frostmourne hungers.”"}]},
+           {"name"=>"Azmodan",
+            "builds"=>[{"title"=>"Azmodan Build Guide “I shall rule alone!”"}]},
+           {"name"=>"Brightwing",
+            "builds"=>
+             [{"title"=>"Brightwing Build Guide “You don't want to be my enemy!”"}]},
+           {"name"=>"Chen",
+            "builds"=>[{"title"=>"Chen Build Guide “I bring Pandamonium!”"}]},
+           {"name"=>"Cho",
+            "builds"=>
+             [{"title"=>
+                "Cho Build Guide “This Nexus, all its power... it will be MINE!”"}]},
+           {"name"=>"Diablo",
+            "builds"=>
+             [{"title"=>"Diablo Build Guide “Kneel before the Lord of Terror.”"}]},
+           {"name"=>"E.T.C.",
+            "builds"=>[{"title"=>"E.T.C. Build Guide “You can't kill the metal!”"}]},
+           {"name"=>"Falstad",
+            "builds"=>[{"title"=>"Falstad Build Guide “Time to drop the hammer!”"}]},
+           {"name"=>"Gall",
+            "builds"=>
+             [{"title"=>
+                "Gall Build Guide “Those who oppose me invite their own demise!”"}]},
+           {"name"=>"Gazlowe",
+            "builds"=>[{"title"=>"Gazlowe Build Guide “Hey, time is money friend.”"}]},
+           {"name"=>"Greymane",
+            "builds"=>[{"title"=>"Greymane Build Guide “I am the alpha!”"}]},
+           {"name"=>"Illidan",
+            "builds"=>[{"title"=>"Illidan Build Guide “Now I am complete!”"}]},
+           {"name"=>"Jaina",
+            "builds"=>[{"title"=>"Jaina Build Guide “I'm here to help.”"}]},
+           {"name"=>"Johanna",
+            "builds"=>[{"title"=>"Johanna Build Guide “The Crusade marches on!”"}]},
+           {"name"=>"Kael'thas",
+            "builds"=>[{"title"=>"Kael'thas Build Guide “Anar'alah belore!”"}]},
+           {"name"=>"Kerrigan",
+            "builds"=>[{"title"=>"Kerrigan Build Guide “Long live the real Queen.”"}]},
+           {"name"=>"Kharazim",
+            "builds"=>[{"title"=>"Kharazim Build Guide “Feel the wrath of Ytar!”"}]},
+           {"name"=>"Leoric",
+            "builds"=>
+             [{"title"=>"Leoric Build Guide “All will suffer as I have suffered!”"}]},
+           {"name"=>"Li Li",
+            "builds"=>[{"title"=>"Li Li Build Guide “Ready for adventure!”"}]},
+           {"name"=>"Lt. Morales",
+            "builds"=>
+             [{"title"=>
+                "Lt. Morales Build Guide “I protect every member of my squad!”"}]},
+           {"name"=>"Lunara",
+            "builds"=>[{"title"=>"Lunara Build Guide “Taste my spear!”"}]},
+           {"name"=>"Malfurion",
+            "builds"=>
+             [{"title"=>"Malfurion Build Guide “Nature will rise against you!”"}]},
+           {"name"=>"Muradin",
+            "builds"=>[{"title"=>"Muradin Build Guide “It's hammer time!”"}]},
+           {"name"=>"Murky",
+            "builds"=>[{"title"=>"Murky Build Guide “Mrglrglmrglmrrrlggg!”"}]},
+           {"name"=>"Nazeebo",
+            "builds"=>[{"title"=>"Nazeebo Build Guide “The spirits speak to me.”"}]},
+           {"name"=>"Nova",
+            "builds"=>
+             [{"title"=>"Nova Build Guide “Ready to have your mind blown?”"}]},
+           {"name"=>"Raynor",
+            "builds"=>[{"title"=>"Raynor Build Guide “Hit 'em hard and fast.”"}]},
+           {"name"=>"Rehgar",
+            "builds"=>[{"title"=>"Rehgar Build Guide “To the Arena!”"}]},
+           {"name"=>"Rexxar",
+            "builds"=>[{"title"=>"Rexxar Build Guide “The beasts obey me!”"}]},
+           {"name"=>"Sgt. Hammer",
+            "builds"=>[{"title"=>"Sgt. Hammer Build Guide “Napalm's airborne!”"}]},
+           {"name"=>"Sonya",
+            "builds"=>[{"title"=>"Sonya Build Guide “Time to die!”"}]},
+           {"name"=>"Stitches",
+            "builds"=>[{"title"=>"Stitches Build Guide “ROAAAARR!”"}]},
+           {"name"=>"Sylvanas",
+            "builds"=>[{"title"=>"Sylvanas Build Guide “Let none survive!”"}]},
+           {"name"=>"Tassadar",
+            "builds"=>[{"title"=>"Tassadar Build Guide “Executor, I stand ready!”"}]},
+           {"name"=>"The Butcher",
+            "builds"=>[{"title"=>"The Butcher Build Guide “Fresh meat!”"}]},
+           {"name"=>"Thrall",
+            "builds"=>
+             [{"title"=>"Thrall Build Guide “The Elements will destroy you!”"}]},
+           {"name"=>"Tychus",
+            "builds"=>[{"title"=>"Tychus Build Guide “So, you gonna bark all day?”"}]},
+           {"name"=>"Tyrael",
+            "builds"=>[{"title"=>"Tyrael Build Guide “I am Justice itself!”"}]},
+           {"name"=>"Tyrande",
+            "builds"=>
+             [{"title"=>"Tyrande Build Guide “Feel the wrath of the Heavens!”"}]},
+           {"name"=>"Uther",
+            "builds"=>[{"title"=>"Uther Build Guide “I will fight with honor!”"}]},
+           {"name"=>"Valla",
+            "builds"=>[{"title"=>"Valla Build Guide “Be vewy, vewy quiet...”"}]},
+           {"name"=>"Zagara",
+            "builds"=>[{"title"=>"Zagara Build Guide “The Swarm hungers.”"}]},
+           {"name"=>"Zeratul",
+            "builds"=>[{"title"=>"Zeratul Build Guide “I serve the Xel'naga.”"}]}]})
+    end
+  end
+
   it 'should make post requests if needed' do
     VCR.use_cassette('make_post_request') do
       data = { your_name: "Name" }
