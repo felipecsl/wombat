@@ -275,7 +275,7 @@ describe 'basic crawler setup' do
   end
 
   it 'should follow links - issue #53' do
-    VCR.use_cassette('follow_links_v2') do
+    VCR.use_cassette('follow_links_v2', :preserve_exact_body_bytes => true) do
       result = Wombat.crawl do
         base_url "http://www.icy-veins.com/"
         path "heroes/hero-guides"
