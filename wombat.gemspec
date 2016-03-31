@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.description = "Generic Web crawler with a DSL that parses structured data from web pages"
   s.email = "felipe.lima@gmail.com"
   s.extra_rdoc_files = [
+    "CHANGELOG.md",
     "LICENSE.txt",
     "README.md"
   ]
@@ -86,7 +87,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://felipecsl.github.com/wombat"
   s.licenses = ["MIT"]
   s.required_ruby_version = Gem::Requirement.new(">= 1.9")
-  s.rubygems_version = "2.5.1"
+  s.rubygems_version = "2.4.8"
   s.summary = "Ruby DSL to scrape web pages"
 
   if s.respond_to? :specification_version then
