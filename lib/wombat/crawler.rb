@@ -17,7 +17,7 @@ module Wombat
       self.metadata = DSL::Metadata.new
     end
 
-    def crawl(url = nil, &block)
+    def crawl(url = nil, options = {}, &block)
       if block
         @metadata_dup = self.class.send(:metadata).clone
         instance_eval do
@@ -27,14 +27,14 @@ module Wombat
           end
         end
         self.instance_eval &block
-        parsed = parse(@metadata_dup, url)
+        parsed = parse(@metadata_dup, url, options)
         instance_eval do
           alias :method_missing :old_method_missing
           remove_instance_variable :@metadata_dup
         end
         parsed
       else
-        parse(self.class.send(:metadata), url)
+        parse(self.class.send(:metadata), url, options)
       end
     end
 

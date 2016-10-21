@@ -41,15 +41,21 @@ module Wombat
         @mechanize.user_agent_alias = Wombat.user_agent_alias if Wombat.user_agent_alias
       end
 
-      def parse(metadata, url=nil)
-        @context = parser_for(metadata, url)
+      def parse(metadata, url = nil, options = {})
+        unless options.empty?
+          options = options.reduce({}).each do |memo, (k, v)|
+            memo[k.to_sym] = v
+            memo
+          end
+        end
+        @context = parser_for(metadata, url, options)
         return nil if @context.nil?
         Wombat::Property::Locators::Factory.locator_for(metadata).locate(@context, @mechanize)
       end
 
       private
 
-      def parser_for(metadata, url)
+      def parser_for(metadata, url, options = {})
         url ||= "#{metadata[:base_url]}#{metadata[:path]}"
         return if url.nil?
         method = method_from(metadata[:http_method])
@@ -59,14 +65,10 @@ module Wombat
           @page = metadata[:page]
 
           if metadata[:document_format] == :html
-            unless (Wombat.cookies.nil? || Wombat.cookies.empty?)
-              Wombat.cookies.each do |k, v|
-                cookie = Mechanize::Cookie.new(k.to_s, v.to_s)
-                cookie.domain = URI.parse(url).host
-                cookie.path = '/'
-                @mechanize.cookie_jar << cookie
-              end
-            end
+            @mechanize.set_proxy(*options[:proxy_args]) if options[:proxy_args]
+            @mechanize.user_agent = options[:user_agent] if options[:user_agent]
+            @mechanize.user_agent_alias = options[:user_agent_alias] if options[:user_agent_alias]
+            update_cookies(url, options[:cookies]) if options[:cookies]
             @page = @mechanize.public_send(method, *args) unless @page
             parser = @page.parser         # Nokogiri::HTML::Document
             parser.mechanize_page = @page # Mechanize::Page
@@ -88,9 +90,19 @@ module Wombat
         end
       end
 
-      def method_from(_method)
-        return :get if _method.nil?
-        HTTP_METHODS.detect(->{:get}){ |i| i == _method.downcase.to_sym }
+      def update_cookies(url, cookies)
+        domain = URI.parse(url).host
+        cookies.each do |k, v|
+          cookie = Mechanize::Cookie.new(k.to_s, v.to_s)
+          cookie.domain = domain
+          cookie.path = '/'
+          @mechanize.cookie_jar << cookie
+        end
+      end
+
+      def method_from(method)
+        return :get if method.nil?
+        HTTP_METHODS.detect(-> {:get}){ |i| i == method.downcase.to_sym }
       end
     end
   end

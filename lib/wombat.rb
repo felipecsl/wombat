@@ -5,7 +5,7 @@ require 'wombat/crawler'
 module Wombat
   class << self
 
-    attr_reader :proxy_args, :user_agent, :user_agent_alias, :cookies
+    attr_reader :proxy_args, :user_agent, :user_agent_alias
 
     def crawl(&block)
       klass = Class.new
@@ -27,10 +27,6 @@ module Wombat
 
     def set_user_agent_alias(user_agent_alias)
       @user_agent_alias = user_agent_alias
-    end
-
-    def set_cookies(cookies)
-      @cookies = cookies
     end
 
     alias_method :scrape, :crawl
