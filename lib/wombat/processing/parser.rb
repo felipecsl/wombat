@@ -3,6 +3,7 @@ require 'wombat/property/locators/factory'
 require 'wombat/processing/node_selector'
 require 'mechanize'
 require 'restclient'
+require 'uri'
 
 module Nokogiri
   module XML
@@ -42,28 +43,36 @@ module Wombat
 
       def parse(metadata, url=nil)
         @context = parser_for(metadata, url)
-
+        return nil if @context.nil?
         Wombat::Property::Locators::Factory.locator_for(metadata).locate(@context, @mechanize)
       end
 
       private
+
       def parser_for(metadata, url)
         url ||= "#{metadata[:base_url]}#{metadata[:path]}"
-        page = nil
-        parser = nil
-        _method = method_from(metadata[:http_method])
+        return if url.nil?
+        method = method_from(metadata[:http_method])
         data = metadata[:data]
         args = [url, data].compact
         begin
           @page = metadata[:page]
 
           if metadata[:document_format] == :html
-            @page = @mechanize.public_send(_method, *args) unless @page
+            unless (Wombat.cookies.nil? || Wombat.cookies.empty?)
+              Wombat.cookies.each do |k, v|
+                cookie = Mechanize::Cookie.new(k.to_s, v.to_s)
+                cookie.domain = URI.parse(url).host
+                cookie.path = '/'
+                @mechanize.cookie_jar << cookie
+              end
+            end
+            @page = @mechanize.public_send(method, *args) unless @page
             parser = @page.parser         # Nokogiri::HTML::Document
             parser.mechanize_page = @page # Mechanize::Page
             parser.headers = @page.header
           else
-            @page = RestClient.public_send(_method, *args) unless @page
+            @page = RestClient.public_send(method, *args) unless @page
             parser = Nokogiri::XML @page
             parser.headers = @page.headers
           end
