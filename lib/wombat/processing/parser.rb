@@ -43,9 +43,8 @@ module Wombat
 
       def parse(metadata, url = nil, options = {})
         unless options.empty?
-          options = options.reduce({}).each do |memo, (k, v)|
+          options = options.each_with_object({}) do |(k, v), memo|
             memo[k.to_sym] = v.to_s unless v.nil?
-            memo
           end
         end
         @context = parser_for(metadata, url, options)
