@@ -44,7 +44,7 @@ module Wombat
       def parse(metadata, url = nil, options = {})
         unless options.empty?
           options = options.reduce({}).each do |memo, (k, v)|
-            memo[k.to_sym] = v.to_s
+            memo[k.to_sym] = v.to_s unless v.nil?
             memo
           end
         end
