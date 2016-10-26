@@ -26,18 +26,17 @@ Wombat.crawl do
   path "/"
 
   headline xpath: "//h1"
-  subheading css: "p.subheading"
+  subheading css: "p.alt-lead"
 
-  what_is({ css: ".one-half h3" }, :list)
+  what_is({ css: ".one-fourth h4" }, :list)
 
   links do
-    explore xpath: '//*[@class="wrapper"]/div[1]/div[1]/div[2]/ul/li[1]/a' do |e|
+    explore xpath: '/html/body/header/div/div/nav[1]/a[4]' do |e|
       e.gsub(/Explore/, "Love")
     end
 
-    features css: '.features'
-    enterprise css: '.enterprise'
-    blog css: '.blog'
+    features css: '.nav-item-opensource'
+    business css: '.nav-item-business'
   end
 end
 ```
@@ -46,19 +45,18 @@ end
 
 ```ruby
 {
-  "headline"=>"Build software better, together.",
-  "subheading"=>"Powerful collaboration, code review, and code management for open source and private projects. Need private repositories? Upgraded plans start at $7/mo.",
+  "headline"=>"How people build software",
+  "subheading"=>"Millions of developers use GitHub to build personal projects, support their businesses, and work together on open source technologies.",
   "what_is"=>[
-    "Great collaboration starts with communication.",
-    "Friction-less development across teams.",
-    "World's largest open source community.",
-    "Do more with powerful integrations."
+    "For everything you build",
+    "A better way to work",
+    "Millions of projects",
+    "One platform, from start to finish"
   ],
   "links"=>{
     "explore"=>"Love",
-    "features"=>"Features",
-    "enterprise"=>"Enterprise",
-    "blog"=>"Blog"
+    "features"=>"Open source",
+    "business"=>"Business"
   }
 }
 ```
