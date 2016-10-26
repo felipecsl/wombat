@@ -134,14 +134,15 @@ describe Wombat::Crawler do
     it 'should crawl with url and block' do
       url = 'http://danielinc.com/itens'
 
-      expect(@crawler_instance).to receive(:parse).with(anything, url)
-      @crawler_instance.crawl(url) do
+      opts = {cookies: :cookies}
+      expect(@crawler_instance).to receive(:parse).with(anything, url, opts)
+      @crawler_instance.crawl(url, opts) do
       end
 
       another_instance = @crawler.new
-      expect(another_instance).to receive(:parse).with(anything, url)
+      expect(another_instance).to receive(:parse).with(anything, url, opts)
 
-      another_instance.crawl(url)
+      another_instance.crawl(url, opts)
     end
 
     it 'should remove created method missing' do
