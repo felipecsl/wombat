@@ -19,7 +19,7 @@ module Wombat
 
     def crawl(url = nil, &block)
       if block
-        @metadata_dup = self.class.send(:metadata).clone
+        @metadata_dup = self.class.metadata.clone
         instance_eval do
           alias :old_method_missing :method_missing
           def method_missing method, *args, &block
@@ -35,7 +35,7 @@ module Wombat
         end
         parsed
       else
-        parse(self.class.send(:metadata), url)
+        parse(self.class.metadata, url)
       end
     end
 
