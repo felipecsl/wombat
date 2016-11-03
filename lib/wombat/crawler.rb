@@ -30,6 +30,7 @@ module Wombat
         parsed = parse(@metadata_dup, url)
         instance_eval do
           alias :method_missing :old_method_missing
+          undef :old_method_missing
           remove_instance_variable :@metadata_dup
         end
         parsed
