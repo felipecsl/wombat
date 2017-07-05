@@ -1,3 +1,7 @@
+### version 2.6.0 (2017-07-04)
+
+* Updates gem dependencies - it now requires Ruby v2.2.2 or higher (activesupport requirement).
+
 ### version 2.5.0 (2016-01-26)
 
 * Updates gem dependencies
