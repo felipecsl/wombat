@@ -1,6 +1,6 @@
 # Wombat
 
-[[![Gem Version](https://badge.fury.io/rb/wombat.png)](http://badge.fury.io/rb/wombat)][rubygems] [![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/felipecsl/wombat.png?travis)][gemnasium] [![Code Climate](https://codeclimate.com/github/felipecsl/wombat.png)][codeclimate] [![Coverage Status](https://coveralls.io/repos/felipecsl/wombat/badge.png?branch=master)][coveralls]
+[![Gem Version](https://badge.fury.io/rb/wombat.png)](http://badge.fury.io/rb/wombat)[rubygems] [![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/felipecsl/wombat.png?travis)][gemnasium] [![Code Climate](https://codeclimate.com/github/felipecsl/wombat.png)][codeclimate] [![Coverage Status](https://coveralls.io/repos/felipecsl/wombat/badge.png?branch=master)][coveralls]
 
 [rubygems]: http://rubygems.org/gems/wombat
 [travis]: http://travis-ci.org/felipecsl/wombat
