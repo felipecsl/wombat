@@ -1,12 +1,18 @@
 # Wombat
 
-[![Gem Version](https://badge.fury.io/rb/wombat.svg)](https://badge.fury.io/rb/wombat) [![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/felipecsl/wombat.png?travis)][gemnasium] [![Code Climate](https://codeclimate.com/github/felipecsl/wombat.png)][codeclimate] [![Coverage Status](https://coveralls.io/repos/felipecsl/wombat/badge.png?branch=master)][coveralls]
+[![Gem Version](https://badge.fury.io/rb/wombat.svg)](https://badge.fury.io/rb/wombat) 
+[![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)][travis] 
+[![Dependency Status](https://gemnasium.com/felipecsl/wombat.png?travis)][gemnasium] 
+[![Code Climate](https://codeclimate.com/github/felipecsl/wombat.png)][codeclimate] 
+[![Coverage Status](https://coveralls.io/repos/felipecsl/wombat/badge.png?branch=master)][coveralls]
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffelipecsl%2Fwombat.svg?type=shield)][fossa]
 
 [rubygems]: http://rubygems.org/gems/wombat
 [travis]: http://travis-ci.org/felipecsl/wombat
 [gemnasium]: https://gemnasium.com/felipecsl/wombat
 [codeclimate]: https://codeclimate.com/github/felipecsl/wombat
 [coveralls]: https://coveralls.io/r/felipecsl/wombat?branch=master
+[fossa]: https://app.fossa.io/projects/git%2Bgithub.com%2Ffelipecsl%2Fwombat?ref=badge_shield
 
 Web scraper with an elegant DSL that parses structured data from web pages.
 
@@ -85,3 +91,7 @@ end
 ## Copyright
 
 Copyright (c) 2012 Felipe Lima. See LICENSE.txt for further details.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffelipecsl%2Fwombat.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ffelipecsl%2Fwombat?ref=badge_large)
