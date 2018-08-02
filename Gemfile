@@ -11,6 +11,6 @@ group :development, :test do
   gem 'jeweler'
   gem 'rspec'
   gem 'vcr'
-  gem 'fakeweb'
+  gem 'webmock'
   gem 'coveralls', require: false
 end

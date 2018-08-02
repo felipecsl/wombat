@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://ws.audioscrobbler.com/2.0/?method=geo.getevents&location=San%20Francisco&api_key=060decb474b73437d5bbec37f527ae7b
+    uri: http://ws.audioscrobbler.com/2.0/?api_key=060decb474b73437d5bbec37f527ae7b&location=San%20Francisco&method=geo.getevents
     body: ''
     headers:
       accept:

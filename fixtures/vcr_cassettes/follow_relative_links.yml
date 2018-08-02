@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://liteproblog.ru//vocabulary
+    uri: http://liteproblog.ru/vocabulary
     body:
       encoding: US-ASCII
       string: ''
@@ -276,16 +276,16 @@ http_interactions:
       referer:
       - !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
-        path: //vocabulary
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        path: /vocabulary
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -535,16 +535,16 @@ http_interactions:
       referer:
       - &10184340 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/dmoz
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -851,16 +851,16 @@ http_interactions:
       referer:
       - &9903000 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/pr
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -1169,16 +1169,16 @@ http_interactions:
       referer:
       - &12252820 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/sape
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -1489,16 +1489,16 @@ http_interactions:
       referer:
       - &15055120 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/seo
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -1800,16 +1800,16 @@ http_interactions:
       referer:
       - &9432080 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/seocopyright
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -2110,16 +2110,16 @@ http_interactions:
       referer:
       - &14454540 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/seotext
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -2419,16 +2419,16 @@ http_interactions:
       referer:
       - &8972100 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/serp
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -2736,16 +2736,16 @@ http_interactions:
       referer:
       - &14549600 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/title
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -3053,16 +3053,16 @@ http_interactions:
       referer:
       - &8973540 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/wordpress-word
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -3370,16 +3370,16 @@ http_interactions:
       referer:
       - &13896800 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/anchor
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -3686,16 +3686,16 @@ http_interactions:
       referer:
       - &8972980 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/arbitraz
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -4000,16 +4000,16 @@ http_interactions:
       referer:
       - &14696320 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/banner
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -4312,16 +4312,16 @@ http_interactions:
       referer:
       - &8977100 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/blog
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -4621,16 +4621,16 @@ http_interactions:
       referer:
       - &13839420 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/budget
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -4939,16 +4939,16 @@ http_interactions:
       referer:
       - &14933520 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/vkzapros
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -5249,16 +5249,16 @@ http_interactions:
       referer:
       - &12819840 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/vchzapros
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -5561,16 +5561,16 @@ http_interactions:
       referer:
       - &12754180 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/doorway
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -5868,16 +5868,16 @@ http_interactions:
       referer:
       - &10742520 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/doorgen
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -6182,16 +6182,16 @@ http_interactions:
       referer:
       - &15082540 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/affzarabotok
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -6493,16 +6493,16 @@ http_interactions:
       referer:
       - &10745120 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/refzarabotok
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -6801,16 +6801,16 @@ http_interactions:
       referer:
       - &12758680 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/conversion
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -7115,16 +7115,16 @@ http_interactions:
       referer:
       - &10750860 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/content
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -7425,16 +7425,16 @@ http_interactions:
       referer:
       - &15125960 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/sitemoney
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -7734,16 +7734,16 @@ http_interactions:
       referer:
       - &10792900 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/nchzapros
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -8047,16 +8047,16 @@ http_interactions:
       referer:
       - &15149860 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/partner
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -8366,16 +8366,16 @@ http_interactions:
       referer:
       - &24756040 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/affiliate
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -8673,16 +8673,16 @@ http_interactions:
       referer:
       - &15028400 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/linking
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -8983,16 +8983,16 @@ http_interactions:
       referer:
       - &15286020 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/platnik
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -9297,16 +9297,16 @@ http_interactions:
       referer:
       - &10578980 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/worddensity
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -9604,16 +9604,16 @@ http_interactions:
       referer:
       - &14964480 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/zapros
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -9922,16 +9922,16 @@ http_interactions:
       referer:
       - &10251040 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/linksale
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -10241,16 +10241,16 @@ http_interactions:
       referer:
       - &14598760 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/profit
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -10550,16 +10550,16 @@ http_interactions:
       referer:
       - &14792540 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/redirect
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -10868,16 +10868,16 @@ http_interactions:
       referer:
       - &14627300 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/relevance
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -11186,16 +11186,16 @@ http_interactions:
       referer:
       - &14788400 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/referal
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -11501,16 +11501,16 @@ http_interactions:
       referer:
       - &15256980 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/site
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -11811,16 +11811,16 @@ http_interactions:
       referer:
       - &11908940 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/satellite
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -12121,16 +12121,16 @@ http_interactions:
       referer:
       - &15287060 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/sdl
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -12435,16 +12435,16 @@ http_interactions:
       referer:
       - &13454020 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/server
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -12750,16 +12750,16 @@ http_interactions:
       referer:
       - &8571000 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/sneginsk
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -13059,16 +13059,16 @@ http_interactions:
       referer:
       - &14814800 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/snippet
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -13369,16 +13369,16 @@ http_interactions:
       referer:
       - &13938140 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/link
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -13685,16 +13685,16 @@ http_interactions:
       referer:
       - &14837200 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/schzapros
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -14001,16 +14001,16 @@ http_interactions:
       referer:
       - &13771280 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/tizer
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -14318,16 +14318,16 @@ http_interactions:
       referer:
       - &14883580 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/tic
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -14623,16 +14623,16 @@ http_interactions:
       referer:
       - &12255660 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/top
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -14930,16 +14930,16 @@ http_interactions:
       referer:
       - &15355820 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/trafic
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -15243,16 +15243,16 @@ http_interactions:
       referer:
       - &13934200 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/farma
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
@@ -15553,16 +15553,16 @@ http_interactions:
       referer:
       - &15370420 !ruby/object:URI::HTTP
         scheme: http
-        user: 
-        password: 
+        user:
+        password:
         host: liteproblog.ru
         port: 80
         path: /vocabulary/uzabiliti
-        query: 
-        opaque: 
-        registry: 
-        fragment: 
-        parser: 
+        query:
+        opaque:
+        registry:
+        fragment:
+        parser:
       connection:
       - keep-alive
       keep-alive:
