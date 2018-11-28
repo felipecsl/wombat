@@ -1,4 +1,8 @@
-### version 2.6.0 (2017-11-24)
+### version 2.8.0 (2018-11-27)
+
+* Bump rack to version 2.0.6
+
+### version 2.7.0 (2017-11-24)
 
 * Bump activesupport to version 5.1.4
 
