@@ -1,3 +1,8 @@
+### version 2.9.0 (2018-11-27)
+
+* Bump all gem dependencies to address security vulnerabilities
+* Minimum supported Ruby version is now v2.3.0
+
 ### version 2.8.0 (2018-11-27)
 
 * Bump rack to version 2.0.6
