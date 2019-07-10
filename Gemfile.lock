@@ -64,7 +64,7 @@ GEM
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (>= 0.0.9, < 0.2)
     mime-types (2.99.3)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     minitest (5.11.3)
     multi_json (1.13.1)
     multi_xml (0.6.0)
@@ -73,8 +73,8 @@ GEM
     net-http-persistent (3.0.0)
       connection_pool (~> 2.2)
     netrc (0.11.0)
-    nokogiri (1.8.4)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.10.3)
+      mini_portile2 (~> 2.4.0)
     ntlm-http (0.1.1)
     oauth2 (1.4.0)
       faraday (>= 0.8, < 0.13)
@@ -126,7 +126,7 @@ GEM
       crack (>= 0.3.2)
       hashdiff
     webrobots (0.1.2)
-    yard (0.9.15)
+    yard (0.9.20)
 
 PLATFORMS
   ruby
