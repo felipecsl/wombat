@@ -1,45 +1,48 @@
 # Wombat
 
-[[![Gem Version](https://badge.fury.io/rb/wombat.png)](http://badge.fury.io/rb/wombat)][rubygems] [![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/felipecsl/wombat.png?travis)][gemnasium] [![Code Climate](https://codeclimate.com/github/felipecsl/wombat.png)][codeclimate] [![Coverage Status](https://coveralls.io/repos/felipecsl/wombat/badge.png?branch=master)][coveralls]
+[![Gem Version](https://badge.fury.io/rb/wombat.svg)](https://badge.fury.io/rb/wombat) 
+[![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)][travis] 
+[![Dependency Status](https://gemnasium.com/felipecsl/wombat.png?travis)][gemnasium] 
+[![Code Climate](https://codeclimate.com/github/felipecsl/wombat.png)][codeclimate] 
+[![Coverage Status](https://coveralls.io/repos/felipecsl/wombat/badge.png?branch=master)][coveralls]
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffelipecsl%2Fwombat.svg?type=shield)][fossa]
 
 [rubygems]: http://rubygems.org/gems/wombat
 [travis]: http://travis-ci.org/felipecsl/wombat
 [gemnasium]: https://gemnasium.com/felipecsl/wombat
 [codeclimate]: https://codeclimate.com/github/felipecsl/wombat
 [coveralls]: https://coveralls.io/r/felipecsl/wombat?branch=master
+[fossa]: https://app.fossa.io/projects/git%2Bgithub.com%2Ffelipecsl%2Fwombat?ref=badge_shield
 
 Web scraper with an elegant DSL that parses structured data from web pages.
 
 ## Usage:
 
-``gem install wombat``
-
-Obs: Requires ruby 1.9.3 (activesupport requires Ruby version >= 1.9.3)
+`gem install wombat`
 
 ## Scraping a page:
 
-The simplest way to use Wombat is by calling ``Wombat.crawl`` and passing it a block:
+The simplest way to use Wombat is by calling `Wombat.crawl` and passing it a block:
 
 ```ruby
 require 'wombat'
 
 Wombat.crawl do
-  base_url "http://www.github.com"
+  base_url "https://www.github.com"
   path "/"
 
   headline xpath: "//h1"
-  subheading css: "p.subheading"
+  subheading css: "p.alt-lead"
 
-  what_is({ css: ".teaser h3" }, :list)
+  what_is({ css: ".one-fourth h4" }, :list)
 
   links do
-    explore xpath: '//*[@id="wrapper"]/div[1]/div/ul/li[1]/a' do |e|
+    explore xpath: '/html/body/header/div/div/nav[1]/a[4]' do |e|
       e.gsub(/Explore/, "Love")
     end
 
-    search css: '.search'
-    features css: '.features'
-    blog css: '.blog'
+    features css: '.nav-item-opensource'
+    business css: '.nav-item-business'
   end
 end
 ```
@@ -48,18 +51,18 @@ end
 
 ```ruby
 {
-  "headline"=>"Build software better, together.",
-  "subheading"=> "Powerful collaboration, review, and code management for open source and private development projects.",
-  "what_is"=> [
-    "Great collaboration starts with communication.",
-    "Manage and contribute from all your devices.",
-    "The world’s largest open source community."
+  "headline"=>"How people build software",
+  "subheading"=>"Millions of developers use GitHub to build personal projects, support their businesses, and work together on open source technologies.",
+  "what_is"=>[
+    "For everything you build",
+    "A better way to work",
+    "Millions of projects",
+    "One platform, from start to finish"
   ],
-  "links"=> {
-    "explore"=>"Love GitHub",
-    "search"=>"Search",
-    "features"=>"Features",
-    "blog"=>"Blog"
+  "links"=>{
+    "explore"=>"Love",
+    "features"=>"Open source",
+    "business"=>"Business"
   }
 }
 ```
@@ -67,8 +70,8 @@ end
 ### This is just a sneak peek of what Wombat can do. For the complete documentation, please check the links below:
 
 ### [Wiki](http://github.com/felipecsl/wombat/wiki)
-### [API Documentation](http://rubydoc.info/gems/wombat/2.1.1/frames)
-### [Changelog](https://github.com/felipecsl/wombat/wiki/Changelog)
+### [API Documentation](https://rubydoc.info/gems/wombat)
+### [Changelog](https://github.com/felipecsl/wombat/blob/master/CHANGELOG.md)
 
 ## Contributing to Wombat
 
@@ -83,9 +86,12 @@ end
 ## Contributors
 
  * Felipe Lima ([@felipecsl](https://github.com/felipecsl))
- * [List of all contributors](https://github.com/felipecsl/wombat/wiki/Contributors)
+ * [List of all contributors](https://github.com/felipecsl/wombat/graphs/contributors)
 
 ## Copyright
 
 Copyright (c) 2012 Felipe Lima. See LICENSE.txt for further details.
 
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffelipecsl%2Fwombat.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ffelipecsl%2Fwombat?ref=badge_large)
