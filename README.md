@@ -1,9 +1,9 @@
 # Wombat
 
-[![Gem Version](https://badge.fury.io/rb/wombat.svg)](https://badge.fury.io/rb/wombat) 
-[![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)][travis] 
-[![Dependency Status](https://gemnasium.com/felipecsl/wombat.png?travis)][gemnasium] 
-[![Code Climate](https://codeclimate.com/github/felipecsl/wombat.png)][codeclimate] 
+[![Gem Version](https://badge.fury.io/rb/wombat.svg)](https://badge.fury.io/rb/wombat)
+[![CI Build Status](https://secure.travis-ci.org/felipecsl/wombat.png?branch=master)][travis]
+[![Dependency Status](https://gemnasium.com/felipecsl/wombat.png?travis)][gemnasium]
+[![Code Climate](https://codeclimate.com/github/felipecsl/wombat.png)][codeclimate]
 [![Coverage Status](https://coveralls.io/repos/felipecsl/wombat/badge.png?branch=master)][coveralls]
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffelipecsl%2Fwombat.svg?type=shield)][fossa]
 
@@ -70,7 +70,7 @@ end
 ### This is just a sneak peek of what Wombat can do. For the complete documentation, please check the links below:
 
 ### [Wiki](http://github.com/felipecsl/wombat/wiki)
-### [API Documentation](http://rubydoc.info/gems/wombat/2.1.1/frames)
+### [API Documentation](https://rubydoc.info/gems/wombat)
 ### [Changelog](https://github.com/felipecsl/wombat/blob/master/CHANGELOG.md)
 
 ## Contributing to Wombat
@@ -90,7 +90,7 @@ end
 
 ## Copyright
 
-Copyright (c) 2012 Felipe Lima. See LICENSE.txt for further details.
+Copyright (c) 2019 Felipe Lima. See LICENSE.txt for further details.
 
 
 ## License
