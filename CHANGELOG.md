@@ -1,4 +1,9 @@
-### version 2.9.0 (2018-11-27)
+### version 2.10.0 (2019-09-02)
+
+* Bump gem dependencies to address rest-client security vulnerability
+* Minimum supported Ruby version is now v2.5.0
+
+### version 2.9.0 (2019-07-09)
 
 * Bump all gem dependencies to address security vulnerabilities
 * Minimum supported Ruby version is now v2.3.0
