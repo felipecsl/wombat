@@ -1,0 +1,8 @@
+title: Wombat
+description: Web crawler/scraper with an elegant DSL which extracts structured data from web pages
+google_analytics: UA-32887005-2
+show_downloads: true
+theme: jekyll-theme-slate
+
+gems:
+  - jekyll-mentions
