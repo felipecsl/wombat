@@ -10,7 +10,7 @@ describe Wombat::Property::Locators::Text do
 
     locator = Wombat::Property::Locators::Text.new(property)
 
-    locator.locate(context).should == { "data1" => "Something cool" }
+    locator.locate(context).should eq({ "data1" => "Something cool" })
   end
 
   it 'should locate text property with xpath selector using xpath functions' do
@@ -20,7 +20,7 @@ describe Wombat::Property::Locators::Text do
 
     locator = Wombat::Property::Locators::Text.new(property)
 
-    locator.locate(context).should == { "data1" => "Something" }
+    locator.locate(context).should eq({ "data1" => "Something" })
   end
 
   it 'should locate text property with css selector' do
@@ -32,17 +32,16 @@ describe Wombat::Property::Locators::Text do
 
     locator = Wombat::Property::Locators::Text.new(property)
 
-    locator.locate(context).should == { "data1" => "My name" }
+    locator.locate(context).should eq({ "data1" => "My name" })
   end
 
   it 'should return plain symbols as strings' do
-    fake_elem = double :element
     context   = double :context
     property = Wombat::DSL::Property.new('data_2', :hardcoded_value, :text)
 
     locator = Wombat::Property::Locators::Text.new(property)
 
-    locator.locate(context).should == { "data_2" => "hardcoded_value" }
+    locator.locate(context).should eq({ "data_2" => "hardcoded_value" })
   end
 
   it 'should invoke property callback' do
@@ -54,6 +53,6 @@ describe Wombat::Property::Locators::Text do
 
     locator = Wombat::Property::Locators::Text.new(property)
 
-    locator.locate(context).should == { "data1" => "My ass" }
+    locator.locate(context).should eq({ "data1" => "My ass" })
   end
 end

@@ -8,6 +8,6 @@ describe Wombat::Property::Locators::List do
 
     locator = Wombat::Property::Locators::List.new(property)
 
-    locator.locate(context).should == { "data1" => %w(1 2 3 4 5) }
+    locator.locate(context).should eq({ "data1" => %w(1 2 3 4 5) })
   end
 end

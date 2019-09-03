@@ -3,24 +3,16 @@ http_interactions:
 - request:
     method: get
     uri: http://ws.audioscrobbler.com/2.0/?api_key=060decb474b73437d5bbec37f527ae7b&location=San%20Francisco&method=geo.getevents
-    body: ''
+    body:
+      encoding: US-ASCII
+      string: ''
     headers:
-      accept:
-      - ! '*/*'
-      user-agent:
-      - Mechanize/2.1 Ruby/1.9.3p0 (http://github.com/tenderlove/mechanize/)
-      accept-encoding:
-      - gzip,deflate,identity
-      accept-charset:
-      - ISO-8859-1,utf-8;q=0.7,*;q=0.7
-      accept-language:
-      - en-us,en;q=0.5
-      host:
-      - ws.audioscrobbler.com
-      connection:
-      - keep-alive
-      keep-alive:
-      - 300
+      Accept:
+        - "*/*"
+      User-Agent:
+        - rest-client/2.1.0 (darwin17.3.0 x86_64) ruby/2.5.0p0
+      Host:
+        - ws.audioscrobbler.com
   response:
     status:
       code: 200

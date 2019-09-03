@@ -1,11 +1,12 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    activesupport (5.2.3)
+    activesupport (6.0.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+      zeitwerk (~> 2.1, >= 2.1.8)
     addressable (2.4.0)
     builder (3.2.3)
     concurrent-ruby (1.1.5)
@@ -34,9 +35,10 @@ GEM
       hashie (>= 3.4)
       mime-types (>= 1.16, < 3.0)
       oauth2 (~> 1.0)
-    hashdiff (0.4.0)
+    hashdiff (1.0.0)
     hashie (3.6.0)
     highline (2.0.2)
+    http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (1.6.0)
@@ -70,10 +72,10 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     net-http-digest_auth (1.4.1)
-    net-http-persistent (3.0.1)
+    net-http-persistent (3.1.0)
       connection_pool (~> 2.2)
     netrc (0.11.0)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     ntlm-http (0.1.1)
     oauth2 (1.4.1)
@@ -84,9 +86,10 @@ GEM
       rack (>= 1.2, < 3)
     psych (3.1.0)
     rack (2.0.7)
-    rake (12.3.2)
-    rdoc (6.1.1)
-    rest-client (2.0.2)
+    rake (12.3.3)
+    rdoc (6.2.0)
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
@@ -114,19 +117,20 @@ GEM
       tins (~> 1.0)
     thor (0.20.3)
     thread_safe (0.3.6)
-    tins (1.21.0)
+    tins (1.21.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
     vcr (5.0.0)
-    webmock (3.6.0)
+    webmock (3.7.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
     webrobots (0.1.2)
     yard (0.9.20)
+    zeitwerk (2.1.9)
 
 PLATFORMS
   ruby
@@ -145,4 +149,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.17.1
+   2.0.2

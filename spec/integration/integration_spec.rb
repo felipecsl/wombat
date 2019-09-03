@@ -25,10 +25,10 @@ describe 'basic crawler setup' do
 
       results = crawler_instance.crawl
 
-      results["search"].should == "Buscar"
-      results["links"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
-      results["subheader"].should == "Londres 2012"
-      results["social"]["twitter"].should == "Verão"
+      results["search"].should eq "Buscar"
+      results["links"].should eq [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
+      results["subheader"].should eq "Londres 2012"
+      results["social"]["twitter"].should eq "Verão"
     end
   end
 
@@ -56,10 +56,10 @@ describe 'basic crawler setup' do
 
       results = crawler_instance.crawl
 
-      results["search"].should == "Buscar"
-      results["links"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
-      results["subheader"].should == "Londres 2012"
-      results["social"]["twitter"].should == "Verão"
+      results["search"].should eq "Buscar"
+      results["links"].should eq [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
+      results["subheader"].should eq "Londres 2012"
+      results["social"]["twitter"].should eq "Verão"
     end
   end
 
@@ -86,10 +86,10 @@ describe 'basic crawler setup' do
 
       results = crawler_instance.crawl
 
-      results["search"].should == "Buscar"
-      results["links"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
-      results["subheader"].should == "Londres 2012"
-      results["social"]["twitter"].should == "Verão"
+      results["search"].should eq "Buscar"
+      results["links"].should eq [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
+      results["subheader"].should eq "Londres 2012"
+      results["social"]["twitter"].should eq "Verão"
     end
   end
 
@@ -112,13 +112,13 @@ describe 'basic crawler setup' do
       results = crawler_instance.crawl
     end
 
-    results["links"].should == result_hash
+    results["links"].should eq result_hash
 
     VCR.use_cassette('basic_crawler_page') do
       results = crawler_instance.crawl
     end
 
-    results["links"].should == result_hash
+    results["links"].should eq result_hash
   end
 
   it 'should crawl page through block to class instance crawl method' do
@@ -145,10 +145,10 @@ describe 'basic crawler setup' do
         end
       end
 
-      results["search"].should == "Buscar"
-      results["links"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
-      results["subheader"].should == "Londres 2012"
-      results["social"]["twitter"].should == "Verão"
+      results["search"].should eq "Buscar"
+      results["links"].should eq [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
+      results["subheader"].should eq "Londres 2012"
+      results["social"]["twitter"].should eq "Verão"
     end
   end
 
@@ -173,10 +173,10 @@ describe 'basic crawler setup' do
         end
       end
 
-      results["search"].should == "Buscar"
-      results["links"].should == [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
-      results["subheader"].should == "Londres 2012"
-      results["social"]["twitter"].should == "Verão"
+      results["search"].should eq "Buscar"
+      results["links"].should eq [{"menu"=>"Agenda"}, {"menu"=>"Brasileiro"}, {"menu"=>"Brasil"}, {"menu"=>"Bolsas"}, {"menu"=>"Cinema"}, {"menu"=>"Galerias de Fotos"}, {"menu"=>"Beleza"}, {"menu"=>"Esportes"}, {"menu"=>"Assine o RSS"}]
+      results["subheader"].should eq "Londres 2012"
+      results["social"]["twitter"].should eq "Verão"
     end
   end
 
@@ -197,14 +197,14 @@ describe 'basic crawler setup' do
 
       results = crawler.new.crawl
 
-      results.should == { "repos" => [
+      results.should eq({ "repos" => [
         { "project" => { "repo" => "jairajs89 / Touchy.js", "description" => "A simple light-weight JavaScript library  dealing with touch events" } },
         { "project" => { "repo" => "mcavage / node-restify", "description" => "node.js REST framework specifically meant  web service APIs" } },
         { "project" => { "repo" => "notlion / streetview-stereographic", "description" => "Shader Toy + Google Map + Panoramic Explorer" } },
         { "project" => { "repo" => "twitter / bootstrap", "description" => "HTML, CSS, and JS toolkit from Twitter" } },
         { "project" => { "repo" => "stolksdorf / Parallaxjs", "description" => "a Library  Javascript that allows easy page parallaxing" } },
         { "project" => { "repo" => nil, "description" => nil}}
-      ]}
+      ]})
     end
   end
 
@@ -216,9 +216,7 @@ describe 'basic crawler setup' do
       crawler.document_format :xml
       crawler.base_url "http://ws.audioscrobbler.com"
       crawler.path "/2.0/?method=geo.getevents&location=#{URI.escape('San Francisco')}&api_key=060decb474b73437d5bbec37f527ae7b"
-
       crawler.artist "xpath=//title", :list
-
       crawler.location 'xpath=//event', :iterator do
         latitude "xpath=./venue/location/geo:point/geo:lat", :text, { 'geo' => 'http://www.w3.org/2003/01/geo/wgs84_pos#' }
         longitude "xpath=./venue/location/geo:point/geo:long", :text, { 'geo' => 'http://www.w3.org/2003/01/geo/wgs84_pos#' }
@@ -228,7 +226,7 @@ describe 'basic crawler setup' do
       results = crawler_instance.crawl
       iterator = results['location']
 
-      iterator.should == [
+      iterator.should eq([
         {"latitude"=>"37.807775", "longitude"=>"-122.272736"},
         {"latitude"=>"37.807717", "longitude"=>"-122.270059"},
         {"latitude"=>"37.869784", "longitude"=>"-122.267701"},
@@ -239,7 +237,7 @@ describe 'basic crawler setup' do
         {"latitude"=>"37.771079", "longitude"=>"-122.412604"},
         {"latitude"=>"37.784963", "longitude"=>"-122.418871"},
         {"latitude"=>"37.788978", "longitude"=>"-122.40664"}
-      ]
+      ])
 
       results["artist"].should =~ ["Davka", "Digitalism (DJ Set)", "Gary Clark Jr.", "Lenny Kravitz", "Little Muddy", "Michael Schenker Group", "The Asteroids Galaxy Tour", "When Indie Attacks", "When Indie Attacks", "YOB"]
     end
@@ -260,7 +258,7 @@ describe 'basic crawler setup' do
       crawler_instance = crawler.new
       results = crawler_instance.crawl
 
-      results.should == {
+      results.should eq({
         "github" => [
           { "heading"=>"GitHub helps people build software together." },
           { "heading"=>nil },
@@ -270,7 +268,7 @@ describe 'basic crawler setup' do
           { "heading"=>"GitHub on Your Servers" },
           { "heading"=>"Loading..." }
         ]
-      }
+      })
     end
   end
 
