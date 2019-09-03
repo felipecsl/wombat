@@ -49,7 +49,6 @@ module Wombat
       private
       def parser_for(metadata, url)
         url ||= "#{metadata[:base_url]}#{metadata[:path]}"
-        page = nil
         parser = nil
         _method = method_from(metadata[:http_method])
         data = metadata[:data]
@@ -64,7 +63,7 @@ module Wombat
             parser.headers = @page.header
           else
             @page = RestClient.public_send(_method, *args) unless @page
-            parser = Nokogiri::XML @page
+            parser = Nokogiri::XML(decode_body)
             parser.headers = @page.headers
           end
           @response_code = @page.code.to_i if @page.respond_to? :code
@@ -76,6 +75,15 @@ module Wombat
             @response_code = $!.response_code.to_i
           end
           raise $!
+        end
+      end
+
+      def decode_body
+        # Check if it's gzip encoded
+        if @page.body.start_with?("\x1F\x8B".b)
+          Zlib::GzipReader.new(StringIO.new(@page.body)).read
+        else
+          @page.body
         end
       end
 

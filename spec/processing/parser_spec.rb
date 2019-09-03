@@ -46,7 +46,7 @@ describe Wombat::Processing::Parser do
     @metadata.http_method :get
 
     fake_document = double :document
-    fake_parser = double :parser
+    fake_parser = double(:parser, body: 'foo')
     fake_header = double :header
     fake_document.should_receive(:parser).and_return(fake_parser)
     fake_document.should_receive(:header).and_return(fake_header)
@@ -58,13 +58,13 @@ describe Wombat::Processing::Parser do
   end
 
   it 'should correctly parse xml documents' do
-    fake_document = double :xml
+    fake_document = double(:xml, body: 'foo')
     fake_parser = double :parser
     fake_headers = double :headers
     @metadata.document_format :xml
     @parser.mechanize.should_not_receive(:get)
     RestClient.should_receive(:get).and_return fake_document
-    Nokogiri.should_receive(:XML).with(fake_document).and_return fake_parser
+    Nokogiri.should_receive(:XML).with('foo').and_return fake_parser
     fake_document.should_receive(:headers).and_return(fake_headers)
     fake_parser.should_receive(:headers=)
 

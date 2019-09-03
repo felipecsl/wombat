@@ -1,6 +1,5 @@
 language: ruby
 rvm:
-  - 2.4.4
   - 2.5.0
   - 2.6.3
 notifications:
