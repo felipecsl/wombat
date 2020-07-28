@@ -54,7 +54,7 @@ GEM
       rake
       rdoc
       semver2
-    json (2.2.0)
+    json (2.3.1)
     jwt (2.2.1)
     mechanize (2.7.6)
       domain_name (~> 0.5, >= 0.5.1)
