@@ -124,7 +124,7 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tins (1.21.1)
-    tzinfo (1.2.7)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
