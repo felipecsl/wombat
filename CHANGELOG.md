@@ -1,3 +1,7 @@
+### version 3.0.0 (2022-08-23)
+
+* Bumped all dependencies to support Ruby v3.1
+
 ### version 2.10.0 (2019-09-02)
 
 * Bump gem dependencies to address rest-client security vulnerability
