@@ -1,0 +1,31 @@
+name: Wombat CI
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Restore Bundler cache
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-bundle-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bundle-
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.2
+
+      - name: Install dependencies
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+      - name: Run tests
+        run: bundle exec rake test
