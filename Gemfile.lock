@@ -136,7 +136,8 @@ GEM
       hashdiff (>= 0.4.0, < 2.0.0)
     webrick (1.7.0)
     webrobots (0.1.2)
-    yard (0.9.20)
+    yard (0.9.28)
+      webrick (~> 1.7.0)
     zeitwerk (2.3.0)
 
 PLATFORMS
