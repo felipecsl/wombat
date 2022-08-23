@@ -5,6 +5,7 @@ gem 'activesupport'
 gem 'rest-client'
 
 group :development, :test do
+  gem 'mechanize'
   gem 'bundler'
   gem 'rake'
   gem 'yard'
