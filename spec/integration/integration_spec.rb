@@ -215,7 +215,7 @@ describe 'basic crawler setup' do
 
       crawler.document_format :xml
       crawler.base_url "http://ws.audioscrobbler.com"
-      crawler.path "/2.0/?method=geo.getevents&location=#{URI.escape('San Francisco')}&api_key=060decb474b73437d5bbec37f527ae7b"
+      crawler.path "/2.0/?method=geo.getevents&location=#{URI.encode_www_form_component('San Francisco')}&api_key=060decb474b73437d5bbec37f527ae7b"
       crawler.artist "xpath=//title", :list
       crawler.location 'xpath=//event', :iterator do
         latitude "xpath=./venue/location/geo:point/geo:lat", :text, { 'geo' => 'http://www.w3.org/2003/01/geo/wgs84_pos#' }
