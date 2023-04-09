@@ -5,7 +5,7 @@ require 'wombat/crawler'
 module Wombat
   class << self
 
-    attr_reader :proxy_args, :user_agent, :user_agent_alias
+    attr_reader :proxy_args, :user_agent, :user_agent_alias, :request_headers
 
     def crawl(&block)
       klass = Class.new
@@ -15,6 +15,10 @@ module Wombat
 
     def configure
       yield self
+    end
+
+    def set_request_headers(request_headers)
+      @request_headers = request_headers
     end
 
     def set_proxy(*args)
