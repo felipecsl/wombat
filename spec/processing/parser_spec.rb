@@ -14,10 +14,14 @@ describe Wombat::Processing::Parser do
     fake_document = double :document
     fake_parser = double :parser
     fake_header = double :header
+    fake_uri = double :to_s
+    fake_url = double(:uri, uri: fake_uri)
     fake_document.should_receive(:parser).and_return(fake_parser)
     fake_document.should_receive(:header).and_return(fake_header)
+    fake_document.should_receive(:uri).and_return(fake_uri)
     fake_parser.should_receive(:headers=)
     fake_parser.should_receive(:mechanize_page=)
+    fake_parser.should_receive(:url=)
     @parser.mechanize.should_receive(:get).with("http://www.google.com/search").and_return fake_document
 
     @parser.parse @metadata
@@ -33,10 +37,15 @@ describe Wombat::Processing::Parser do
     fake_document = double :document
     fake_parser = double :parser
     fake_header = double :header
+    fake_uri = double :to_s
+    fake_url = double(:uri, uri: fake_uri)
+
     fake_document.should_receive(:parser).and_return(fake_parser)
     fake_document.should_receive(:header).and_return(fake_header)
+    fake_document.should_receive(:uri).and_return(fake_uri)
     fake_parser.should_receive(:headers=)
     fake_parser.should_receive(:mechanize_page=)
+    fake_parser.should_receive(:url=)
     @parser.mechanize.should_receive(:post).with("http://hroch486.icpf.cas.cz/cgi-bin/echo.pl", data).and_return fake_document
 
     @parser.parse @metadata
@@ -48,10 +57,14 @@ describe Wombat::Processing::Parser do
     fake_document = double :document
     fake_parser = double(:parser, body: 'foo')
     fake_header = double :header
+    fake_uri = double :to_s
+    fake_url = double(:uri, uri: fake_uri)
     fake_document.should_receive(:parser).and_return(fake_parser)
     fake_document.should_receive(:header).and_return(fake_header)
+    fake_document.should_receive(:uri).and_return(fake_uri)
     fake_parser.should_receive(:headers=)
     fake_parser.should_receive(:mechanize_page=)
+    fake_parser.should_receive(:url=)
     @parser.mechanize.should_receive(:get).with("https://www.github.com/notifications").and_return fake_document
 
     @parser.parse(@metadata, 'https://www.github.com/notifications')
