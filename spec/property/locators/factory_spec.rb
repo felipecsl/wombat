@@ -8,6 +8,7 @@ describe Wombat::Property::Locators::Factory do
     Wombat::Property::Locators::Factory.locator_for(Wombat::DSL::Property.new(nil, nil, :follow)).should be_a(Wombat::Property::Locators::Follow)
     Wombat::Property::Locators::Factory.locator_for(Wombat::DSL::Property.new(nil, nil, :iterator)).should be_a(Wombat::Property::Locators::Iterator)
     Wombat::Property::Locators::Factory.locator_for(Wombat::DSL::Property.new(nil, nil, :container)).should be_a(Wombat::Property::Locators::PropertyGroup)
+    Wombat::Property::Locators::Factory.locator_for(Wombat::DSL::Property.new(nil, :url)).should be_a(Wombat::Property::Locators::Url)
   end
 
   it 'should raise correct exception if provided property is of unknown type' do

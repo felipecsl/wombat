@@ -6,6 +6,7 @@ require 'wombat/property/locators/iterator'
 require 'wombat/property/locators/property_group'
 require 'wombat/property/locators/list'
 require 'wombat/property/locators/text'
+require 'wombat/property/locators/url'
 require 'wombat/property/locators/headers'
 
 class Wombat::Property::Locators::UnknownTypeException < Exception; end;
@@ -30,6 +31,8 @@ module Wombat
             Follow
           when :headers
             Headers
+          when :url
+            Url
           else
             raise Wombat::Property::Locators::UnknownTypeException.new("Unknown property format #{property.format}.")
           end
