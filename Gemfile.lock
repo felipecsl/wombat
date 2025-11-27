@@ -100,13 +100,15 @@ GEM
     kamelcase (0.0.2)
       semver2 (~> 3)
     logger (1.7.0)
-    mechanize (2.8.5)
+    mechanize (2.14.0)
       addressable (~> 2.8)
+      base64
       domain_name (~> 0.5, >= 0.5.20190701)
       http-cookie (~> 1.0, >= 1.0.3)
-      mime-types (~> 3.0)
+      mime-types (~> 3.3)
       net-http-digest_auth (~> 1.4, >= 1.4.1)
       net-http-persistent (>= 2.5.2, < 5.0.dev)
+      nkf
       nokogiri (~> 1.11, >= 1.11.2)
       rubyntlm (~> 0.6, >= 0.6.3)
       webrick (~> 1.7)
@@ -125,6 +127,7 @@ GEM
     net-http-persistent (4.0.6)
       connection_pool (~> 2.2, >= 2.2.4)
     netrc (0.11.0)
+    nkf (0.2.0)
     nokogiri (1.18.10-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.18.10-x86_64-linux-gnu)
@@ -214,7 +217,7 @@ DEPENDENCIES
   bundler
   coveralls
   juwelier
-  mechanize (~> 2.8.5)
+  mechanize (~> 2.14.0)
   rake
   rest-client
   rspec

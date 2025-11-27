@@ -1,16 +1,16 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
-gem 'mechanize', '~> 2.8.5'
 gem 'activesupport'
+gem 'mechanize', '~> 2.14.0'
 gem 'rest-client'
 
 group :development, :test do
   gem 'bundler'
+  gem 'coveralls', require: false
   gem 'juwelier'
   gem 'rake'
-  gem 'yard'
   gem 'rspec'
   gem 'vcr'
   gem 'webmock'
-  gem 'coveralls', require: false
+  gem 'yard'
 end
