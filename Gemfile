@@ -6,7 +6,7 @@ gem 'rest-client'
 
 group :development, :test do
   gem 'bundler'
-  gem 'jeweler'
+  gem 'juwelier'
   gem 'rake'
   gem 'yard'
   gem 'rspec'

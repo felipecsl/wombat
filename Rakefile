@@ -3,7 +3,7 @@
 require 'rubygems'
 require 'bundler'
 require 'rake'
-require 'jeweler'
+require 'juwelier'
 require 'rspec/core/rake_task'
 require 'yard'
 
@@ -14,7 +14,7 @@ module TempFixForRakeLastComment
 end
 Rake::Application.send :include, TempFixForRakeLastComment
 
-Jeweler::Tasks.new do |gem|
+Juwelier::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "wombat"
   gem.homepage = "http://felipecsl.github.com/wombat"
@@ -27,7 +27,7 @@ Jeweler::Tasks.new do |gem|
   # dependencies defined in Gemfile
 end
 
-Jeweler::RubygemsDotOrgTasks.new
+Juwelier::RubygemsDotOrgTasks.new
 
 RSpec::Core::RakeTask.new(:spec)
 
