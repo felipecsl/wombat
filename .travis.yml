@@ -1,6 +1,0 @@
-language: ruby
-rvm:
-  - 2.5.0
-  - 2.6.3
-notifications:
-  webhooks: https://app.fossa.io/hooks/travisci
