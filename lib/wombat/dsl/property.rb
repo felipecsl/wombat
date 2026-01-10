@@ -5,9 +5,15 @@ module Wombat
 
       def initialize(name, *args, &block)
         @wombat_property_name = name
-        @wombat_property_selector = args[0]
-        @wombat_property_format = args[1] || :text
-        @wombat_property_namespaces = args[2]
+        if args[0] == :url
+          @wombat_property_selector = nil
+          @wombat_property_format = :url
+          @wombat_property_namespaces = nil
+        else
+          @wombat_property_selector = args[0]
+          @wombat_property_format = args[1] || :text
+          @wombat_property_namespaces = args[2]
+        end
         @callback = block
       end
 

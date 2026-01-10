@@ -11,11 +11,13 @@ module Nokogiri
     end
     class Element
       attr_accessor :mechanize_page
+      attr_accessor :url
     end
   end
   module HTML
     class Document
       attr_accessor :mechanize_page
+      attr_accessor :url
     end
   end
 end
@@ -61,6 +63,7 @@ module Wombat
             parser = @page.parser         # Nokogiri::HTML::Document
             parser.mechanize_page = @page # Mechanize::Page
             parser.headers = @page.header
+            parser.url = @page.uri.to_s
           else
             @page = RestClient.public_send(_method, *args) unless @page
             parser = Nokogiri::XML(decode_body)
