@@ -82,7 +82,7 @@ GEM
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     io-console (0.8.2)
-    json (2.19.1)
+    json (2.19.3)
     juwelier (2.4.9)
       builder
       bundler
@@ -148,7 +148,7 @@ GEM
       stringio
     public_suffix (7.0.5)
     racc (1.8.1)
-    rack (3.2.5)
+    rack (3.2.6)
     rake (13.3.1)
     rchardet (1.10.0)
     rdoc (7.2.0)
