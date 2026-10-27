@@ -87,7 +87,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://felipecsl.github.com/wombat".freeze
   s.licenses = ["MIT".freeze]
-  s.required_ruby_version = Gem::Requirement.new(">= 1.9".freeze)
+  s.required_ruby_version = Gem::Requirement.new(">= 2.3".freeze)
   s.rubygems_version = "4.0.3".freeze
   s.summary = "Ruby DSL to scrape web pages".freeze
 
