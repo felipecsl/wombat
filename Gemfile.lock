@@ -61,11 +61,9 @@ GEM
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
     faraday-retry (1.0.4)
-    git (5.6.1)
-      activesupport (>= 5.0)
+    git (1.19.1)
       addressable (~> 2.8)
-      process_executer (~> 4.1)
-      rchardet (~> 1.9)
+      rchardet (~> 1.8)
     github_api (0.19.0)
       addressable (~> 2.4)
       descendants_tracker (~> 0.0.4)
@@ -149,8 +147,6 @@ GEM
       prettyprint
     prettyprint (0.2.1)
     prism (1.9.0)
-    process_executer (4.1.1)
-      track_open_instances (~> 0.1)
     psych (5.5.0)
       date
       stringio
@@ -213,7 +209,6 @@ GEM
       mize (~> 0.6)
       readline
       sync
-    track_open_instances (0.1.15)
     tsort (0.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -235,6 +230,7 @@ DEPENDENCIES
   activesupport
   bundler
   coveralls
+  git (~> 1.19)
   juwelier
   mechanize (~> 2.14.0)
   rake
