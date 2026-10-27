@@ -14,6 +14,14 @@ module TempFixForRakeLastComment
 end
 Rake::Application.send :include, TempFixForRakeLastComment
 
+# juwelier tags a release with a plain `git tag vX.Y.Z` (no message). With
+# tag.gpgSign enabled globally, git turns that into an annotated tag and opens
+# an editor for the tag message, which stalls `rake release`. Tags here are
+# lightweight, so keep them that way for git commands spawned by rake.
+ENV['GIT_CONFIG_COUNT'] = '1'
+ENV['GIT_CONFIG_KEY_0'] = 'tag.gpgSign'
+ENV['GIT_CONFIG_VALUE_0'] = 'false'
+
 Juwelier::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "wombat"
